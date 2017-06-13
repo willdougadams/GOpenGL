@@ -1,10 +1,7 @@
 package States
 
-import ("fmt"
-        // "Gordon"
+import (
         "github.com/go-gl/glfw/v3.2/glfw"
-        // "github.com/go-gl/mathgl/mgl32"
-
         )
 
 type StateManager struct {
@@ -27,7 +24,6 @@ func (mngr *StateManager) Init(width int,
   mngr.shader_program = shader
   mngr.vao = vao
   mngr.prev_states = make([]State, 0)
-  fmt.Printf("Initing Stateman...\n")
   mngr.window = window
   mngr.curr_state = new(GameState).Init(mngr, width, height, shader, modelUniform, window)
 

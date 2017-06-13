@@ -2,8 +2,9 @@ package Entity
 
 import (
   "Model"
-  "math/rand"
+  //"math/rand"
   "github.com/go-gl/mathgl/mgl32"
+	"Landscape"
   // "fmt"
 )
 
@@ -39,30 +40,36 @@ func (entity *Entity) Init(x float32,
   entity.x = x
   entity.y = y
   entity.z = z
-  entity.x_speed = x_speed
-  entity.y_speed = y_speed
-  entity.z_speed = z_speed
+  entity.x_speed = 0.0
+  entity.y_speed = 0.0
+  entity.z_speed = 0.0
 
   entity.x_orient = x
   entity.y_orient = y
   entity.z_orient = z
-  entity.x_rotate_speed = rand.Float32() - 0.5
-  entity.y_rotate_speed = rand.Float32() - 0.5
-  entity.z_rotate_speed = rand.Float32() - 0.5
+  entity.x_rotate_speed = 0.0 // rand.Float32() - 0.5
+  entity.y_rotate_speed = 0.0 // rand.Float32() - 0.5
+  entity.z_rotate_speed = 0.0 // rand.Float32() - 0.5
 
   entity.drag = float32(0.005)
   entity.rotational_drag = float32(0.00005)
 
   entity.model = model
-
   entity.model_mat = mgl32.Ident4()
 
   return entity
 }
 
-func (entity *Entity) Update(elapsed float32) {
+func (entity *Entity) Update(elapsed float64) {
+	if entity.y_speed > Landscape.TERM_VEL {
+		entity.y_speed += Landscape.GRAV_ACCEL * float32(elapsed)
+	}
+
   entity.x += entity.x_speed * float32(elapsed)
   entity.y += entity.y_speed * float32(elapsed)
+	if entity.y < Landscape.GROUND_LEVEL {
+		entity.y = Landscape.GROUND_LEVEL
+	}
   entity.z += entity.z_speed * float32(elapsed)
 
   entity.x_orient += entity.x_rotate_speed * float32(elapsed)
@@ -70,7 +77,7 @@ func (entity *Entity) Update(elapsed float32) {
   entity.z_orient += entity.z_rotate_speed * float32(elapsed)
 
   entity.x_speed = max32(entity.x_speed - entity.drag, 0.0)
-  entity.y_speed = max32(entity.y_speed - entity.drag, 0.0)
+  // entity.y_speed = max32(entity.y_speed - entity.drag, 0.0)
   entity.z_speed = max32(entity.z_speed - entity.drag, 0.0)
 
   entity.x_rotate_speed = max32(entity.x_rotate_speed - entity.rotational_drag, 0.0)
@@ -84,8 +91,11 @@ func (entity *Entity) Update(elapsed float32) {
   z_rotate_mat := mgl32.HomogRotate3D(entity.z_orient, mgl32.Vec3{0, 0, -1})
 
   rotate_mat := x_rotate_mat.Mul4(y_rotate_mat).Mul4(z_rotate_mat)
+	trans_rot_mat := trans_mat.Mul4(rotate_mat)
 
-  entity.model_mat = trans_mat.Mul4(rotate_mat)
+	scale_factor := float32(0.33)
+	scale_mat := mgl32.Scale3D(scale_factor, scale_factor, scale_factor)
+  entity.model_mat = scale_mat.Mul4(trans_rot_mat)
 }
 
 func (entity * Entity) Draw(model_uniform int32) {

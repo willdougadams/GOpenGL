@@ -9,6 +9,8 @@ import (
 	_ "image/png"
 	"log"
 	"os"
+	"time"
+	// "math"
 	"runtime"
 	"strings"
   "io/ioutil"
@@ -31,7 +33,7 @@ type Application struct {
 
   temp_err error
   window *glfw.Window
-  time, elapsed, previousTime float64
+  // time, elapsed, previousTime float64
   angle float64
   program, vao, vbo uint32
   //model int32
@@ -86,7 +88,7 @@ func (app *Application) Init() *Application {
   gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
 
   // Load the texture
-  app.texture, app.temp_err = newTexture("/home/will/code/go/res/square.png")
+  app.texture, app.temp_err = newTexture("/home/will/code/gopengl/res/square.png")
   if app.temp_err != nil {
     log.Fatalln(app.temp_err)
   }
@@ -113,24 +115,32 @@ func (app *Application) Init() *Application {
 
 
   app.angle = 0.0
-  app.previousTime = glfw.GetTime()
+  // app.previousTime = glfw.GetTime()
 
   return app
 }
 
 func (app *Application) Run() {
+	var time_delta, start_time, end_time int64
+	var elapsed_seconds float64
+
+	end_time = time.Now().UnixNano()
+
   for !app.window.ShouldClose() {
+		start_time = time.Now().UnixNano()
+		time_delta = start_time - end_time
+		elapsed_seconds = float64(time_delta) / (float64(time.Second)/float64(time.Nanosecond))
+
     gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
-    // Update
-    app.mr_manager.Update(app.elapsed)
-
-    // Render
+    app.mr_manager.Update(elapsed_seconds)
     app.mr_manager.Draw()
 
-    // Maintenance
     app.window.SwapBuffers()
     glfw.PollEvents()
+
+		fmt.Printf("%f\r", elapsed_seconds)
+		end_time = start_time
   }
 }
 

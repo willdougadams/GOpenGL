@@ -14,7 +14,6 @@ import (
 )
 
 type GameState struct {
-  time, elapsed, previousTime float32
   angle float64
   modelUniform int32
   texture uint32
@@ -38,7 +37,7 @@ func (game *GameState) Init(manager *StateManager,
   game.stacy = new(Stacy.Stacy).Init()
   game.shader = shader
 
-  game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, shader, width, height, window)
+  game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, -15.0, shader, width, height, window)
   game.modelUniform = modelUniform
   game.model = new(Model.Model).Init("res/bunny.obj", shader)
 
@@ -46,15 +45,16 @@ func (game *GameState) Init(manager *StateManager,
   game.h = height
 
   game.manager = manager
-  game.entities = make([]*Entity.Entity, 100)
-  for i := 0; i < cap(game.entities); i++ {
-    x := (rand.Float32() * 20) - 10
-    y := (rand.Float32() * 20) - 10
-    z := (rand.Float32() * 20) - 10
+  game.entities = make([]*Entity.Entity, 10)
 
-    x_speed := float32(0) // rand.Float32() + 1
-    y_speed := float32(0) // rand.Float32() + 1
-    z_speed := float32(0) // rand.Float32() + 1
+  for i := 0; i < cap(game.entities); i++ {
+    x := (rand.Float32() * 2) - 1
+    y := rand.Float32() * 20
+    z := (rand.Float32() * 2) - 1
+
+    x_speed := float32(0.0) // rand.Float32() + 1
+    y_speed := float32(0.0) // rand.Float32() + 1
+    z_speed := float32(0.0) // rand.Float32() + 1
     game.entities[i] = new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, shader, game.model)
   }
 
@@ -64,14 +64,10 @@ func (game *GameState) Init(manager *StateManager,
 }
 
 func (game *GameState) Update(elapsed float64) {
-  game.time = float32(glfw.GetTime())
-  game.elapsed = game.time - game.previousTime
-  game.previousTime = game.time
-
-  game.gordon.Update(game.elapsed)
+  game.gordon.Update(elapsed)
 
   for _, ent := range game.entities {
-    ent.Update(game.elapsed)
+    ent.Update(elapsed)
   }
 
   game.ticks += 1
