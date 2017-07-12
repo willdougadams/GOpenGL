@@ -31,7 +31,7 @@ func (mngr *StateManager) Init(width int,
   return mngr
 }
 
-func (mngr *StateManager) Update(elapsed float64) {
+func (mngr *StateManager) Update(elapsed float32) {
   mngr.curr_state.Update(elapsed)
 }
 

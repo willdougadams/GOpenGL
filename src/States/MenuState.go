@@ -18,7 +18,7 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, shader
 }
 */
 
-func (menu *MenuState) Update(elapsed float64 ) {
+func (menu *MenuState) Update(elapsed float32) {
   // Literally do nothing
 }
 

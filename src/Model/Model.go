@@ -8,9 +8,11 @@ import (
   "bufio"
   "strings"
 
+/*
   "github.com/go-gl/gl/v4.1-core/gl"
   "github.com/go-gl/mathgl/mgl32"
   "reflect"
+*/
 )
 
 type vec3 struct {
@@ -48,10 +50,12 @@ func (v *vec3) Init(x, y, z, w string) *vec3 {
   return v
 }
 
-
+/*
 type Model struct {
+    shader uint32
   Faces []float32
   Normals []float32
+	Max_radius float32
 }
 
 func (model *Model) Init(filename string, shader_program uint32) *Model {
@@ -66,6 +70,15 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
   var buffer_data []float32
   buffer_data = append(buffer_data, model.Faces...)
   buffer_data = append(buffer_data, model.Normals...)
+
+	model.Max_radius = 0.0
+	for _, val := range faces {
+		if val > model.Max_radius {
+			model.Max_radius = val
+		}
+	}
+
+    model.shader = shader_program
 
   buffer_size := int( uintptr(len(buffer_data)) * reflect.TypeOf(buffer_data).Elem().Size() )
   gl.BufferData(gl.ARRAY_BUFFER, buffer_size, gl.Ptr(buffer_data), gl.STATIC_DRAW)
@@ -86,6 +99,7 @@ func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
 
   gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)/3) )
 }
+*/
 
 func loadObjFile(file string) (face_floats []float32,
                                 norm_floats []float32,

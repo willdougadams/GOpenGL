@@ -1,16 +1,16 @@
 package States
 
 import (
-  // "fmt"
+  "fmt"
   "math/rand"
+
+  "github.com/go-gl/glfw/v3.2/glfw"
+
   "Entity"
   "Stacy"
   "Model"
   "Gordon"
-
-  "github.com/go-gl/glfw/v3.2/glfw"
-  "github.com/go-gl/gl/v4.1-core/gl"
-  // "github.com/go-gl/mathgl/mgl32"
+  "Landscape"
 )
 
 type GameState struct {
@@ -23,6 +23,7 @@ type GameState struct {
 
   ticks uint32
   entities []*Entity.Entity
+  land *Landscape.Landscape
   manager *StateManager
   stacy *Stacy.Stacy
   w, h int
@@ -34,57 +35,61 @@ func (game *GameState) Init(manager *StateManager,
                             shader uint32,
                             modelUniform int32,
                             window *glfw.Window) State {
-  game.stacy = new(Stacy.Stacy).Init()
-  game.shader = shader
+    game.stacy = new(Stacy.Stacy).Init()
+    game.shader = shader
 
-  game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, -15.0, shader, width, height, window)
-  game.modelUniform = modelUniform
-  game.model = new(Model.Model).Init("res/bunny.obj", shader)
+    game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, shader, width, height, window)
+    game.modelUniform = modelUniform
+    game.model = new(Model.Model).Init("res/bunny.obj", shader)
+    // land := new(Model.Model).Init("res/mountain/mount.obj", shader)
 
-  game.w = width
-  game.h = height
+    game.w = width
+    game.h = height
 
-  game.manager = manager
-  game.entities = make([]*Entity.Entity, 10)
+    game.manager = manager
+    game.land = new(Landscape.Landscape).Init(game.shader)
+    game.entities = make([]*Entity.Entity, 0)
 
-  for i := 0; i < cap(game.entities); i++ {
-    x := (rand.Float32() * 2) - 1
-    y := rand.Float32() * 20
-    z := (rand.Float32() * 2) - 1
 
-    x_speed := float32(0.0) // rand.Float32() + 1
-    y_speed := float32(0.0) // rand.Float32() + 1
-    z_speed := float32(0.0) // rand.Float32() + 1
-    game.entities[i] = new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, shader, game.model)
-  }
+    x := float32(0.0)
+    y := float32(20.0)
+    z := float32(15.0)
 
-  game.ticks = 0
+    x_speed := (rand.Float32() * 1) - 0.5
+    y_speed := (rand.Float32() * 10)
+    z_speed := (rand.Float32() * 1) - 0.5
 
-  return game
+    game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, shader, game.model))
+    //game.entities = append(game.entities, new(Entity.Entity).Init(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, shader, land))
+
+    game.ticks = 0
+
+    fmt.Printf("Starting game...")
+    return game
 }
 
-func (game *GameState) Update(elapsed float64) {
-  game.gordon.Update(elapsed)
+func (game *GameState) Update(elapsed float32) {
+    game.gordon.Update(elapsed)
 
-  for _, ent := range game.entities {
-    ent.Update(elapsed)
-  }
+    for _, ent := range game.entities {
+        ent.Update(elapsed)
+    }
 
-  game.ticks += 1
+    game.ticks += 1
 }
 
 func (game *GameState) Draw() {
-  gl.UseProgram(game.manager.shader_program)
+    // gl.UseProgram(game.manager.shader_program)
+    // gl.BindVertexArray(game.manager.vao)
+    // gl.ActiveTexture(gl.TEXTURE0)
+    // gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
+    for _, ent := range game.entities {
+        ent.Draw(game.modelUniform)
+    }
 
-  gl.BindVertexArray(game.manager.vao)
-
-  gl.ActiveTexture(gl.TEXTURE0)
-  gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
-  for _, ent := range game.entities {
-    ent.Draw(game.modelUniform)
-  }
+    game.land.Draw(game.modelUniform)
 }
 
 func (game *GameState) Stop() bool {
-  return true
+    return true
 }

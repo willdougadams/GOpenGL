@@ -1,9 +1,12 @@
 package Application
+/*
+#include <stdlib.h>
+*/
 
 import (
-  "States"
+    "States"
 
-  "fmt"
+    "fmt"
 	"image"
 	"image/draw"
 	_ "image/png"
@@ -13,7 +16,9 @@ import (
 	// "math"
 	"runtime"
 	"strings"
-  "io/ioutil"
+    "io/ioutil"
+    "C"
+    // "unsafe"
 
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.2/glfw"
@@ -46,7 +51,6 @@ func (app *Application) Init() *Application {
   if err := glfw.Init(); err != nil {
     log.Fatalln("failed to initialize glfw:", err)
   }
-  // defer glfw.Terminate()
 
   glfw.WindowHint(glfw.Resizable, glfw.False)
   glfw.WindowHint(glfw.ContextVersionMajor, 4)
@@ -124,24 +128,25 @@ func (app *Application) Run() {
 	var time_delta, start_time, end_time int64
 	var elapsed_seconds float64
 
+    defer glfw.Terminate()
+
 	end_time = time.Now().UnixNano()
 
-  for !app.window.ShouldClose() {
+    for !app.window.ShouldClose() {
 		start_time = time.Now().UnixNano()
 		time_delta = start_time - end_time
 		elapsed_seconds = float64(time_delta) / (float64(time.Second)/float64(time.Nanosecond))
 
-    gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+        gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
-    app.mr_manager.Update(elapsed_seconds)
-    app.mr_manager.Draw()
+        app.mr_manager.Update(float32(elapsed_seconds))
+        app.mr_manager.Draw()
 
-    app.window.SwapBuffers()
-    glfw.PollEvents()
+        app.window.SwapBuffers()
+        glfw.PollEvents()
 
-		fmt.Printf("%f\r", elapsed_seconds)
-		end_time = start_time
-  }
+        end_time = start_time
+    }
 }
 
 func key_callback(window *glfw.Window, key glfw.Key, scancode int, action glfw.Action, mods glfw.ModifierKey) {
@@ -158,26 +163,39 @@ func key_callback(window *glfw.Window, key glfw.Key, scancode int, action glfw.A
 //////////////////////////
 
 func newProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, error) {
-  vertexShaderBytes, v_err := ioutil.ReadFile(vertexShaderFilename)
-  if v_err != nil {
-    panic(v_err)
-  }
-  vertexShaderSource := string(vertexShaderBytes)
+    vertexShaderBytes, v_err := ioutil.ReadFile(vertexShaderFilename)
+    if v_err != nil {
+        panic(v_err)
+    }
+
+    vertexShaderSource := string(vertexShaderBytes)
+    // fmt.Printf("Compiling shader: %s\n", vertexShaderFilename)
+
+    // defer C.free(unsafe.Pointer(vertCString))
+    // the above throws an error i dont undertstand
+
 	vertexShader, err := compileShader(vertexShaderSource, gl.VERTEX_SHADER)
 	if err != nil {
 		return 0, err
 	}
 
-  fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
-  if f_err != nil {
-    panic(f_err)
-  }
-  fragmentShaderSource := string(fragmentShaderBytes)
 
+    fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
+    if f_err != nil {
+        panic(f_err)
+    }
+
+    fragmentShaderSource := string(fragmentShaderBytes)
+    // fragCString := C.CString(fragmentShaderSource)
+    // defer C.free(unsafe.Pointer(fragCString))
+    // the above throws an error i dont undertstand
+
+    // fmt.Printf("Compiling shader: %s\n", fragmentShaderFilename)
 	fragmentShader, err := compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER)
 	if err != nil {
 		return 0, err
 	}
+
 
 	program := gl.CreateProgram()
 

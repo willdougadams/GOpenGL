@@ -25,7 +25,11 @@ type Gordon struct {
   gravity float64
 }
 
-func (gord *Gordon) Init(x, y, z float32, shader uint32, width int, height int, window *glfw.Window) *Gordon {
+func (gord *Gordon) Init(x, y, z float32,
+                        shader uint32,
+                        width int,
+                        height int,
+                        window *glfw.Window) *Gordon {
   gord.shader = shader
   gord.location = mgl32.Vec3{x, y, z}
   gord.orientation = mgl32.Vec3{0.0, 10.0, 0.0}
@@ -49,7 +53,7 @@ func (gord *Gordon) Init(x, y, z float32, shader uint32, width int, height int, 
   return gord
 }
 
-func (gord *Gordon) Update(elapsed float64) {
+func (gord *Gordon) Update(elapsed float32) {
   xpos, ypos := gord.window.GetCursorPos()
   gord.window.SetCursorPos(float64(gord.window_w/2.0), float64(gord.window_h/2.0))
 
@@ -66,7 +70,7 @@ func (gord *Gordon) Update(elapsed float64) {
 
   up := right.Cross(gord.orientation)
 
-  move_dist := float32(elapsed) * gord.move_speed
+  move_dist := elapsed * gord.move_speed
   if gord.window.GetKey(glfw.KeyW) == glfw.Press {
     gord.location = gord.location.Add(gord.orientation.Mul(move_dist))
   }
@@ -82,7 +86,7 @@ func (gord *Gordon) Update(elapsed float64) {
 
   if gord.window.GetKey(glfw.KeyEscape) == glfw.Press {
 		fmt.Printf("\nESC pressed, exiting...\n")
-    gord.window.SetShouldClose(true)
+        gord.window.SetShouldClose(true)
   }
 
   gord.camera = mgl32.LookAtV(gord.location,       // Eye Location
