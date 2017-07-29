@@ -3,7 +3,6 @@ package Entity
 import (
     "Model"
     "github.com/go-gl/mathgl/mgl32"
-    // "Landscape"
     "fmt"
 )
 
