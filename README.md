@@ -1,1 +1,1 @@
-"# Simple GOpenGL app" 
+# Simple GOpenGL app
