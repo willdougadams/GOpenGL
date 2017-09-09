@@ -26,13 +26,20 @@ func (mngr *StateManager) Init(width int,
   mngr.prev_states = make([]State, 0)
   mngr.window = window
   mngr.curr_state = new(GameState).Init(mngr, width, height, shader, modelUniform, window)
+  mngr.prev_states = append(mngr.prev_states, new(GameState).Init(mngr, width, height, shader, modelUniform, window))
 
   // mngr.window.SetKeyCallback(mngr.curr_state.Controls)
   return mngr
 }
 
 func (mngr *StateManager) Update(elapsed float32) {
-  mngr.curr_state.Update(elapsed)
+    if mngr.window.GetKey(glfw.KeyY) == glfw.Press {
+      mngr.prev_states = append(mngr.prev_states, mngr.curr_state)
+      mngr.curr_state = mngr.prev_states[0]
+      mngr.prev_states = append(mngr.prev_states[:0], mngr.prev_states[1:]...)
+    }
+
+    mngr.curr_state.Update(elapsed)
 }
 
 func (mngr *StateManager) Draw() {

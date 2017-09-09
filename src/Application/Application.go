@@ -20,6 +20,8 @@ import (
     "C"
     // "unsafe"
 
+    "Shader"
+
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.2/glfw"
 	// "github.com/go-gl/mathgl/mgl32"
@@ -73,7 +75,7 @@ func (app *Application) Init() *Application {
   fmt.Println("OpenGL version", version)
 
   // Configure the vertex and fragment shaders
-  app.program, app.temp_err = newProgram("src/shaders/default.vert", "src/shaders/default.frag")
+  app.program, app.temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
   if app.temp_err != nil {
     panic(app.temp_err)
   }
