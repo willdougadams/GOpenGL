@@ -5,6 +5,7 @@ import (
   "math/rand"
 
   "github.com/go-gl/glfw/v3.2/glfw"
+  "github.com/go-gl/gl/v4.1-core/gl"
 
   "Entity"
   "Stacy"
@@ -37,11 +38,11 @@ func (game *GameState) Init(manager *StateManager,
                             window *glfw.Window) State {
     game.stacy = new(Stacy.Stacy).Init()
     game.shader = shader
+    gl.UseProgram(game.shader)
 
     game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, shader, width, height, window)
     game.modelUniform = modelUniform
     game.model = new(Model.Model).Init("res/bunny.obj", shader)
-    // land := new(Model.Model).Init("res/mountain/mount.obj", shader)
 
     game.w = width
     game.h = height
@@ -50,17 +51,13 @@ func (game *GameState) Init(manager *StateManager,
     game.land = new(Landscape.Landscape).Init(game.shader)
     game.entities = make([]*Entity.Entity, 0)
 
-
     x := float32(0.0)
     y := float32(20.0)
     z := float32(15.0)
-
     x_speed := (rand.Float32() * 1) - 0.5
     y_speed := (rand.Float32() * 10)
     z_speed := (rand.Float32() * 1) - 0.5
-
     game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, shader, game.model))
-    //game.entities = append(game.entities, new(Entity.Entity).Init(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, shader, land))
 
     game.ticks = 0
 
@@ -75,6 +72,10 @@ func (game *GameState) Update(elapsed float32) {
         ent.Update(elapsed)
     }
 
+    if game.manager.window.GetKey(glfw.KeyY) == glfw.Press {
+      game.manager.ChangeState()
+    }
+
     game.ticks += 1
 }
 
@@ -83,6 +84,8 @@ func (game *GameState) Draw() {
     // gl.BindVertexArray(game.manager.vao)
     // gl.ActiveTexture(gl.TEXTURE0)
     // gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
+    // gl.UseProgram(game.shader)
+
     for _, ent := range game.entities {
         ent.Draw(game.modelUniform)
     }

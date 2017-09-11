@@ -38,13 +38,14 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
         }
     }
 
+    model.shader = shader_program
+    gl.UseProgram(model.shader)
+
     gl.GenVertexArrays(1, &model.vao)
     gl.BindVertexArray(model.vao)
 
     gl.GenBuffers(1, &model.vbo)
     gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
-
-    model.shader = shader_program
 
     buffer_size := int( uintptr(len(buffer_data)) * reflect.TypeOf(buffer_data).Elem().Size() )
     gl.BufferData(gl.ARRAY_BUFFER, buffer_size, gl.Ptr(buffer_data), gl.STATIC_DRAW)
@@ -61,13 +62,14 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 }
 
 func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
+    gl.UseProgram(model.shader)
+
     gl.BindVertexArray(model.vao)
     gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
 
     gl.UniformMatrix4fv(model_uniform, 1, false, &entity_model[0])
     gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)/3) )
 }
-
 
 func loadObjFile(file string) (face_floats []float32,
                                 norm_floats []float32,

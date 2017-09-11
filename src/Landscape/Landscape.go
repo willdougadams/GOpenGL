@@ -15,7 +15,6 @@ const TERRAIN_SIZE = 100
 
 type Landscape struct {
     model *Model.Model
-    // entity *Entity.Entity
     heightmap []float32
     x_offset, z_offset int64
 }
@@ -23,7 +22,6 @@ type Landscape struct {
 func (land *Landscape) Init(shader uint32) *Landscape {
     fmt.Printf("Init Landscape...\n")
     land.model = new(Model.Model).Init("res/mountain/mount.obj", shader)
-    // land.entity = new(Entity.Entity).Init(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, shader, land.model)
 
     for i, _ := range land.model.Faces {
         if i % 4 == 1 {
@@ -68,7 +66,6 @@ func (land *Landscape) Update() {
 
 func (land *Landscape) Draw(model_uniform int32) {
     land.model.Draw(model_uniform, mgl32.Ident4())
-
 }
 
 func (land *Landscape) GetHeight(x, z int) float32 {
