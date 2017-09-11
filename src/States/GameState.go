@@ -83,7 +83,7 @@ func (game *GameState) Draw() {
     // gl.UseProgram(game.manager.shader_program)
     // gl.BindVertexArray(game.manager.vao)
     // gl.ActiveTexture(gl.TEXTURE0)
-    // gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
+    gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
     // gl.UseProgram(game.shader)
 
     for _, ent := range game.entities {
