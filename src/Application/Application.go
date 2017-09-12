@@ -4,9 +4,9 @@ package Application
 */
 
 import (
-    "States"
+	"States"
 
-    "fmt"
+	"fmt"
 	"image"
 	"image/draw"
 	_ "image/png"
@@ -16,11 +16,11 @@ import (
 	// "math"
 	"runtime"
 	"strings"
-    "io/ioutil"
-    "C"
-    // "unsafe"
+	"io/ioutil"
+	"C"
+	// "unsafe"
 
-    "Shader"
+	"Shader"
 
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.2/glfw"
@@ -36,128 +36,128 @@ func init() {
 }
 
 type Application struct {
-  mr_manager *States.StateManager
+	mr_manager *States.StateManager
 
-  temp_err error
-  window *glfw.Window
-  // time, elapsed, previousTime float64
-  angle float64
-  program, vao, vbo uint32
-  //model int32
-  texture uint32
-  textureUniform int32
-  vertAttrib, normAttrib uint32
+	temp_err error
+	window *glfw.Window
+	// time, elapsed, previousTime float64
+	angle float64
+	program, vao, vbo uint32
+	//model int32
+	texture uint32
+	textureUniform int32
+	vertAttrib, normAttrib uint32
 }
 
 func (app *Application) Init() *Application {
-  if err := glfw.Init(); err != nil {
-    log.Fatalln("failed to initialize glfw:", err)
-  }
+	if err := glfw.Init(); err != nil {
+		log.Fatalln("failed to initialize glfw:", err)
+	}
 
-  glfw.WindowHint(glfw.Resizable, glfw.False)
-  glfw.WindowHint(glfw.ContextVersionMajor, 4)
-  glfw.WindowHint(glfw.ContextVersionMinor, 1)
-  glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
-  glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
-  app.window, app.temp_err = glfw.CreateWindow(windowWidth, windowHeight, "Cube", nil, nil)
-  if app.temp_err != nil {
-    panic(app.temp_err)
-  }
-  app.window.MakeContextCurrent()
-  app.window.SetInputMode(glfw.CursorMode, glfw.CursorHidden)
+	glfw.WindowHint(glfw.Resizable, glfw.False)
+	glfw.WindowHint(glfw.ContextVersionMajor, 4)
+	glfw.WindowHint(glfw.ContextVersionMinor, 1)
+	glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
+	glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
+	app.window, app.temp_err = glfw.CreateWindow(windowWidth, windowHeight, "Cube", nil, nil)
+	if app.temp_err != nil {
+		panic(app.temp_err)
+	}
+	app.window.MakeContextCurrent()
+	app.window.SetInputMode(glfw.CursorMode, glfw.CursorHidden)
 
-  // Initialize Glow
-  if err := gl.Init(); err != nil {
-    panic(err)
-  }
+	// Initialize Glow
+	if err := gl.Init(); err != nil {
+		panic(err)
+	}
 
-  version := gl.GoStr(gl.GetString(gl.VERSION))
-  fmt.Println("OpenGL version", version)
+	version := gl.GoStr(gl.GetString(gl.VERSION))
+	fmt.Println("OpenGL version", version)
 
-  // Configure the vertex and fragment shaders
-  app.program, app.temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
-  if app.temp_err != nil {
-    panic(app.temp_err)
-  }
+	// Configure the vertex and fragment shaders
+	app.program, app.temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
+	if app.temp_err != nil {
+		panic(app.temp_err)
+	}
 
-  gl.UseProgram(app.program)
+	gl.UseProgram(app.program)
 
-  model_uniform := gl.GetUniformLocation(app.program, gl.Str("model\x00"))
-/*
-  model := mgl32.Ident4()
-  gl.UniformMatrix4fv(app.modelUniform, 1, false, &model[0])
-*/
+	model_uniform := gl.GetUniformLocation(app.program, gl.Str("model\x00"))
+	/*
+	model := mgl32.Ident4()
+	gl.UniformMatrix4fv(app.modelUniform, 1, false, &model[0])
+	*/
 
-  app.textureUniform = gl.GetUniformLocation(app.program, gl.Str("tex\x00"))
-  gl.Uniform1i(app.textureUniform, 0)
+	app.textureUniform = gl.GetUniformLocation(app.program, gl.Str("tex\x00"))
+	gl.Uniform1i(app.textureUniform, 0)
 
-  gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
+	gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
 
-  // Load the texture
-  app.texture, app.temp_err = newTexture("/home/will/code/gopengl/res/square.png")
-  if app.temp_err != nil {
-    log.Fatalln(app.temp_err)
-  }
+	// Load the texture
+	app.texture, app.temp_err = newTexture("/home/will/code/gopengl/res/square.png")
+	if app.temp_err != nil {
+		log.Fatalln(app.temp_err)
+	}
 
-  // Configure the vertex data
-  gl.GenVertexArrays(1, &app.vao)
-  gl.BindVertexArray(app.vao)
+	// Configure the vertex data
+	gl.GenVertexArrays(1, &app.vao)
+	gl.BindVertexArray(app.vao)
 
-  gl.GenBuffers(1, &app.vbo)
-  gl.BindBuffer(gl.ARRAY_BUFFER, app.vbo)
+	gl.GenBuffers(1, &app.vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, app.vbo)
 
-  // Configure global settings
-  gl.Enable(gl.DEPTH_TEST)
-  gl.DepthFunc(gl.LESS)
-  gl.ClearColor(1.0, 1.0, 1.0, 1.0)
+	// Configure global settings
+	gl.Enable(gl.DEPTH_TEST)
+	gl.DepthFunc(gl.LESS)
+	gl.ClearColor(1.0, 1.0, 1.0, 1.0)
 
-  app.mr_manager = new(States.StateManager).Init(windowWidth,
-                                                  windowHeight,
-                                                  app.program,
-                                                  app.vao,
-                                                  app.texture,
-                                                  model_uniform,
-                                                  app.window)
+	app.mr_manager = new(States.StateManager).Init(windowWidth,
+		windowHeight,
+		app.program,
+		app.vao,
+		app.texture,
+		model_uniform,
+		app.window)
 
 
-  app.angle = 0.0
-  // app.previousTime = glfw.GetTime()
+	app.angle = 0.0
+	// app.previousTime = glfw.GetTime()
 
-  return app
+	return app
 }
 
 func (app *Application) Run() {
 	var time_delta, start_time, end_time int64
 	var elapsed_seconds float64
 
-    defer glfw.Terminate()
+	defer glfw.Terminate()
 
 	end_time = time.Now().UnixNano()
 
-    for !app.window.ShouldClose() {
+	for !app.window.ShouldClose() {
 		start_time = time.Now().UnixNano()
 		time_delta = start_time - end_time
 		elapsed_seconds = float64(time_delta) / (float64(time.Second)/float64(time.Nanosecond))
 
-        gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+		gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
-        app.mr_manager.Update(float32(elapsed_seconds))
-        app.mr_manager.Draw()
+		app.mr_manager.Update(float32(elapsed_seconds))
+		app.mr_manager.Draw()
 
-        app.window.SwapBuffers()
-        glfw.PollEvents()
+		app.window.SwapBuffers()
+		glfw.PollEvents()
 
-        end_time = start_time
-    }
+		end_time = start_time
+	}
 }
 
 func key_callback(window *glfw.Window, key glfw.Key, scancode int, action glfw.Action, mods glfw.ModifierKey) {
-  if action == glfw.Press {
-    switch key {
-    case glfw.KeyEscape:
-      window.SetShouldClose(true)
-    }
-  }
+	if action == glfw.Press {
+		switch key {
+		case glfw.KeyEscape:
+			window.SetShouldClose(true)
+		}
+	}
 }
 
 //////////////////////////
@@ -165,16 +165,16 @@ func key_callback(window *glfw.Window, key glfw.Key, scancode int, action glfw.A
 //////////////////////////
 
 func newProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, error) {
-    vertexShaderBytes, v_err := ioutil.ReadFile(vertexShaderFilename)
-    if v_err != nil {
-        panic(v_err)
-    }
+	vertexShaderBytes, v_err := ioutil.ReadFile(vertexShaderFilename)
+	if v_err != nil {
+		panic(v_err)
+	}
 
-    vertexShaderSource := string(vertexShaderBytes)
-    // fmt.Printf("Compiling shader: %s\n", vertexShaderFilename)
+	vertexShaderSource := string(vertexShaderBytes)
+	// fmt.Printf("Compiling shader: %s\n", vertexShaderFilename)
 
-    // defer C.free(unsafe.Pointer(vertCString))
-    // the above throws an error i dont undertstand
+	// defer C.free(unsafe.Pointer(vertCString))
+	// the above throws an error i dont undertstand
 
 	vertexShader, err := compileShader(vertexShaderSource, gl.VERTEX_SHADER)
 	if err != nil {
@@ -182,17 +182,17 @@ func newProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, er
 	}
 
 
-    fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
-    if f_err != nil {
-        panic(f_err)
-    }
+	fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
+	if f_err != nil {
+		panic(f_err)
+	}
 
-    fragmentShaderSource := string(fragmentShaderBytes)
-    // fragCString := C.CString(fragmentShaderSource)
-    // defer C.free(unsafe.Pointer(fragCString))
-    // the above throws an error i dont undertstand
+	fragmentShaderSource := string(fragmentShaderBytes)
+	// fragCString := C.CString(fragmentShaderSource)
+	// defer C.free(unsafe.Pointer(fragCString))
+	// the above throws an error i dont undertstand
 
-    // fmt.Printf("Compiling shader: %s\n", fragmentShaderFilename)
+	// fmt.Printf("Compiling shader: %s\n", fragmentShaderFilename)
 	fragmentShader, err := compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER)
 	if err != nil {
 		return 0, err

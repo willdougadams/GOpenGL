@@ -1,28 +1,28 @@
 package Shader
 
 import (
-    "fmt"
-    "strings"
-    "os"
-    "image"
-    "image/draw"
-    "io/ioutil"
+	"fmt"
+	"strings"
+	"os"
+	"image"
+	"image/draw"
+	"io/ioutil"
 
-    "github.com/go-gl/gl/v4.1-core/gl"
+	"github.com/go-gl/gl/v4.1-core/gl"
 )
 
 func NewProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, error) {
-    vertexShaderBytes, v_err := ioutil.ReadFile(vertexShaderFilename)
-    if v_err != nil {
-        panic(v_err)
-    }
+	vertexShaderBytes, v_err := ioutil.ReadFile(vertexShaderFilename)
+	if v_err != nil {
+		panic(v_err)
+	}
 
-    vertexShaderBytes = append(vertexShaderBytes, '\x00')
-    vertexShaderSource := string(vertexShaderBytes)
-    // fmt.Printf("Compiling shader: %s\n", vertexShaderFilename)
+	vertexShaderBytes = append(vertexShaderBytes, '\x00')
+	vertexShaderSource := string(vertexShaderBytes)
+	// fmt.Printf("Compiling shader: %s\n", vertexShaderFilename)
 
-    // defer C.free(unsafe.Pointer(vertCString))
-    // the above throws an error i dont undertstand
+	// defer C.free(unsafe.Pointer(vertCString))
+	// the above throws an error i dont undertstand
 
 	vertexShader, err := compileShader(vertexShaderSource, gl.VERTEX_SHADER)
 	if err != nil {
@@ -30,18 +30,18 @@ func NewProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, er
 	}
 
 
-    fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
-    if f_err != nil {
-        panic(f_err)
-    }
+	fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
+	if f_err != nil {
+		panic(f_err)
+	}
 
-    fragmentShaderBytes = append(fragmentShaderBytes, '\x00')
-    fragmentShaderSource := string(fragmentShaderBytes)
-    // fragCString := C.CString(fragmentShaderSource)
-    // defer C.free(unsafe.Pointer(fragCString))
-    // the above throws an error i dont undertstand
+	fragmentShaderBytes = append(fragmentShaderBytes, '\x00')
+	fragmentShaderSource := string(fragmentShaderBytes)
+	// fragCString := C.CString(fragmentShaderSource)
+	// defer C.free(unsafe.Pointer(fragCString))
+	// the above throws an error i dont undertstand
 
-    // fmt.Printf("Compiling shader: %s\n", fragmentShaderFilename)
+	// fmt.Printf("Compiling shader: %s\n", fragmentShaderFilename)
 	fragmentShader, err := compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER)
 	if err != nil {
 		return 0, err

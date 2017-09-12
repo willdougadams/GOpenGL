@@ -11,8 +11,8 @@ func dist3D(one, two *Entity.Entity) float64 {
 	z_dist := float64(one.Z() - two.Z())
 
 	return math.Sqrt(math.Pow(x_dist, 2) +
-					math.Pow(y_dist, 2) +
-					math.Pow(z_dist, 2))
+	math.Pow(y_dist, 2) +
+	math.Pow(z_dist, 2))
 }
 
 func resolve(one, two *Entity.Entity) {
