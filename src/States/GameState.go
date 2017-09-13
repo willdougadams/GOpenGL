@@ -40,24 +40,24 @@ func (game *GameState) Init(manager *StateManager,
 	game.shader = shader
 	gl.UseProgram(game.shader)
 
-	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, shader, width, height, window)
+	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
 	game.modelUniform = modelUniform
-	game.model = new(Model.Model).Init("res/bunny.obj", shader)
+	game.model = new(Model.Model).Init("res/bunny.obj", game.shader)
 
 	game.w = width
 	game.h = height
 
 	game.manager = manager
-	game.land = new(Landscape.Landscape).Init(game.shader)
 	game.entities = make([]*Entity.Entity, 0)
-
 	x := float32(0.0)
 	y := float32(20.0)
 	z := float32(15.0)
 	x_speed := (rand.Float32() * 1) - 0.5
 	y_speed := (rand.Float32() * 10)
 	z_speed := (rand.Float32() * 1) - 0.5
-	game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, shader, game.model))
+	game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.model))
+
+	game.land = new(Landscape.Landscape).Init(game.shader)
 
 	game.ticks = 0
 
@@ -82,9 +82,9 @@ func (game *GameState) Update(elapsed float32) {
 func (game *GameState) Draw() {
 	// gl.UseProgram(game.manager.shader_program)
 	// gl.BindVertexArray(game.manager.vao)
-	// gl.ActiveTexture(gl.TEXTURE0)
+	gl.ActiveTexture(gl.TEXTURE0)
 	gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
-	// gl.UseProgram(game.shader)
+	gl.UseProgram(game.shader)
 
 	for _, ent := range game.entities {
 		ent.Draw(game.modelUniform)
