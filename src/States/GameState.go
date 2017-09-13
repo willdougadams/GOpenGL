@@ -49,13 +49,15 @@ func (game *GameState) Init(manager *StateManager,
 
 	game.manager = manager
 	game.entities = make([]*Entity.Entity, 0)
-	x := float32(0.0)
-	y := float32(20.0)
-	z := float32(15.0)
-	x_speed := (rand.Float32() * 1) - 0.5
-	y_speed := (rand.Float32() * 10)
-	z_speed := (rand.Float32() * 1) - 0.5
-	game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.model))
+	for i := 0; i < 10; i++ {
+		x := (rand.Float32() * 10)
+		y := (rand.Float32() * 10)
+		z := (rand.Float32() * 10)
+		x_speed := float32(0.0)
+		y_speed := (rand.Float32() * 10)
+		z_speed := float32(0.0)
+		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.model))
+	}
 
 	game.land = new(Landscape.Landscape).Init(game.shader)
 

@@ -11,8 +11,6 @@ import (
 
 	"github.com/go-gl/mathgl/mgl32"
 	"github.com/go-gl/gl/v4.1-core/gl"
-
-	"Shader"
 )
 
 type Model struct {
@@ -40,11 +38,7 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 		}
 	}
 
-	var temp_err error
-	model.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
-	if temp_err != nil {
-		panic(temp_err)
-	}
+	model.shader = shader_program
 	gl.UseProgram(model.shader)
 
 	gl.GenVertexArrays(1, &model.vao)
