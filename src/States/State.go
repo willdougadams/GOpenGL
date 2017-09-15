@@ -6,7 +6,7 @@ import (
 )
 
 type State interface {
-	Init(manager *StateManager, width int, height int, shader uint32, modelUniform int32, window *glfw.Window) State
+	Init(manager *StateManager, width int, height int, modelUniform int32, window *glfw.Window) State
 	Update(elapsed float32)
 	Draw()
 	Stop() bool

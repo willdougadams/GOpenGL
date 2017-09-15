@@ -12,6 +12,7 @@ import (
 	"Model"
 	"Gordon"
 	"Landscape"
+	"Shader"
 )
 
 type GameState struct {
@@ -33,11 +34,14 @@ type GameState struct {
 func (game *GameState) Init(manager *StateManager,
 	width int,
 	height int,
-	shader uint32,
 	modelUniform int32,
 	window *glfw.Window) State {
 	game.stacy = new(Stacy.Stacy).Init()
-	game.shader = shader
+	var temp_err error
+	game.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
+	if temp_err != nil {
+		panic(temp_err)
+	}
 	gl.UseProgram(game.shader)
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)

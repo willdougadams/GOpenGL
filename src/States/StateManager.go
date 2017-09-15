@@ -25,8 +25,8 @@ func (mngr *StateManager) Init(width int,
 	mngr.vao = vao
 	mngr.prev_states = make([]State, 0)
 	mngr.window = window
-	mngr.curr_state = new(GameState).Init(mngr, width, height, shader, modelUniform, window)
-	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, shader, modelUniform, window))
+	mngr.curr_state = new(GameState).Init(mngr, width, height, modelUniform, window)
+	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, modelUniform, window))
 
 	return mngr
 }

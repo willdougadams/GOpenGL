@@ -71,9 +71,7 @@ func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
 	gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)/3) )
 }
 
-func loadObjFile(file string) (face_floats []float32,
-	norm_floats []float32,
-	err error) {
+func loadObjFile(file string) (face_floats []float32, norm_floats []float32, err error) {
 	file_handle, file_err := os.Open(file)
 	if file_err != nil {
 		err = errors.New("Cannot open file: %s\n")

@@ -26,7 +26,6 @@ type MenuState struct {
 func (menu *MenuState) Init(manager *StateManager,
 	width int,
 	height int,
-	shader uint32,
 	modelUniform int32,
 	windot *glfw.Window) State {
 	menu.manager = manager
@@ -72,7 +71,6 @@ func (menu *MenuState) Init(manager *StateManager,
 
 	var temp_err error
 	menu.shader, temp_err = Shader.NewProgram("src/shaders/menu.vert", "src/shaders/menu.frag")
-	menu.shader = shader
 	if temp_err != nil {
 		panic(temp_err)
 	}
