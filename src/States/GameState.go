@@ -1,7 +1,6 @@
 package States
 
 import (
-	"fmt"
 	"math/rand"
 
 	"github.com/go-gl/glfw/v3.2/glfw"
@@ -32,10 +31,10 @@ type GameState struct {
 }
 
 func (game *GameState) Init(manager *StateManager,
-	width int,
-	height int,
-	modelUniform int32,
-	window *glfw.Window) State {
+		width int,
+		height int,
+		modelUniform int32,
+		window *glfw.Window) State {
 	game.stacy = new(Stacy.Stacy).Init()
 	var temp_err error
 	game.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
@@ -44,8 +43,16 @@ func (game *GameState) Init(manager *StateManager,
 	}
 	gl.UseProgram(game.shader)
 
+	texture_uniform := gl.GetUniformLocation(game.shader, gl.Str("tex\x00"))
+	gl.Uniform1i(texture_uniform, 0)
+	// gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
+	game.texture, temp_err = Shader.NewTexture("/home/will/code/gopengl/res/square.png")
+	if temp_err != nil {
+		panic(temp_err)
+	}
+
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
-	game.modelUniform = modelUniform
+	game.modelUniform = gl.GetUniformLocation(game.shader, gl.Str("model\x00"))
 	game.model = new(Model.Model).Init("res/bunny.obj", game.shader)
 
 	game.w = width
@@ -67,7 +74,6 @@ func (game *GameState) Init(manager *StateManager,
 
 	game.ticks = 0
 
-	fmt.Printf("Starting game...")
 	return game
 }
 
@@ -89,7 +95,7 @@ func (game *GameState) Draw() {
 	// gl.UseProgram(game.manager.shader_program)
 	// gl.BindVertexArray(game.manager.vao)
 	gl.ActiveTexture(gl.TEXTURE0)
-	gl.BindTexture(gl.TEXTURE_2D, game.manager.texture)
+	gl.BindTexture(gl.TEXTURE_2D, game.texture)
 	gl.UseProgram(game.shader)
 
 	for _, ent := range game.entities {

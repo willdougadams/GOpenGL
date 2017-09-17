@@ -2,8 +2,8 @@ package Entity
 
 import (
 	"Model"
+	
 	"github.com/go-gl/mathgl/mgl32"
-	"fmt"
 )
 
 const GROUND_LEVEL = 0.0
@@ -72,7 +72,6 @@ func (entity *Entity) Init(x float32,
 
 	entity.Collision_dist = model.Max_radius
 
-	fmt.Printf("Creating Entity...\n")
 	return entity
 }
 

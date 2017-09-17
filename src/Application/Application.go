@@ -6,13 +6,16 @@ package Application
 import (
 	"States"
 	"Shader"
+	"Debug"
 
-	"fmt"
+	//"fmt"
+	//"os"
 	_ "image/png"
 	"log"
 	"time"
 	"runtime"
 	"C"
+
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/glfw/v3.2/glfw"
 )
@@ -41,6 +44,7 @@ func (app *Application) Init() *Application {
 		log.Fatalln("failed to initialize glfw:", err)
 	}
 
+	Debug.Print("Initializing GLFW...")
 	glfw.WindowHint(glfw.Resizable, glfw.False)
 	glfw.WindowHint(glfw.ContextVersionMajor, 4)
 	glfw.WindowHint(glfw.ContextVersionMinor, 1)
@@ -53,22 +57,22 @@ func (app *Application) Init() *Application {
 	app.window.MakeContextCurrent()
 	app.window.SetInputMode(glfw.CursorMode, glfw.CursorHidden)
 
-	// Initialize Glow
+	Debug.Print("Initializing GL...")
 	if err := gl.Init(); err != nil {
 		panic(err)
 	}
-
 	version := gl.GoStr(gl.GetString(gl.VERSION))
-	fmt.Println("OpenGL version", version)
+	Debug.Print("OpenGL version " + version)
 
+	Debug.Print("Compiling and linking shaders...")
 	// Configure the vertex and fragment shaders
 	app.program, app.temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
 	if app.temp_err != nil {
 		panic(app.temp_err)
 	}
-
 	gl.UseProgram(app.program)
 
+	Debug.Print("Accessing Uniforms...")
 	model_uniform := gl.GetUniformLocation(app.program, gl.Str("model\x00"))
 	/*
 	model := mgl32.Ident4()
@@ -80,12 +84,14 @@ func (app *Application) Init() *Application {
 
 	gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
 
+	Debug.Print("Loading texture...")
 	// Load the texture
 	app.texture, app.temp_err = Shader.NewTexture("/home/will/code/gopengl/res/square.png")
 	if app.temp_err != nil {
 		log.Fatalln(app.temp_err)
 	}
 
+	Debug.Print("Getting VAO & VBO...")
 	// Configure the vertex data
 	gl.GenVertexArrays(1, &app.vao)
 	gl.BindVertexArray(app.vao)
@@ -98,6 +104,7 @@ func (app *Application) Init() *Application {
 	gl.DepthFunc(gl.LESS)
 	gl.ClearColor(1.0, 1.0, 1.0, 1.0)
 
+	Debug.Print("Initializing Mr. Manager...")
 	app.mr_manager = new(States.StateManager).Init(windowWidth,
 		windowHeight,
 		app.program,

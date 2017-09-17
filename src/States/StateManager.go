@@ -1,6 +1,8 @@
 package States
 
 import (
+	"Debug"
+
 	"github.com/go-gl/glfw/v3.2/glfw"
 )
 
@@ -14,17 +16,19 @@ type StateManager struct {
 }
 
 func (mngr *StateManager) Init(width int,
-	height int,
-	shader uint32,
-	vao uint32,
-	texture uint32,
-	modelUniform int32,
-	window *glfw.Window) *StateManager {
+		height int,
+		shader uint32,
+		vao uint32,
+		texture uint32,
+		modelUniform int32,
+		window *glfw.Window) *StateManager {
 	mngr.texture = texture
-	mngr.shader_program = shader
+
+	// mngr.shader_program = shader
 	mngr.vao = vao
 	mngr.prev_states = make([]State, 0)
 	mngr.window = window
+	Debug.Print("Initializing States")
 	mngr.curr_state = new(GameState).Init(mngr, width, height, modelUniform, window)
 	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, modelUniform, window))
 
