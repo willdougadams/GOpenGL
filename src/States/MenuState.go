@@ -3,7 +3,6 @@ package States
 import (
 	"fmt"
 	"os"
-	// "strconv"
 
 	"Shader"
 
@@ -23,11 +22,7 @@ type MenuState struct {
 }
 
 
-func (menu *MenuState) Init(manager *StateManager,
-	width int,
-	height int,
-	modelUniform int32,
-	windot *glfw.Window) State {
+func (menu *MenuState) Init(manager *StateManager, width int, height int, window *glfw.Window) State {
 	menu.manager = manager
 	menu.options = append(menu.options, "Resume")
 	menu.options = append(menu.options, "Quit")
@@ -63,17 +58,18 @@ func (menu *MenuState) Init(manager *StateManager,
 	buffer_data = append(buffer_data, -1)
 	buffer_data = append(buffer_data, 1)
 
-	gl.GenVertexArrays(1, &menu.vao)
-	gl.BindVertexArray(menu.vao)
-	gl.GenBuffers(1, &menu.vbo)
-	gl.BindBuffer(gl.ARRAY_BUFFER, menu.vbo)
-	gl.BufferData(gl.ARRAY_BUFFER, 4, gl.Ptr(buffer_data), gl.STATIC_DRAW)
-
 	var temp_err error
 	menu.shader, temp_err = Shader.NewProgram("src/shaders/menu.vert", "src/shaders/menu.frag")
 	if temp_err != nil {
 		panic(temp_err)
 	}
+	gl.UseProgram(menu.shader)
+
+	gl.GenVertexArrays(1, &menu.vao)
+	gl.BindVertexArray(menu.vao)
+	gl.GenBuffers(1, &menu.vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, menu.vbo)
+	gl.BufferData(gl.ARRAY_BUFFER, 4, gl.Ptr(buffer_data), gl.STATIC_DRAW)
 
 	vert_attrib := uint32(gl.GetAttribLocation(menu.shader, gl.Str("menu_vert\x00")))
 	gl.EnableVertexAttribArray(vert_attrib)
@@ -85,7 +81,7 @@ func (menu *MenuState) Init(manager *StateManager,
 }
 
 func (menu *MenuState) Update(elapsed float32) {
-	if menu.manager.window.GetKey(glfw.KeyY) == glfw.Press {
+	if menu.manager.window.GetKey(glfw.KeyT) == glfw.Press {
 		menu.manager.ChangeState()
 	}
 	menu.ticks += 1
@@ -101,7 +97,7 @@ func (menu *MenuState) Draw() {
 	gl.DrawArrays(gl.LINE_STRIP, 0, 4)
 	for i, v := range menu.options {
 		fmt.Printf("Option %d: %s\r", i, v)
-		menu.font.SetColor(0.0, 0.0+(1/float32(menu.ticks%150)), 0.0+(1/float32(menu.ticks%150)), 1.0) //r,g,b,a font color
+		menu.font.SetColor(0.0, 1/float32(menu.ticks%150), 1/float32(menu.ticks%150), 1.0) //r,g,b,a font color
 		menu.font.Printf(100, 100*float32(i+1), 1.0, fmt.Sprintf("%s", v)) //x,y,scale,string,printf args
 	}
 }

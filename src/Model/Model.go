@@ -63,10 +63,8 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 
 func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
 	gl.UseProgram(model.shader)
-
 	gl.BindVertexArray(model.vao)
 	// gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
-
 	gl.UniformMatrix4fv(model_uniform, 1, false, &entity_model[0])
 	gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)/3) )
 }

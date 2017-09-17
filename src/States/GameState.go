@@ -15,11 +15,9 @@ import (
 )
 
 type GameState struct {
-	angle float64
-	modelUniform int32
-	texture uint32
+	model_uniform int32
+	texture, shader uint32
 	model *Model.Model
-	shader uint32
 	gordon *Gordon.Gordon
 
 	ticks uint32
@@ -30,11 +28,7 @@ type GameState struct {
 	w, h int
 }
 
-func (game *GameState) Init(manager *StateManager,
-		width int,
-		height int,
-		modelUniform int32,
-		window *glfw.Window) State {
+func (game *GameState) Init(manager *StateManager, width int, height int, window *glfw.Window) State {
 	game.stacy = new(Stacy.Stacy).Init()
 	var temp_err error
 	game.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
@@ -52,7 +46,7 @@ func (game *GameState) Init(manager *StateManager,
 	}
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
-	game.modelUniform = gl.GetUniformLocation(game.shader, gl.Str("model\x00"))
+	game.model_uniform = gl.GetUniformLocation(game.shader, gl.Str("model\x00"))
 	game.model = new(Model.Model).Init("res/bunny.obj", game.shader)
 
 	game.w = width
@@ -63,7 +57,7 @@ func (game *GameState) Init(manager *StateManager,
 	for i := 0; i < 10; i++ {
 		x := (rand.Float32() * 10)
 		y := (rand.Float32() * 10)
-		z := (rand.Float32() * 10)
+		z := (rand.Float32() * -10)
 		x_speed := float32(0.0)
 		y_speed := (rand.Float32() * 10)
 		z_speed := float32(0.0)
@@ -92,17 +86,15 @@ func (game *GameState) Update(elapsed float32) {
 }
 
 func (game *GameState) Draw() {
-	// gl.UseProgram(game.manager.shader_program)
-	// gl.BindVertexArray(game.manager.vao)
 	gl.ActiveTexture(gl.TEXTURE0)
 	gl.BindTexture(gl.TEXTURE_2D, game.texture)
 	gl.UseProgram(game.shader)
 
 	for _, ent := range game.entities {
-		ent.Draw(game.modelUniform)
+		ent.Draw(game.model_uniform)
 	}
 
-	game.land.Draw(game.modelUniform)
+	game.land.Draw(game.model_uniform)
 }
 
 func (game *GameState) Stop() bool {

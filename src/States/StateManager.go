@@ -15,22 +15,12 @@ type StateManager struct {
 	window *glfw.Window
 }
 
-func (mngr *StateManager) Init(width int,
-		height int,
-		shader uint32,
-		vao uint32,
-		texture uint32,
-		modelUniform int32,
-		window *glfw.Window) *StateManager {
-	mngr.texture = texture
-
-	// mngr.shader_program = shader
-	mngr.vao = vao
+func (mngr *StateManager) Init(width int, height int, window *glfw.Window) *StateManager {
 	mngr.prev_states = make([]State, 0)
 	mngr.window = window
 	Debug.Print("Initializing States")
-	mngr.curr_state = new(GameState).Init(mngr, width, height, modelUniform, window)
-	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, modelUniform, window))
+	mngr.curr_state = new(GameState).Init(mngr, width, height, window)
+	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, window))
 
 	return mngr
 }

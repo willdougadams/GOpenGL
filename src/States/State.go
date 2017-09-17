@@ -1,12 +1,11 @@
 package States
 
 import (
-	// "Gordon"
 	"github.com/go-gl/glfw/v3.2/glfw"
 )
 
 type State interface {
-	Init(manager *StateManager, width int, height int, modelUniform int32, window *glfw.Window) State
+	Init(manager *StateManager, width int, height int, window *glfw.Window) State
 	Update(elapsed float32)
 	Draw()
 	Stop() bool
