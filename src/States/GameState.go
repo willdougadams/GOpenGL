@@ -12,6 +12,7 @@ import (
 	"Gordon"
 	"Landscape"
 	"Shader"
+	"Physics"
 )
 
 type GameState struct {
@@ -77,6 +78,8 @@ func (game *GameState) Update(elapsed float32) {
 	for _, ent := range game.entities {
 		ent.Update(elapsed)
 	}
+
+	Physics.GroundCollision(game.land, game.entities)
 
 	if game.manager.window.GetKey(glfw.KeyY) == glfw.Press {
 		game.manager.ChangeState()

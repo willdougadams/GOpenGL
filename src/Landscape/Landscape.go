@@ -7,7 +7,7 @@ import (
 	"github.com/go-gl/mathgl/mgl32"
 )
 
-const GROUND_LEVEL = 0.0
+// const GROUND_LEVEL = 0.0
 const GRAV_ACCEL = -9.8
 const TERM_VEL = 1.75 * GRAV_ACCEL
 const TERRAIN_SIZE = 100
@@ -16,6 +16,7 @@ const TERRAIN_SIZE = 100
 type Landscape struct {
 	model *Model.Model
 	heightmap []float32
+	scale_factor float32
 	x_offset, z_offset int64
 }
 
@@ -57,6 +58,8 @@ func (land *Landscape) Init(shader uint32) *Landscape {
 		}
 	}
 
+	land.scale_factor = float32(1.0)
+
 	return land
 }
 
@@ -65,7 +68,9 @@ func (land *Landscape) Update() {
 }
 
 func (land *Landscape) Draw(model_uniform int32) {
-	land.model.Draw(model_uniform, mgl32.Ident4())
+	scale_mat := mgl32.Scale3D(land.scale_factor, land.scale_factor, land.scale_factor)
+	model_mat := mgl32.Ident4().Mul4(scale_mat)
+	land.model.Draw(model_uniform, model_mat)
 }
 
 func (land *Landscape) GetHeight(x, z int) float32 {

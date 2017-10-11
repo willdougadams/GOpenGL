@@ -46,6 +46,14 @@ func (entity *Entity) X() float32 {return entity.location.X()}
 func (entity *Entity) Y() float32 {return entity.location.Y()}
 func (entity *Entity) Z() float32 {return entity.location.Z()}
 
+func (entity *Entity) SetX(new_x float32) {entity.location = mgl32.Vec3{new_x, entity.Y(), entity.Z()}}
+func (entity *Entity) SetY(new_y float32) {entity.location = mgl32.Vec3{entity.X(), new_y, entity.Z()}}
+func (entity *Entity) SetZ(new_z float32) {entity.location = mgl32.Vec3{entity.X(), entity.Y(), new_z}}
+
+func (entity *Entity) SetXSpeed(x_spd float32) {entity.speed_vec = mgl32.Vec3{x_spd, entity.speed_vec.Y(), entity.speed_vec.Z()}}
+func (entity *Entity) SetYSpeed(y_spd float32) {entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), y_spd, entity.speed_vec.Z()}}
+func (entity *Entity) SetZSpeed(z_spd float32) {entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), entity.speed_vec.Y(), z_spd}}
+
 func (entity *Entity) Init(x float32,
 	y float32,
 	z float32,
@@ -83,6 +91,7 @@ func (entity *Entity) Update(elapsed float32) {
 	entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), new_y_speed, entity.speed_vec.Z()}
 
 	entity.location = entity.location.Add(entity.speed_vec)
+	/*
 	if entity.location.Y() <= GROUND_LEVEL {
 		var new_x, new_z float32
 		curr_x := entity.speed_vec.X()
@@ -102,6 +111,7 @@ func (entity *Entity) Update(elapsed float32) {
 		entity.speed_vec = mgl32.Vec3{new_x, 0.0, new_z}
 		entity.location = mgl32.Vec3{entity.location.X(), GROUND_LEVEL, entity.location.Z()}
 	}
+	*/
 
 	entity.x_orient += entity.x_rotate_speed * elapsed
 	entity.y_orient += entity.y_rotate_speed * elapsed
@@ -140,7 +150,7 @@ func (entity *Entity) Update(elapsed float32) {
 	rotate_mat := x_rotate_mat.Mul4(y_rotate_mat).Mul4(z_rotate_mat)
 	trans_rot_mat := trans_mat.Mul4(rotate_mat)
 
-	scale_factor := float32(1.0)
+	scale_factor := float32(0.1)
 	scale_mat := mgl32.Scale3D(scale_factor, scale_factor, scale_factor)
 	entity.model_mat = scale_mat.Mul4(trans_rot_mat)
 }
