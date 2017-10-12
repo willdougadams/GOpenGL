@@ -1,7 +1,7 @@
 #version 330
 uniform sampler2D tex;
 
-// in vec3 model_vert;     // vert position
+in vec4 world_vert;     // vert position
 in vec4 frag_norm;
 in vec4 light_location;
 
@@ -15,9 +15,9 @@ void main() {
 
   vec4 tex_color = texture(tex, vec2(0.5, 0.5));
 
-  float diff = max(0.0, dot(light_location, frag_norm));
+  float diff = max(0.0, dot(normalize(light_location-world_vert), frag_norm));
   vec4 diffuse = diff * tex_color;
 
   vec4 diffuse_color = diffuse;
-  outputColor = diffuse_color;
+  outputColor = diffuse;
 }
