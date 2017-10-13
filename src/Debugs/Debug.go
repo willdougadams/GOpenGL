@@ -1,4 +1,4 @@
-package Debug
+package Debugs
 
 import (
 	"os"

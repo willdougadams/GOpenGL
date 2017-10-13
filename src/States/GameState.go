@@ -41,7 +41,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	texture_uniform := gl.GetUniformLocation(game.shader, gl.Str("tex\x00"))
 	gl.Uniform1i(texture_uniform, 0)
 	// gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
-	game.texture, temp_err = Shader.NewTexture("/home/will/code/gopengl/res/square.png")
+	game.texture, temp_err = Shader.NewTexture("res/square.png")
 	if temp_err != nil {
 		panic(temp_err)
 	}

@@ -2,7 +2,7 @@ package Application
 
 import (
 	"States"
-	"Debug"
+	"Debugs"
 
 	_ "image/png"
 	"log"
@@ -32,7 +32,7 @@ func (app *Application) Init() *Application {
 		log.Fatalln("failed to initialize glfw:", err)
 	}
 
-	Debug.Print("Initializing GLFW...")
+	Debugs.Print("Initializing GLFW...")
 	glfw.WindowHint(glfw.Resizable, glfw.False)
 	glfw.WindowHint(glfw.ContextVersionMajor, 4)
 	glfw.WindowHint(glfw.ContextVersionMinor, 1)
@@ -46,18 +46,18 @@ func (app *Application) Init() *Application {
 	app.window.MakeContextCurrent()
 	app.window.SetInputMode(glfw.CursorMode, glfw.CursorHidden)
 
-	Debug.Print("Initializing GL...")
+	Debugs.Print("Initializing GL...")
 	if err := gl.Init(); err != nil {
 		panic(err)
 	}
 	version := gl.GoStr(gl.GetString(gl.VERSION))
-	Debug.Print("OpenGL version " + version)
+	Debugs.Print("OpenGL version " + version)
 
 	gl.Enable(gl.DEPTH_TEST)
 	gl.DepthFunc(gl.LESS)
 	gl.ClearColor(1.0, 1.0, 1.0, 1.0)
 
-	Debug.Print("Initializing Mr. Manager...")
+	Debugs.Print("Initializing Mr. Manager...")
 	app.mr_manager = new(States.StateManager).Init(windowWidth, windowHeight, app.window)
 
 	return app
