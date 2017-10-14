@@ -45,16 +45,25 @@ func (land *Landscape) Init(shader uint32) *Landscape {
 		land.z_offset = -land.z_offset
 	}
 
-	land.heightmap = make([]float32, (len(land.model.Faces)/4+1) * (len(land.model.Faces)/4+1))
+	heightmap_length := (len(land.model.Faces)/4+1) * (len(land.model.Faces)/4+1);// * int(land.scale_factor) * int(land.scale_factor)
+	land.heightmap = make([]float32, heightmap_length)
+	fmt.Printf("%v\n", land.heightmap[0])
 
 	for i, _ := range land.model.Faces {
 		if i % 4 == 1 {
 			x := int64(land.model.Faces[i-1])
 			z := int64(land.model.Faces[i+1])
 
-			o_x := land.x_offset + x
-			o_z := land.z_offset + z
-			land.heightmap[(o_x*o_z)+o_z] = land.model.Faces[i]
+			o_x := (land.x_offset + x);// * int64(land.scale_factor)
+			o_z := (land.z_offset + z);// * int64(land.scale_factor)
+			height_map_index := (o_x*o_z)+o_z
+			if land.heightmap[height_map_index] == float32(0) {
+				land.heightmap[height_map_index] = land.model.Faces[i]
+			} else {
+				if land.heightmap[height_map_index] < land.model.Faces[i] {
+					land.heightmap[height_map_index] = land.model.Faces[i]
+				}
+			}
 		}
 	}
 
@@ -74,7 +83,7 @@ func (land *Landscape) Draw(model_uniform int32) {
 }
 
 func (land *Landscape) GetHeight(x, z int) float32 {
-	x_dist := x + int(land.x_offset)
-	z_dist := z + int(land.z_offset)
-	return land.heightmap[(x_dist * z_dist) + z_dist]
+	x_dist := (x + int(land.x_offset)) * int(land.scale_factor)
+	z_dist := (z + int(land.z_offset)) * int(land.scale_factor)
+	return land.heightmap[(x_dist * z_dist) + z_dist] * land.scale_factor
 }
