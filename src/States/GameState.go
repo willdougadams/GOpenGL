@@ -48,7 +48,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
 	game.model_uniform = gl.GetUniformLocation(game.shader, gl.Str("model\x00"))
-	game.model = new(Model.Model).Init("res/bunny.obj", game.shader)
+	game.model = new(Model.Model).Init("res/bunny/bunny.obj", game.shader)
 
 	game.w = width
 	game.h = height

@@ -1,4 +1,7 @@
 src/github/*
 src/golang/*
+src/gopkg.in/*
 
 **/DS_Store
+*.zip
+*.rar

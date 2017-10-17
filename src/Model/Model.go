@@ -47,6 +47,7 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	gl.GenVertexArrays(1, &model.vao)
 	gl.BindVertexArray(model.vao)
 
+	/*
 	gl.GenBuffers(1, &model.vbo)
 	gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
 
@@ -57,13 +58,41 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	gl.EnableVertexAttribArray(vert_attrib)
 	gl.VertexAttribPointer(vert_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
 
+	tex_offset := int( uintptr(len(faces)) * reflect.TypeOf(faces).Elem().Size() )
 	tex_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("tex\x00")))
 	gl.EnableVertexAttribArray(tex_attrib)
-	gl.VertexAttribPointer(tex_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(len(model.Faces)))
+	gl.VertexAttribPointer(tex_attrib, 2, gl.FLOAT, false, 0, gl.PtrOffset(0))
 
+	norm_offset := int( uintptr(len(uvs)) * reflect.TypeOf(uvs).Elem().Size() ) + tex_offset
 	norm_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("norm\x00")))
 	gl.EnableVertexAttribArray(norm_attrib)
-	gl.VertexAttribPointer(norm_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(len(model.Faces) + len(model.UVs)))
+	gl.VertexAttribPointer(norm_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(norm_offset))
+	*/
+
+	var vbo uint32
+	gl.GenBuffers(1, &vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
+	buffer_size := int( uintptr(len(faces)) * reflect.TypeOf(faces).Elem().Size() )
+	gl.BufferData(gl.ARRAY_BUFFER, buffer_size, gl.Ptr(faces), gl.STATIC_DRAW)
+	vert_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("vert\x00")))
+	gl.EnableVertexAttribArray(vert_attrib)
+	gl.VertexAttribPointer(vert_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
+
+	gl.GenBuffers(1, &vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
+	uvs_size := int( uintptr(len(uvs)) * reflect.TypeOf(uvs).Elem().Size() )
+	gl.BufferData(gl.ARRAY_BUFFER, uvs_size, gl.Ptr(uvs), gl.STATIC_DRAW)
+	tex_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("tex\x00")))
+	gl.EnableVertexAttribArray(tex_attrib)
+	gl.VertexAttribPointer(tex_attrib, 2, gl.FLOAT, false, 0, gl.PtrOffset(0))
+
+	gl.GenBuffers(1, &vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
+	norms_size := int( uintptr(len(norms)) * reflect.TypeOf(norms).Elem().Size() )
+	gl.BufferData(gl.ARRAY_BUFFER, norms_size, gl.Ptr(norms), gl.STATIC_DRAW)
+	norm_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("norm\x00")))
+	gl.EnableVertexAttribArray(norm_attrib)
+	gl.VertexAttribPointer(norm_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
 
 	return model
 }
