@@ -44,7 +44,13 @@ func (app *Application) Init() *Application {
 		panic(err)
 	}
 	app.window.MakeContextCurrent()
-	app.window.SetInputMode(glfw.CursorMode, glfw.CursorHidden)
+	Debugs.Print("OS detected: " + runtime.GOOS + "\n")
+
+	cursor_mode := glfw.CursorHidden    // default cursor mode
+	if runtime.GOOS == "darwin" {
+		cursor_mode = glfw.CursorDisabled // Mac lappyhas a touchpad
+	}
+	app.window.SetInputMode(glfw.CursorMode, cursor_mode)
 
 	Debugs.Print("Initializing GL...")
 	if err := gl.Init(); err != nil {
