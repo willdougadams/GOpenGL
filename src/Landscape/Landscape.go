@@ -1,7 +1,7 @@
 package Landscape
 
 import (
-	"fmt"
+	"Debugs"
 	"Model"
 
 	"github.com/go-gl/mathgl/mgl32"
@@ -21,7 +21,7 @@ type Landscape struct {
 }
 
 func (land *Landscape) Init(shader uint32) *Landscape {
-	fmt.Printf("Init Landscape...\n")
+	Debugs.Print("Init Landscape...\n")
 	land.model = new(Model.Model).Init("res/mountain/mount.obj", shader)
 
 	for i, _ := range land.model.Faces {

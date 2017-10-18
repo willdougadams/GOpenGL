@@ -82,7 +82,7 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
 	uvs_size := int( uintptr(len(uvs)) * reflect.TypeOf(uvs).Elem().Size() )
 	gl.BufferData(gl.ARRAY_BUFFER, uvs_size, gl.Ptr(uvs), gl.STATIC_DRAW)
-	tex_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("tex\x00")))
+	tex_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("UV\x00")))
 	gl.EnableVertexAttribArray(tex_attrib)
 	gl.VertexAttribPointer(tex_attrib, 2, gl.FLOAT, false, 0, gl.PtrOffset(0))
 

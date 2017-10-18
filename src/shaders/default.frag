@@ -14,7 +14,7 @@ void main() {
   normalize(frag_norm);
   // normalize(light_dir);
 
-  vec4 tex_color = texture(tex, uv);
+  vec4 tex_color = texture(tex, normalize(uv));
 
   float diff = max(0.0, dot(normalize(light_location-world_vert), frag_norm));
   vec4 diffuse = (0.5*diff*light_color) + (1.0*tex_color);

@@ -26,15 +26,15 @@ type Gordon struct {
 }
 
 func (gord *Gordon) Init(x, y, z float32,
-	shader uint32,
-	width int,
-	height int,
-	window *glfw.Window) *Gordon {
+						shader uint32,
+						width int,
+						height int,
+						window *glfw.Window) *Gordon {
 	gord.shader = shader
 	gord.location = mgl32.Vec3{x, y, z}
 	gord.orientation = mgl32.Vec3{0.0, 10.0, 0.0}
 	gord.mouse_sensitivity = 0.001
-	gord.move_speed = 1.0
+	gord.move_speed = 5.0
 	gord.window = window
 	gord.window_w = width
 	gord.window_h = height
