@@ -33,7 +33,7 @@ func (gord *Gordon) Init(x, y, z float32,
 	gord.shader = shader
 	gord.location = mgl32.Vec3{x, y, z}
 	gord.orientation = mgl32.Vec3{0.0, 10.0, 0.0}
-	gord.mouse_sensitivity = 0.001
+	gord.mouse_sensitivity = 0.0001
 	gord.move_speed = 5.0
 	gord.window = window
 	gord.window_w = width

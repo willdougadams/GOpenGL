@@ -41,24 +41,24 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	texture_uniform := gl.GetUniformLocation(game.shader, gl.Str("tex\x00"))
 	gl.Uniform1i(texture_uniform, 0)
 	// gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
-	game.texture, temp_err = Shader.NewTexture("res/mountain/grass.png")
+	game.texture, temp_err = Shader.NewTexture("res/f16/f16.png")
 	if temp_err != nil {
 		panic(temp_err)
 	}
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
 	game.model_uniform = gl.GetUniformLocation(game.shader, gl.Str("model\x00"))
-	game.model = new(Model.Model).Init("res/bunny/bunny.obj", game.shader)
+	game.model = new(Model.Model).Init("res/f16/f16.obj", game.shader)
 
 	game.w = width
 	game.h = height
 
 	game.manager = manager
 	game.entities = make([]*Entity.Entity, 0)
-	for i := 0; i < 10; i++ {
-		x := (rand.Float32() * 10)
-		y := (rand.Float32() * 10)
-		z := (rand.Float32() * -10)
+	for i := 0; i < 100; i++ {
+		x := (rand.Float32() * 10) - 5
+		y := (rand.Float32() * 10) - 5
+		z := (rand.Float32() * 10) - 5
 		x_speed := float32(0.0)
 		y_speed := (rand.Float32() * 10)
 		z_speed := float32(0.0)
@@ -97,7 +97,7 @@ func (game *GameState) Draw() {
 		ent.Draw(game.model_uniform)
 	}
 
-	game.land.Draw(game.model_uniform)
+	// game.land.Draw(game.model_uniform)
 }
 
 func (game *GameState) Stop() bool {

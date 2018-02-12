@@ -47,7 +47,6 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	gl.GenVertexArrays(1, &model.vao)
 	gl.BindVertexArray(model.vao)
 
-	/*
 	gl.GenBuffers(1, &model.vbo)
 	gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
 
@@ -67,8 +66,8 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	norm_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("norm\x00")))
 	gl.EnableVertexAttribArray(norm_attrib)
 	gl.VertexAttribPointer(norm_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(norm_offset))
-	*/
 
+	/*
 	var vbo uint32
 	gl.GenBuffers(1, &vbo)
 	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
@@ -93,6 +92,7 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	norm_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("norm\x00")))
 	gl.EnableVertexAttribArray(norm_attrib)
 	gl.VertexAttribPointer(norm_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
+	*/
 
 	return model
 }
@@ -160,20 +160,38 @@ func loadObjFile(file string) (face_floats, tex_floats, norm_floats []float32, e
 			v[2] = float32(z)
 			norm_verts = append(norm_verts, v)
 		} else if words[0] == "f" {
-			var f []float32
-			var t []float32
-			var n []float32
+			var f, t, n []float32
 			var err error
 
 			f, t, n, err = parse_face(words, face_verts, norm_verts, tex_verts)
+
+			/*
+			for _, f1 := range f {
+				fmt.Printf(fmt.Sprintf("f: %f\n", f1))
+			}
+
+			for _, t1 := range t {
+				fmt.Printf(fmt.Sprintf("t: %f\n", t1))
+			}
+
+			for _, n1 := range n {
+				fmt.Printf(fmt.Sprintf("n: %f\n", n1))
+			}
+			*/
 
 			if err != nil {
 				panic(err)
 			}
 
-			face_floats = append(face_floats, f...)
-			tex_floats = append(face_floats, t...)
-			norm_floats = append(norm_floats, n...)
+			if len(f) > 0 {
+				face_floats = append(face_floats, f...)
+			}
+			if len(t) > 0 {
+				tex_floats = append(tex_floats, t...)
+			}
+			if len(n) > 0 {
+				norm_floats = append(norm_floats, n...)
+			}
 		}
 	}
 	return

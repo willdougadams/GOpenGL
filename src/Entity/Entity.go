@@ -37,7 +37,6 @@ type Entity struct {
 	x_rotate_speed, y_rotate_speed, z_rotate_speed float32
 	drag, rotational_drag float32
 	model *Model.Model
-	Collision_dist float32
 
 	model_mat mgl32.Mat4
 }
@@ -78,8 +77,6 @@ func (entity *Entity) Init(x float32,
 	entity.model = model
 	entity.model_mat = mgl32.Ident4()
 
-	entity.Collision_dist = model.Max_radius
-
 	return entity
 }
 
@@ -91,27 +88,6 @@ func (entity *Entity) Update(elapsed float32) {
 	entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), new_y_speed, entity.speed_vec.Z()}
 
 	entity.location = entity.location.Add(entity.speed_vec)
-	/*
-	if entity.location.Y() <= GROUND_LEVEL {
-		var new_x, new_z float32
-		curr_x := entity.speed_vec.X()
-		if curr_x != 0.0 {
-			new_x = (abs32(curr_x)/curr_x) * max32(abs32(curr_x) - (entity.drag * elapsed), 0.0)
-		} else {
-			new_x = 0.0
-		}
-
-		curr_z := entity.speed_vec.Z()
-		if curr_z != 0.0 {
-			new_z = (abs32(curr_z)/curr_z) * max32(abs32(curr_z) - (entity.drag * elapsed), 0.0)
-		} else {
-			new_z = 0.0
-		}
-
-		entity.speed_vec = mgl32.Vec3{new_x, 0.0, new_z}
-		entity.location = mgl32.Vec3{entity.location.X(), GROUND_LEVEL, entity.location.Z()}
-	}
-	*/
 
 	entity.x_orient += entity.x_rotate_speed * elapsed
 	entity.y_orient += entity.y_rotate_speed * elapsed
@@ -150,7 +126,7 @@ func (entity *Entity) Update(elapsed float32) {
 	rotate_mat := x_rotate_mat.Mul4(y_rotate_mat).Mul4(z_rotate_mat)
 	trans_rot_mat := trans_mat.Mul4(rotate_mat)
 
-	scale_factor := float32(0.1)
+	scale_factor := float32(10.0)
 	scale_mat := mgl32.Scale3D(scale_factor, scale_factor, scale_factor)
 	entity.model_mat = scale_mat.Mul4(trans_rot_mat)
 }
