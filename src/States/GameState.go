@@ -47,7 +47,6 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	}
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
-	game.model_uniform = gl.GetUniformLocation(game.shader, gl.Str("model\x00"))
 	game.model = new(Model.Model).Init("res/f16/f16.obj", game.shader)
 
 	game.w = width
@@ -97,7 +96,7 @@ func (game *GameState) Draw() {
 		ent.Draw(game.model_uniform)
 	}
 
-	// game.land.Draw(game.model_uniform)
+	game.land.Draw(game.model_uniform)
 }
 
 func (game *GameState) Stop() bool {

@@ -19,16 +19,11 @@ func NewProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, er
 
 	vertexShaderBytes = append(vertexShaderBytes, '\x00')
 	vertexShaderSource := string(vertexShaderBytes)
-	// fmt.Printf("Compiling shader: %s\n", vertexShaderFilename)
-
-	// defer C.free(unsafe.Pointer(vertCString))
-	// the above throws an error i dont undertstand
 
 	vertexShader, err := compileShader(vertexShaderSource, gl.VERTEX_SHADER)
 	if err != nil {
 		return 0, err
 	}
-
 
 	fragmentShaderBytes, f_err := ioutil.ReadFile(fragmentShaderFilename)
 	if f_err != nil {
@@ -37,16 +32,11 @@ func NewProgram(vertexShaderFilename, fragmentShaderFilename string) (uint32, er
 
 	fragmentShaderBytes = append(fragmentShaderBytes, '\x00')
 	fragmentShaderSource := string(fragmentShaderBytes)
-	// fragCString := C.CString(fragmentShaderSource)
-	// defer C.free(unsafe.Pointer(fragCString))
-	// the above throws an error i dont undertstand
 
-	// fmt.Printf("Compiling shader: %s\n", fragmentShaderFilename)
 	fragmentShader, err := compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER)
 	if err != nil {
 		return 0, err
 	}
-
 
 	program := gl.CreateProgram()
 
@@ -128,7 +118,8 @@ func NewTexture(file string) (uint32, error) {
 		0,
 		gl.RGBA,
 		gl.UNSIGNED_BYTE,
-		gl.Ptr(rgba.Pix))
+		gl.Ptr(rgba.Pix)
+	)
 
 	return texture, nil
 }
