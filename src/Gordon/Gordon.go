@@ -33,13 +33,13 @@ func (gord *Gordon) Init(x, y, z float32,
 	gord.shader = shader
 	gord.location = mgl32.Vec3{x, y, z}
 	gord.orientation = mgl32.Vec3{0.0, 10.0, 0.0}
-	gord.mouse_sensitivity = 0.0001
-	gord.move_speed = 5.0
+	gord.mouse_sensitivity = 0.001
+	gord.move_speed = 10.0
 	gord.window = window
 	gord.window_w = width
 	gord.window_h = height
 
-	gord.projection = mgl32.Perspective(mgl32.DegToRad(65.0), float32(gord.window_w)/float32(gord.window_h), 0.1, 100.0)
+	gord.projection = mgl32.Perspective(mgl32.DegToRad(65.0), float32(gord.window_w)/float32(gord.window_h), 0.1, 1000.0)
 	gord.projection_uniform = gl.GetUniformLocation(shader, gl.Str("projection\x00"))
 	gl.UniformMatrix4fv(gord.projection_uniform, 1, false, &gord.projection[0])
 

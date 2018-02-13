@@ -118,8 +118,7 @@ func NewTexture(file string) (uint32, error) {
 		0,
 		gl.RGBA,
 		gl.UNSIGNED_BYTE,
-		gl.Ptr(rgba.Pix)
-	)
+		gl.Ptr(rgba.Pix))
 
 	return texture, nil
 }

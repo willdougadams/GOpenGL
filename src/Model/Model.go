@@ -8,6 +8,8 @@ import (
 	"bufio"
 	"strings"
 
+	"Debugs"
+
 	"github.com/go-gl/mathgl/mgl32"
 )
 
@@ -17,6 +19,7 @@ type Model struct {
 }
 
 func (model *Model) Init(filename string, shader_program uint32) *Model {
+	Debugs.Print(fmt.Sprintf("Initializing Model from %s", filename))
 	faces, uvs, norms, err := loadObjFile(filename)
 	if err != nil {
 		fmt.Printf("Failed to load Model: %v\n", err)
@@ -39,7 +42,7 @@ func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
 func loadObjFile(file string) (face_floats, tex_floats, norm_floats []float32, err error) {
 	file_handle, file_err := os.Open(file)
 	if file_err != nil {
-		err = errors.New("Cannot open file: %s\n")
+		err = errors.New(fmt.Sprintf("Cannot open file: %s\n", file))
 		return
 	}
 
@@ -48,7 +51,11 @@ func loadObjFile(file string) (face_floats, tex_floats, norm_floats []float32, e
 	var tex_verts []*mgl32.Vec2
 	for scanner.Scan() {
 		line := scanner.Text()
-		words := strings.Split(line, " ")
+		if len(line) == 0 || line[0] == '#' {
+			continue
+		}
+		words := strings.Fields(line)
+		Debugs.Print(fmt.Sprintf("Parsing line: %+v           \r", words))
 
 		if words[0] == "v" {
 			var v *mgl32.Vec3
@@ -95,20 +102,6 @@ func loadObjFile(file string) (face_floats, tex_floats, norm_floats []float32, e
 			var err error
 
 			f, t, n, err = parse_face(words, face_verts, norm_verts, tex_verts)
-
-			/*
-			for _, f1 := range f {
-				fmt.Printf(fmt.Sprintf("f: %f\n", f1))
-			}
-
-			for _, t1 := range t {
-				fmt.Printf(fmt.Sprintf("t: %f\n", t1))
-			}
-
-			for _, n1 := range n {
-				fmt.Printf(fmt.Sprintf("n: %f\n", n1))
-			}
-			*/
 
 			if err != nil {
 				panic(err)

@@ -34,9 +34,9 @@ func buffer(model *Model) (vao uint32) {
 	gl.VertexAttribPointer(vert_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
 
 	tex_offset := int( uintptr(len(model.Faces)) * reflect.TypeOf(model.Faces).Elem().Size() )
-	tex_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("tex\x00")))
+	tex_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("UV\x00")))
 	gl.EnableVertexAttribArray(tex_attrib)
-	gl.VertexAttribPointer(tex_attrib, 2, gl.FLOAT, false, 0, gl.PtrOffset(0))
+	gl.VertexAttribPointer(tex_attrib, 2, gl.FLOAT, false, 0, gl.PtrOffset(tex_offset))
 
 	norm_offset := int( uintptr(len(model.UVs)) * reflect.TypeOf(model.UVs).Elem().Size() ) + tex_offset
 	norm_attrib := uint32(gl.GetAttribLocation(model.shader, gl.Str("norm\x00")))
@@ -78,5 +78,5 @@ func draw(model *Model, entity_model mgl32.Mat4) {
 	gl.BindVertexArray(model.vao)
 	// gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
 	gl.UniformMatrix4fv(model_uniform, 1, false, &entity_model[0])
-	gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)/3) )
+	gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)) )
 }

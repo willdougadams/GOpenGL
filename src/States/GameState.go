@@ -13,6 +13,7 @@ import (
 	"Landscape"
 	"Shader"
 	"Physics"
+	"Debugs"
 )
 
 type GameState struct {
@@ -30,6 +31,7 @@ type GameState struct {
 }
 
 func (game *GameState) Init(manager *StateManager, width int, height int, window *glfw.Window) State {
+	Debugs.Print("Initializing Game...\n")
 	game.stacy = new(Stacy.Stacy).Init()
 	var temp_err error
 	game.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
@@ -40,21 +42,21 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 
 	texture_uniform := gl.GetUniformLocation(game.shader, gl.Str("tex\x00"))
 	gl.Uniform1i(texture_uniform, 0)
-	// gl.BindFragDataLocation(app.program, 0, gl.Str("outputColor\x00"))
+	gl.BindFragDataLocation(game.shader, 0, gl.Str("outputColor\x00"))
 	game.texture, temp_err = Shader.NewTexture("res/f16/f16.png")
 	if temp_err != nil {
 		panic(temp_err)
 	}
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
-	game.model = new(Model.Model).Init("res/f16/f16.obj", game.shader)
+	game.model = new(Model.Model).Init("res/plane/SeaPlane.obj", game.shader)
 
 	game.w = width
 	game.h = height
 
 	game.manager = manager
 	game.entities = make([]*Entity.Entity, 0)
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1; i++ {
 		x := (rand.Float32() * 10) - 5
 		y := (rand.Float32() * 10) - 5
 		z := (rand.Float32() * 10) - 5

@@ -17,7 +17,7 @@ func Print(msg string) {
 	buffer.WriteString(msg)
 
 	if contains(os.Args, "-f") {
-		err := ioutil.WriteFile("/logs/log.log", buffer.Bytes(), 0644)
+		err := ioutil.WriteFile("logs/log.log", buffer.Bytes(), 0644)
 		if err != nil {
 			panic(err)
 		}
