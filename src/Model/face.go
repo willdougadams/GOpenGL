@@ -58,7 +58,7 @@ func parse_face(words []string, face_verts, norm_verts []*mgl32.Vec3, tex_verts 
 				f = append(f, face_vert.Z())
 
 				t = append(n, tex_vert.X())
-				t = append(n, tex_vert.Y())
+				t = append(n, 1-tex_vert.Y())
 			}
 		} else {			// with norms
 			for _, val := range words[1:] {
@@ -84,7 +84,7 @@ func parse_face(words []string, face_verts, norm_verts []*mgl32.Vec3, tex_verts 
 				f = append(f, face_vert.Z())
 
 				t = append(t, tex_vert.X())
-				t = append(t, tex_vert.Y())
+				t = append(t, 1-tex_vert.Y())
 
 				n = append(n, norm_vert.X())
 				n = append(n, norm_vert.Y())
