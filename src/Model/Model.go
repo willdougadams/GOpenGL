@@ -2,12 +2,8 @@ package Model
 
 import (
 	"os"
-	"strconv"
 	"fmt"
-	"errors"
-	"bufio"
-	"strings"
-
+	
 	"Debugs"
 
 	"github.com/go-gl/mathgl/mgl32"
@@ -37,86 +33,4 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 
 func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
 	draw(model, entity_model)
-}
-
-func loadObjFile(file string) (face_floats, tex_floats, norm_floats []float32, err error) {
-	file_handle, file_err := os.Open(file)
-	if file_err != nil {
-		err = errors.New(fmt.Sprintf("Cannot open file: %s\n", file))
-		return
-	}
-
-	scanner := bufio.NewScanner(file_handle)
-	var face_verts, norm_verts []*mgl32.Vec3
-	var tex_verts []*mgl32.Vec2
-	for scanner.Scan() {
-		line := scanner.Text()
-		if len(line) == 0 || line[0] == '#' {
-			continue
-		}
-		words := strings.Fields(line)
-		Debugs.Print(fmt.Sprintf("Parsing line: %+v           \r", words))
-
-		if words[0] == "v" {
-			var v *mgl32.Vec3
-			x, x_err := strconv.ParseFloat(words[1], 32)
-			y, y_err := strconv.ParseFloat(words[2], 32)
-			z, z_err := strconv.ParseFloat(words[3], 32)
-			if x_err != nil ||y_err != nil || z_err != nil {
-				fmt.Printf("[!!] failed parsing")
-				os.Exit(1)
-			}
-			v = new(mgl32.Vec3)
-			v[0] = float32(x)
-			v[1] = float32(y)
-			v[2] = float32(z)
-			face_verts = append(face_verts, v)
-		} else if words[0] == "vt" {
-			var vec *mgl32.Vec2
-			u, u_err := strconv.ParseFloat(words[1], 32)
-			v, v_err := strconv.ParseFloat(words[2], 32)
-			if u_err != nil ||v_err != nil {
-				fmt.Printf("[!!] failed parsing")
-				os.Exit(1)
-			}
-			vec = new(mgl32.Vec2)
-			vec[0] = float32(u)
-			vec[1] = float32(v)
-			tex_verts = append(tex_verts, vec)
-		} else if words[0] == "vn" {
-			var v *mgl32.Vec3
-			x, x_err := strconv.ParseFloat(words[1], 32)
-			y, y_err := strconv.ParseFloat(words[2], 32)
-			z, z_err := strconv.ParseFloat(words[3], 32)
-			if x_err != nil ||y_err != nil || z_err != nil {
-				fmt.Printf("[!!] failed parsing")
-				os.Exit(1)
-			}
-			v = new(mgl32.Vec3)
-			v[0] = float32(x)
-			v[1] = float32(y)
-			v[2] = float32(z)
-			norm_verts = append(norm_verts, v)
-		} else if words[0] == "f" {
-			var f, t, n []float32
-			var err error
-
-			f, t, n, err = parse_face(words, face_verts, norm_verts, tex_verts)
-
-			if err != nil {
-				panic(err)
-			}
-
-			if len(f) > 0 {
-				face_floats = append(face_floats, f...)
-			}
-			if len(t) > 0 {
-				tex_floats = append(tex_floats, t...)
-			}
-			if len(n) > 0 {
-				norm_floats = append(norm_floats, n...)
-			}
-		}
-	}
-	return
 }

@@ -6,11 +6,6 @@ import (
 	"github.com/go-gl/mathgl/mgl32"
 )
 
-const GROUND_LEVEL = 0.0
-const GRAV_ACCEL = -9.8
-const TERM_VEL = 1.75 * GRAV_ACCEL
-const TERRAIN_SIZE = 100
-
 func max32(a, b float32) float32 {
 	var m float32
 	if a > b {
@@ -44,6 +39,11 @@ type Entity struct {
 func (entity *Entity) X() float32 {return entity.location.X()}
 func (entity *Entity) Y() float32 {return entity.location.Y()}
 func (entity *Entity) Z() float32 {return entity.location.Z()}
+
+func (entity *Entity) XSpeed() float32 {return entity.speed_vec.X()}
+func (entity *Entity) YSpeed() float32 {return entity.speed_vec.Y()}
+func (entity *Entity) ZSpeed() float32 {return entity.speed_vec.Z()}
+
 
 func (entity *Entity) SetX(new_x float32) {entity.location = mgl32.Vec3{new_x, entity.Y(), entity.Z()}}
 func (entity *Entity) SetY(new_y float32) {entity.location = mgl32.Vec3{entity.X(), new_y, entity.Z()}}

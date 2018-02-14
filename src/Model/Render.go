@@ -2,7 +2,6 @@ package Model
 
 import (
   "reflect"
-  "fmt"
 
   "github.com/go-gl/mathgl/mgl32"
   "github.com/go-gl/gl/v4.1-core/gl"
@@ -22,8 +21,6 @@ func buffer(model *Model) (vao uint32) {
 
 	gl.GenVertexArrays(1, &vao)
 	gl.BindVertexArray(vao)
-
-  fmt.Printf(fmt.Sprintf("f: %d, t: %d\n", len(model.Faces), len(model.UVs)))
 
 	var vbo uint32
 	gl.GenBuffers(1, &vbo)

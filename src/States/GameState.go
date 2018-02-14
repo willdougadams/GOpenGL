@@ -12,7 +12,6 @@ import (
 	"Gordon"
 	"Landscape"
 	"Shader"
-	"Physics"
 	"Debugs"
 )
 
@@ -76,11 +75,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 func (game *GameState) Update(elapsed float32) {
 	game.gordon.Update(elapsed)
 
-	for _, ent := range game.entities {
-		ent.Update(elapsed)
-	}
-
-	Physics.GroundCollision(game.land, game.entities)
+	Entity.Physics(game.land, game.entities, elapsed)
 
 	if game.manager.window.GetKey(glfw.KeyY) == glfw.Press {
 		game.manager.ChangeState()
