@@ -22,7 +22,7 @@ type Landscape struct {
 
 func (land *Landscape) Init(shader uint32) *Landscape {
 	Debugs.Print("Init Landscape...\n")
-	land.model = new(Model.Model).Init("res/mill/Low_Poly_Low_Poly_Mill_obj/low-poly-mill.obj", shader)
+	land.model = new(Model.Model).Init("res/mountain/triangluated_mountains.obj", shader)
 
 	for i, _ := range land.model.Faces {
 		if i % 4 == 1 {

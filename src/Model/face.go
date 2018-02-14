@@ -36,7 +36,7 @@ func parse_face(words []string, face_verts, norm_verts []*mgl32.Vec3, tex_verts 
 			n = append(n, norm_vert.Z())
 		}
 	} else if strings.Contains(words[1], "/") { // verts and textures, maybe norms
-		if len(strings.Split(words[1], "/")) == 2 { // no norms
+		if len(strings.Split(words[1], "/")) == 1 { // no norms
 			for _, val := range words[1:] {
 				split_face_norm := strings.Split(val, "/")
 				face, tex := split_face_norm[0], split_face_norm[1]

@@ -43,13 +43,13 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	texture_uniform := gl.GetUniformLocation(game.shader, gl.Str("tex\x00"))
 	gl.Uniform1i(texture_uniform, 0)
 	gl.BindFragDataLocation(game.shader, 0, gl.Str("outputColor\x00"))
-	game.texture, temp_err = Shader.NewTexture("res/f16/f16.png")
+	game.texture, temp_err = Shader.NewTexture("res/music_box/music_box_d.png")
 	if temp_err != nil {
 		panic(temp_err)
 	}
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
-	game.model = new(Model.Model).Init("res/plane/SeaPlane.obj", game.shader)
+	game.model = new(Model.Model).Init("res/music_box/music_box.obj", game.shader)
 
 	game.w = width
 	game.h = height
