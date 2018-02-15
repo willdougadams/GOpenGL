@@ -7,7 +7,6 @@ import (
 	"github.com/go-gl/gl/v4.1-core/gl"
 
 	"Entity"
-	"Stacy"
 	"Model"
 	"Gordon"
 	"Landscape"
@@ -25,13 +24,11 @@ type GameState struct {
 	entities []*Entity.Entity
 	land *Landscape.Landscape
 	manager *StateManager
-	stacy *Stacy.Stacy
 	w, h int
 }
 
 func (game *GameState) Init(manager *StateManager, width int, height int, window *glfw.Window) State {
 	Debugs.Print("Initializing Game...\n")
-	game.stacy = new(Stacy.Stacy).Init()
 	var temp_err error
 	game.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
 	if temp_err != nil {
