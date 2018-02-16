@@ -1,9 +1,7 @@
 src/github/*
 src/golang/*
 src/gopkg.in/*
-src/Stacy/*
 
-res/*
 bin/*
 pkg/*
 
