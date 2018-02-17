@@ -1,31 +1,55 @@
 package Model
 
 import (
-	"os"
 	"fmt"
-	
+
 	"Debugs"
 
 	"github.com/go-gl/mathgl/mgl32"
+	"github.com/tbogdala/gombz"
+	"github.com/tbogdala/assimp-go"
 )
 
 type Model struct {
+	meshes []*gombz.Mesh
 	shader, vao, vbo uint32
 	Faces, UVs, Normals []float32
 }
 
 func (model *Model) Init(filename string, shader_program uint32) *Model {
 	Debugs.Print(fmt.Sprintf("Initializing Model from %s", filename))
-	faces, uvs, norms, err := loadObjFile(filename)
-	if err != nil {
-		fmt.Printf("Failed to load Model: %v\n", err)
-		os.Exit(1)
-	}
-	model.Faces = faces
-	model.UVs = uvs
-	model.Normals = norms
-	model.shader = shader_program
 
+	meshes, mesh_err := assimp.ParseFile(filename)
+	if mesh_err != nil {
+		fmt.Printf(fmt.Sprintf("Failed to load assimp mesh: %s\n", mesh_err))
+	} else {
+		fmt.Printf(fmt.Sprintf("mesh:\n%v\n", meshes))
+	}
+
+	model.Faces = []float32{}
+	model.UVs = []float32{}
+	model.Normals = []float32{}
+	for _, mesh := range meshes {
+		for _, f := range mesh.Faces {
+			for _, j := range f {
+				v := mesh.Vertices[j]
+				model.Faces = append(model.Faces, v.X())
+				model.Faces = append(model.Faces, v.Y())
+				model.Faces = append(model.Faces, v.Z())
+
+				u := mesh.UVChannels[0][j]
+				model.UVs = append(model.UVs, u.X())
+				model.UVs = append(model.UVs, 1-u.Y())
+
+				t := mesh.Normals[j]
+				model.Normals  = append(model.Normals, t.X())
+				model.Normals  = append(model.Normals, t.Y())
+				model.Normals  = append(model.Normals, t.Z())
+			}
+		}
+	}
+
+	model.shader = shader_program
 	model.vao = buffer(model)
 
 	return model
