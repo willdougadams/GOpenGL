@@ -30,6 +30,7 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	model.UVs = []float32{}
 	model.Normals = []float32{}
 	for _, mesh := range meshes {
+		uv_array := mesh.UVChannels[0]
 		for _, f := range mesh.Faces {
 			for _, j := range f {
 				v := mesh.Vertices[j]
@@ -37,17 +38,25 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 				model.Faces = append(model.Faces, v.Y())
 				model.Faces = append(model.Faces, v.Z())
 
-				u := mesh.UVChannels[0][j]
-				model.UVs = append(model.UVs, u.X())
-				model.UVs = append(model.UVs, 1-u.Y())
+				if len(uv_array) > int(j) {
+					u := uv_array[j]
+					model.UVs = append(model.UVs, u.X())
+					model.UVs = append(model.UVs, 1-u.Y())
+				}
 
-				t := mesh.Normals[j]
-				model.Normals  = append(model.Normals, t.X())
-				model.Normals  = append(model.Normals, t.Y())
-				model.Normals  = append(model.Normals, t.Z())
+				if len(mesh.Normals) > 0 {
+					t := mesh.Normals[j]
+					model.Normals  = append(model.Normals, t.X())
+					model.Normals  = append(model.Normals, t.Y())
+					model.Normals  = append(model.Normals, t.Z())
+				}
 			}
 		}
 	}
+
+	Debugs.Print(fmt.Sprintf("Loaded %d vert floats\n", len(model.Faces)))
+	Debugs.Print(fmt.Sprintf("Loaded %d uv floats\n", len(model.UVs)))
+	Debugs.Print(fmt.Sprintf("Loaded %d norm floats\n", len(model.Normals)))
 
 	model.shader = shader_program
 	model.vao = buffer(model)

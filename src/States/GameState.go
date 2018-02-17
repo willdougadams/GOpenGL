@@ -17,7 +17,7 @@ import (
 type GameState struct {
 	model_uniform int32
 	texture, shader uint32
-	model *Model.Model
+	models []*Model.Model
 	gordon *Gordon.Gordon
 
 	ticks uint32
@@ -45,21 +45,31 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	}
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
-	game.model = new(Model.Model).Init("res/music_box/music_box.obj", game.shader)
+
+	game.models = make([]*Model.Model, 0)
+	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", game.shader))
+	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", game.shader))
 
 	game.w = width
 	game.h = height
 
 	game.manager = manager
 	game.entities = make([]*Entity.Entity, 0)
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 2; i++ {
 		x := (rand.Float32() * 10) - 5
 		y := (rand.Float32() * 10) - 5
 		z := (rand.Float32() * 10) - 5
 		x_speed := float32(0.0)
 		y_speed := (rand.Float32() * 10)
 		z_speed := float32(0.0)
-		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.model))
+		game.entities = append(game.entities, new(Entity.Entity).Init(x,
+																																	y,
+																																	z,
+																																	x_speed,
+																																	y_speed,
+																																	z_speed,
+																																	game.shader,
+																																	game.models[i%len(game.models)]))
 	}
 
 	game.land = new(Landscape.Landscape).Init(game.shader)
