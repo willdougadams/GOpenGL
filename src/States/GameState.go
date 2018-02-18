@@ -44,6 +44,10 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 		panic(temp_err)
 	}
 
+	light_loc_uni := gl.GetUniformLocation(game.shader, gl.Str("light_location\x00"))
+	gl.Uniform4f(light_loc_uni, 1000.0, -100.0, 1000.0, 1.0)
+
+
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
 
 	game.models = make([]*Model.Model, 0)
