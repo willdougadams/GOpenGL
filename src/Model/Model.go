@@ -6,20 +6,21 @@ import (
 	"Debugs"
 
 	"github.com/go-gl/mathgl/mgl32"
+	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/tbogdala/gombz"
 	"github.com/tbogdala/assimp-go"
 )
 
 type Model struct {
 	meshes []*gombz.Mesh
-	shader, vao, vbo uint32
+	shader, texture, vao, vbo uint32
 	Faces, UVs, Normals []float32
 }
 
-func (model *Model) Init(filename string, shader_program uint32) *Model {
-	Debugs.Print(fmt.Sprintf("Initializing Model from %s", filename))
+func (model *Model) Init(model_filename string, texture_filename string, shader_program uint32) *Model {
+	Debugs.Print(fmt.Sprintf("Initializing Model from %s\n\t%s", model_filename, texture_filename))
 
-	meshes, mesh_err := assimp.ParseFile(filename)
+	meshes, mesh_err := assimp.ParseFile(model_filename)
 	if mesh_err != nil {
 		fmt.Printf(fmt.Sprintf("Failed to load assimp mesh: %s\n", mesh_err))
 	} else {
@@ -61,9 +62,20 @@ func (model *Model) Init(filename string, shader_program uint32) *Model {
 	model.shader = shader_program
 	model.vao = buffer(model)
 
+	var temp_err error
+	texture_uniform := gl.GetUniformLocation(model.shader, gl.Str("tex\x00"))
+	gl.Uniform1i(texture_uniform, 0)
+	model.texture, temp_err = NewTexture(texture_filename)
+	if temp_err != nil {
+		panic(temp_err)
+	}
+
 	return model
 }
 
 func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
-	draw(model, entity_model)
+	//gl.ActiveTexture(gl.TEXTURE0)
+	gl.BindTexture(gl.TEXTURE_2D, model.texture)
+
+	draw_model(model, entity_model)
 }

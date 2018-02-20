@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"Shader"
+	"Model"
 
 	"github.com/nullboundary/glfont"
 	"github.com/go-gl/glfw/v3.2/glfw"
@@ -42,7 +42,6 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, window
 	buffer_data = append(buffer_data, -1)
 	buffer_data = append(buffer_data, 1)
 
-
 	buffer_data = append(buffer_data, x+10)
 	buffer_data = append(buffer_data, y)
 	buffer_data = append(buffer_data, -1)
@@ -59,7 +58,7 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, window
 	buffer_data = append(buffer_data, 1)
 
 	var temp_err error
-	menu.shader, temp_err = Shader.NewProgram("src/shaders/menu.vert", "src/shaders/menu.frag")
+	menu.shader, temp_err = Model.NewProgram("src/shaders/menu.vert", "src/shaders/menu.frag")
 	if temp_err != nil {
 		panic(temp_err)
 	}

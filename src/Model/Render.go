@@ -54,7 +54,7 @@ func buffer(model *Model) (vao uint32) {
   return
 }
 
-func draw(model *Model, entity_model mgl32.Mat4) {
+func draw_model(model *Model, entity_model mgl32.Mat4) {
   gl.UseProgram(model.shader)
 	gl.BindVertexArray(model.vao)
 	// gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)

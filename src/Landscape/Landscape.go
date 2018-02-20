@@ -21,7 +21,7 @@ type Landscape struct {
 
 func (land *Landscape) Init(shader uint32) *Landscape {
 	Debugs.Print("Init Landscape...\n")
-	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", shader)
+	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", "res/chêne/textures/grass.png", shader)
 
 	for i, _ := range land.model.Faces[1:len(land.model.Faces)-1] {
 		if i % 4 == 1 {

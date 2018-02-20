@@ -10,7 +10,6 @@ import (
 	"Model"
 	"Gordon"
 	"Landscape"
-	"Shader"
 	"Debugs"
 )
 
@@ -30,29 +29,22 @@ type GameState struct {
 func (game *GameState) Init(manager *StateManager, width int, height int, window *glfw.Window) State {
 	Debugs.Print("Initializing Game...\n")
 	var temp_err error
-	game.shader, temp_err = Shader.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
+	game.shader, temp_err = Model.NewProgram("src/shaders/default.vert", "src/shaders/default.frag")
 	if temp_err != nil {
 		panic(temp_err)
 	}
 	gl.UseProgram(game.shader)
-
-	texture_uniform := gl.GetUniformLocation(game.shader, gl.Str("tex\x00"))
-	gl.Uniform1i(texture_uniform, 0)
 	gl.BindFragDataLocation(game.shader, 0, gl.Str("outputColor\x00"))
-	game.texture, temp_err = Shader.NewTexture("res/music_box/music_box_d.png")
-	if temp_err != nil {
-		panic(temp_err)
-	}
 
 	light_loc_uni := gl.GetUniformLocation(game.shader, gl.Str("light_location\x00"))
-	gl.Uniform4f(light_loc_uni, 1000.0, -100.0, 1000.0, 1.0)
-
+	gl.Uniform4f(light_loc_uni, 1.0, 100.0, 10.0, 1.0)
 
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
+	game.land = new(Landscape.Landscape).Init(game.shader)
 
 	game.models = make([]*Model.Model, 0)
-	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", game.shader))
-	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", game.shader))
+	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader))
+	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Fur.png", game.shader))
 
 	game.w = width
 	game.h = height
@@ -66,17 +58,8 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 		x_speed := float32(0.0)
 		y_speed := (rand.Float32() * 10)
 		z_speed := float32(0.0)
-		game.entities = append(game.entities, new(Entity.Entity).Init(x,
-																																	y,
-																																	z,
-																																	x_speed,
-																																	y_speed,
-																																	z_speed,
-																																	game.shader,
-																																	game.models[i%len(game.models)]))
+		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.models[i%len(game.models)]))
 	}
-
-	game.land = new(Landscape.Landscape).Init(game.shader)
 
 	game.ticks = 0
 
@@ -96,8 +79,8 @@ func (game *GameState) Update(elapsed float32) {
 }
 
 func (game *GameState) Draw() {
-	gl.ActiveTexture(gl.TEXTURE0)
-	gl.BindTexture(gl.TEXTURE_2D, game.texture)
+	// gl.ActiveTexture(gl.TEXTURE0)
+	// gl.BindTexture(gl.TEXTURE_2D, game.texture)
 	gl.UseProgram(game.shader)
 
 	for _, ent := range game.entities {
