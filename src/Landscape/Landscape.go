@@ -11,7 +11,6 @@ const GRAV_ACCEL = -9.8
 const TERM_VEL = 1.75 * GRAV_ACCEL
 const TERRAIN_SIZE = 100
 
-
 type Landscape struct {
 	model *Model.Model
 	heightmap []float32
@@ -22,6 +21,8 @@ type Landscape struct {
 func (land *Landscape) Init(shader uint32) *Landscape {
 	Debugs.Print("Init Landscape...\n")
 	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", "res/chêne/textures/grass.png", shader)
+	// land.model = new(Model.Model).Init("res/Bridge/Bridge.obj", "res/Bridge/Metal0.png", shader)
+
 
 	for i, _ := range land.model.Faces[1:len(land.model.Faces)-1] {
 		if i % 4 == 1 {
@@ -49,9 +50,7 @@ func (land *Landscape) Init(shader uint32) *Landscape {
 	return land
 }
 
-func (land *Landscape) Update() {
-	// literally do nothing
-}
+func (land *Landscape) Update() {}
 
 func (land *Landscape) Draw(model_uniform int32) {
 	scale_mat := mgl32.Scale3D(land.scale_factor, land.scale_factor, land.scale_factor)

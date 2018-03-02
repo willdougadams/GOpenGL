@@ -16,10 +16,12 @@ type StateManager struct {
 }
 
 func (mngr *StateManager) Init(width int, height int, window *glfw.Window) *StateManager {
-	mngr.prev_states = make([]State, 0)
-	mngr.window = window
 	Debugs.Print("Initializing States")
-	mngr.curr_state = new(GameState).Init(mngr, width, height, window)
+	mngr.prev_states = make([]State, 0)
+	mngr.prev_states = append(mngr.prev_states, new(GameState).Init(mngr, width, height, window))
+	mngr.curr_state = new(MenuState).Init(mngr, width, height, window)
+
+	mngr.window = window
 
 	return mngr
 }

@@ -74,8 +74,5 @@ func (model *Model) Init(model_filename string, texture_filename string, shader_
 }
 
 func (model *Model) Draw(model_uniform int32, entity_model mgl32.Mat4) {
-	//gl.ActiveTexture(gl.TEXTURE0)
-	gl.BindTexture(gl.TEXTURE_2D, model.texture)
-
 	draw_model(model, entity_model)
 }

@@ -14,8 +14,8 @@ import (
 	"github.com/go-gl/glfw/v3.2/glfw"
 )
 
-const windowWidth = 1800
-const windowHeight = 980
+const windowWidth = 600
+const windowHeight = 480
 
 func init() {
 	// GLFW event handling must run on the main OS thread
@@ -56,6 +56,7 @@ func (app *Application) Init() *Application {
 	if err := gl.Init(); err != nil {
 		panic(err)
 	}
+
 	version := gl.GoStr(gl.GetString(gl.VERSION))
 	Debugs.Print("OpenGL version " + version)
 
@@ -64,6 +65,7 @@ func (app *Application) Init() *Application {
 	gl.ClearColor(1.0, 1.0, 1.0, 1.0)
 
 	Debugs.Print("Initializing Mr. Manager...")
+
 	app.mr_manager = new(States.StateManager).Init(windowWidth, windowHeight, app.window)
 
 	return app

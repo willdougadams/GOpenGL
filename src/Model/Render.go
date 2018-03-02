@@ -57,7 +57,7 @@ func buffer(model *Model) (vao uint32) {
 func draw_model(model *Model, entity_model mgl32.Mat4) {
   gl.UseProgram(model.shader)
 	gl.BindVertexArray(model.vao)
-	// gl.BindBuffer(gl.ARRAY_BUFFER, model.vbo)
 	gl.UniformMatrix4fv(model_uniform, 1, false, &entity_model[0])
+  gl.BindTexture(gl.TEXTURE_2D, model.texture)
 	gl.DrawArrays(gl.TRIANGLES, 0, int32( len(model.Faces)/3) )
 }

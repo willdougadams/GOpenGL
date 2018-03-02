@@ -44,7 +44,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 
 	game.models = make([]*Model.Model, 0)
 	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader))
-	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Fur.png", game.shader))
+	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Body.png", game.shader))
 
 	game.w = width
 	game.h = height
@@ -79,15 +79,13 @@ func (game *GameState) Update(elapsed float32) {
 }
 
 func (game *GameState) Draw() {
-	// gl.ActiveTexture(gl.TEXTURE0)
-	// gl.BindTexture(gl.TEXTURE_2D, game.texture)
 	gl.UseProgram(game.shader)
+
+	game.land.Draw(game.model_uniform)
 
 	for _, ent := range game.entities {
 		ent.Draw(game.model_uniform)
 	}
-
-	game.land.Draw(game.model_uniform)
 }
 
 func (game *GameState) Stop() bool {
