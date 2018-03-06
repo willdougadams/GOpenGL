@@ -4,11 +4,7 @@ import (
 	"os"
 	"fmt"
 
-	//"Model"
-
-	// "github.com/nullboundary/glfont"
 	"github.com/go-gl/glfw/v3.2/glfw"
-	//"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/go-gl/mathgl/mgl32"
 	"github.com/4ydx/gltext"
 	"github.com/4ydx/gltext/v4.1"
@@ -40,7 +36,7 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, window
 		}
 		fmt.Println("Font loaded from disk...")
 	} else {
-		fd, err := os.Open("font/font_1_honokamin.ttf")
+		fd, err := os.Open("res/fonts/font_1_honokamin.ttf")
 		if err != nil {
 			panic(err)
 		}
@@ -82,7 +78,7 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, window
 		fmt.Printf("%c: %d\n", s, rune(s))
 	}
 	menu.text.SetString(str)
-	menu.text.SetColor(mgl32.Vec3{1, 0, 1})
+	menu.text.SetColor(mgl32.Vec3{0, 0, 0})
 	menu.text.SetPosition(mgl32.Vec2{0, 0})
 	menu.text.FadeOutPerFrame = 0.01
 	//=========================
@@ -100,12 +96,6 @@ func (menu *MenuState) Update(elapsed float32) {
 func (menu *MenuState) Draw() {
 	menu.text.Draw()
 	menu.text.Show()
-
-	for i, v := range menu.options {
-		fmt.Printf("Option %d: %s\n", i, v)
-		//menu.font.SetColor(0.0, 1.0, 1.0, 1.0) //r,g,b,a font color
-		//menu.font.Printf(100, 100*float32(i), 1.0, fmt.Sprintf("%s", v)) //x,y,scale,string,printf args
-	}
 }
 
 func (menu *MenuState) Stop() bool {

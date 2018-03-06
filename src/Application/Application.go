@@ -14,8 +14,8 @@ import (
 	"github.com/go-gl/glfw/v3.2/glfw"
 )
 
-const windowWidth = 600
-const windowHeight = 480
+const windowWidth = 1200
+const windowHeight = 900
 
 func init() {
 	// GLFW event handling must run on the main OS thread
@@ -39,7 +39,7 @@ func (app *Application) Init() *Application {
 	glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
 	glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
 	var err error
-	app.window, err = glfw.CreateWindow(windowWidth, windowHeight, "Cube", nil, nil)
+	app.window, err = glfw.CreateWindow(windowWidth, windowHeight, "GOpenGL", nil, nil)
 	if err != nil {
 		panic(err)
 	}

@@ -18,7 +18,7 @@ type StateManager struct {
 func (mngr *StateManager) Init(width int, height int, window *glfw.Window) *StateManager {
 	Debugs.Print("Initializing States")
 	mngr.prev_states = make([]State, 0)
-	mngr.prev_states = append(mngr.prev_states, new(GameState).Init(mngr, width, height, window))
+	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, window))
 	mngr.curr_state = new(MenuState).Init(mngr, width, height, window)
 
 	mngr.window = window
@@ -27,6 +27,9 @@ func (mngr *StateManager) Init(width int, height int, window *glfw.Window) *Stat
 }
 
 func (mngr *StateManager) Update(elapsed float32) {
+	if mngr.window.GetKey(glfw.KeyEscape) == glfw.Press {
+		mngr.window.SetShouldClose(true)
+	}
 	mngr.curr_state.Update(elapsed)
 }
 
