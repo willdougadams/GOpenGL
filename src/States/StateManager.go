@@ -19,7 +19,7 @@ func (mngr *StateManager) Init(width int, height int, window *glfw.Window) *Stat
 	Debugs.Print("Initializing States")
 	mngr.prev_states = make([]State, 0)
 	mngr.prev_states = append(mngr.prev_states, new(MenuState).Init(mngr, width, height, window))
-	mngr.curr_state = new(MenuState).Init(mngr, width, height, window)
+	mngr.curr_state = new(GameState).Init(mngr, width, height, window)
 
 	mngr.window = window
 

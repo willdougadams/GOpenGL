@@ -74,9 +74,6 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, window
 	scaleMin, scaleMax := float32(1.0), float32(1.1)
 	menu.text = v41.NewText(menu.font, scaleMin, scaleMax)
 	str := "梅干しが大好き。ウメボシガダイスキ。"
-	for _, s := range str {
-		fmt.Printf("%c: %d\n", s, rune(s))
-	}
 	menu.text.SetString(str)
 	menu.text.SetColor(mgl32.Vec3{0, 0, 0})
 	menu.text.SetPosition(mgl32.Vec2{0, 0})

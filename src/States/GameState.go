@@ -11,6 +11,7 @@ import (
 	"Gordon"
 	"Landscape"
 	"Debugs"
+	"HUD"
 )
 
 type GameState struct {
@@ -18,6 +19,7 @@ type GameState struct {
 	texture, shader uint32
 	models []*Model.Model
 	gordon *Gordon.Gordon
+	hud *HUD.HUD
 
 	ticks uint32
 	entities []*Entity.Entity
@@ -46,6 +48,8 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader))
 	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Body.png", game.shader))
 
+	game.hud = new(HUD.HUD).Init()
+
 	game.w = width
 	game.h = height
 
@@ -67,6 +71,8 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 }
 
 func (game *GameState) Update(elapsed float32) {
+	gl.UseProgram(game.shader)
+
 	game.gordon.Update(elapsed)
 
 	Entity.Physics(game.land, game.entities, elapsed)
@@ -86,6 +92,8 @@ func (game *GameState) Draw() {
 	for _, ent := range game.entities {
 		ent.Draw(game.model_uniform)
 	}
+
+	game.hud.Draw()
 }
 
 func (game *GameState) Stop() bool {
