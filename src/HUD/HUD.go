@@ -4,19 +4,35 @@ import (
   "os"
 	"fmt"
 
-	"github.com/go-gl/mathgl/mgl32"
+	// "github.com/go-gl/mathgl/mgl32"
 	"github.com/4ydx/gltext"
 	"github.com/4ydx/gltext/v4.1"
 	"golang.org/x/image/math/fixed"
 )
 
 type HUD struct {
+  font *v41.Font
   text *v41.Text
+  text_elem element
 }
 
 func (hud *HUD) Init() *HUD {
-  config, err := gltext.LoadTruetypeFontConfig("fontconfigs", "roboto")
-  var font *v41.Font
+  hud.font = config_font("luximr")
+	hud.text_elem = new(text_element).Init(hud.font)
+
+  return hud
+}
+
+func (hud *HUD) Update(elapsed float32) {
+
+}
+
+func (hud *HUD) Draw() {
+  hud.text_elem.Draw()
+}
+
+func config_font(font_name string) (font *v41.Font) {
+  config, err := gltext.LoadTruetypeFontConfig("fontconfigs", "luximr")
 
 	if err == nil {
 		font, err = v41.NewFont(config)
@@ -25,7 +41,7 @@ func (hud *HUD) Init() *HUD {
 		}
 		fmt.Println("Font loaded from disk...")
 	} else {
-		fd, err := os.Open("res/fonts/Roboto-Light.ttf")
+		fd, err := os.Open(fmt.Sprintf("res/fonts/%s.ttf", font_name))
 		if err != nil {
 			panic(err)
 		}
@@ -40,7 +56,7 @@ func (hud *HUD) Init() *HUD {
 		if err != nil {
 			panic(err)
 		}
-		config.Name = "roboto"
+		config.Name = font_name
 
 		err = config.Save("fontconfigs")
 		if err != nil {
@@ -54,22 +70,5 @@ func (hud *HUD) Init() *HUD {
 
 	font.ResizeWindow(float32(1200), float32(900))
 
-	scaleMin, scaleMax := float32(1.0), float32(1.1)
-	hud.text = v41.NewText(font, scaleMin, scaleMax)
-	str := "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-	hud.text.SetString(str)
-	hud.text.SetColor(mgl32.Vec3{0, 0, 0})
-	hud.text.SetPosition(mgl32.Vec2{0, 0})
-	hud.text.FadeOutPerFrame = 0.01
-
-  return hud
-}
-
-func (hud *HUD) Update(elapsed float32) {
-
-}
-
-func (hud *HUD) Draw() {
-  hud.text.Draw()
-  hud.text.Show()
+  return font
 }
