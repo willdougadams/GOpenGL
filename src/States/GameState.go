@@ -2,6 +2,7 @@ package States
 
 import (
 	"math/rand"
+	"strconv"
 
 	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/gl/v4.1-core/gl"
@@ -80,6 +81,10 @@ func (game *GameState) Update(elapsed float32) {
 	if game.manager.window.GetKey(glfw.KeyY) == glfw.Press {
 		game.manager.ChangeState()
 	}
+
+	update_map := make(map[string]string)
+	update_map["new_fps"] = strconv.FormatFloat(float64(1/elapsed), 'f', 5, 32)
+	game.hud.Update(elapsed, update_map)
 
 	game.ticks += 1
 }

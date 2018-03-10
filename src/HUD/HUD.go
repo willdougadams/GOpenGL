@@ -23,8 +23,8 @@ func (hud *HUD) Init() *HUD {
   return hud
 }
 
-func (hud *HUD) Update(elapsed float32) {
-
+func (hud *HUD) Update(elapsed float32, update_map map[string]string) {
+  hud.text_elem.Update(update_map)
 }
 
 func (hud *HUD) Draw() {
