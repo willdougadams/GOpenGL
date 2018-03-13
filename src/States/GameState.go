@@ -2,7 +2,6 @@ package States
 
 import (
 	"math/rand"
-	"strconv"
 
 	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/gl/v4.1-core/gl"
@@ -49,7 +48,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader))
 	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Body.png", game.shader))
 
-	game.hud = new(HUD.HUD).Init()
+	game.hud = new(HUD.HUD).Init(width, height)
 
 	game.w = width
 	game.h = height
@@ -82,8 +81,8 @@ func (game *GameState) Update(elapsed float32) {
 		game.manager.ChangeState()
 	}
 
-	update_map := make(map[string]string)
-	update_map["new_fps"] = strconv.FormatFloat(float64(1/elapsed), 'f', 5, 32)
+	update_map := make(map[string]float32)
+	update_map["new_fps"] = float32(1/elapsed)
 	game.hud.Update(elapsed, update_map)
 
 	game.ticks += 1

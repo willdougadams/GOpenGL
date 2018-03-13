@@ -3,43 +3,71 @@ package HUD
 import (
   "os"
 	"fmt"
+  "Debugs"
 
-	// "github.com/go-gl/mathgl/mgl32"
+	"github.com/go-gl/mathgl/mgl32"
 	"github.com/4ydx/gltext"
 	"github.com/4ydx/gltext/v4.1"
 	"golang.org/x/image/math/fixed"
 )
 
+const ELEMENT_SPACER = 10
+
 type HUD struct {
   font *v41.Font
   text *v41.Text
-  text_elem element
+  elements []element
+
+  w, h int
 }
 
-func (hud *HUD) Init() *HUD {
-  hud.font = config_font("luximr")
-	hud.text_elem = new(text_element).Init(hud.font)
+func (hud *HUD) Init(w, h int) *HUD {
+  hud.font = config_font("luximr", w, h)
+  formats := []rune{'b', 'e', 'E', 'f'}
+  hud.elements = make([]element, 0)
+  hud.w = w
+  hud.h = h
+
+  for i, format := range formats {
+    t := new(text_element).Init(hud, hud.font, format)
+    x_pos := -float32(w/2) + (t.Width()/2)
+    y_pos := (float32(h/2) - (t.Height()/2)) - (float32(i) * (t.Height() + ELEMENT_SPACER))
+    t.SetPosition(mgl32.Vec2{x_pos, y_pos})
+    hud.elements = append(hud.elements, t)
+  }
 
   return hud
 }
 
-func (hud *HUD) Update(elapsed float32, update_map map[string]string) {
-  hud.text_elem.Update(update_map)
+func (hud *HUD) Update(elapsed float32, update_map map[string]float32) {
+  for i, el := range hud.elements {
+    el.Update(update_map)
+
+    x_pos := -float32(hud.w/2) + (el.Width()/2)
+    y_pos := (float32(hud.h/2) - (el.Height()/2)) - (float32(i) * (el.Height() + ELEMENT_SPACER))
+    el.SetPosition(mgl32.Vec2{x_pos, y_pos})
+  }
 }
 
 func (hud *HUD) Draw() {
-  hud.text_elem.Draw()
+  for _, el := range hud.elements {
+    el.Draw()
+  }
+
+  for _, el := range hud.elements {
+    el.Show()
+  }
 }
 
-func config_font(font_name string) (font *v41.Font) {
-  config, err := gltext.LoadTruetypeFontConfig("fontconfigs", "luximr")
+func config_font(font_name string, w, h int) (font *v41.Font) {
+  config, err := gltext.LoadTruetypeFontConfig("fontconfigs", font_name)
 
 	if err == nil {
 		font, err = v41.NewFont(config)
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println("Font loaded from disk...")
+		Debugs.Print(fmt.Sprintf("Font %s loaded from disk...", font_name))
 	} else {
 		fd, err := os.Open(fmt.Sprintf("res/fonts/%s.ttf", font_name))
 		if err != nil {
@@ -68,7 +96,7 @@ func config_font(font_name string) (font *v41.Font) {
 		}
 	}
 
-	font.ResizeWindow(float32(1200), float32(900))
+	font.ResizeWindow(float32(w), float32(h))
 
   return font
 }
