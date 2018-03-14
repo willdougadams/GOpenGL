@@ -19,6 +19,7 @@ type HUD struct {
   elements []element
 
   w, h int
+  counter float32
 }
 
 func (hud *HUD) Init(w, h int) *HUD {
@@ -27,6 +28,7 @@ func (hud *HUD) Init(w, h int) *HUD {
   hud.elements = make([]element, 0)
   hud.w = w
   hud.h = h
+  hud.counter = 0.0
 
   for i, format := range formats {
     t := new(text_element).Init(hud, hud.font, format)
@@ -40,6 +42,13 @@ func (hud *HUD) Init(w, h int) *HUD {
 }
 
 func (hud *HUD) Update(elapsed float32, update_map map[string]float32) {
+  if hud.counter < 0.75 {
+    hud.counter += elapsed
+    return
+  } else {
+    hud.counter = 0.0
+  }
+
   for i, el := range hud.elements {
     el.Update(update_map)
 
