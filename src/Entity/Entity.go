@@ -6,26 +6,6 @@ import (
 	"github.com/go-gl/mathgl/mgl32"
 )
 
-func max32(a, b float32) float32 {
-	var m float32
-	if a > b {
-		m = a
-		} else {
-			m = b
-		}
-		return m
-	}
-
-func abs32(a float32) float32 {
-	var ab float32
-	if a < 0 {
-		ab = 0 - a
-	} else {
-		ab = a
-	}
-	return ab
-}
-
 type Entity struct {
 	location, speed_vec mgl32.Vec3
 	x_orient, y_orient, z_orient float32

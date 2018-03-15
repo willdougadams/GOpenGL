@@ -10,6 +10,26 @@ const GRAV_ACCEL = -9.8
 const TERM_VEL = 1.75 * GRAV_ACCEL
 const TERRAIN_SIZE = 100
 
+func max32(a, b float32) float32 {
+	var m float32
+	if a > b {
+		m = a
+	} else {
+		m = b
+	}
+	return m
+}
+
+func abs32(a float32) float32 {
+	var ab float32
+	if a < 0 {
+		ab = 0 - a
+	} else {
+		ab = a
+	}
+	return ab
+}
+
 func gravity(ent *Entity, elapsed float32) {
 	new_y_speed := ent.speed_vec.Y() + GRAV_ACCEL * elapsed
 	if new_y_speed < TERM_VEL {
