@@ -54,22 +54,22 @@ func (entity *Entity) SetYSpeed(y_spd float32) {entity.speed_vec = mgl32.Vec3{en
 func (entity *Entity) SetZSpeed(z_spd float32) {entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), entity.speed_vec.Y(), z_spd}}
 
 func (entity *Entity) Init(x float32,
-	y float32,
-	z float32,
-	x_speed float32,
-	y_speed float32,
-	z_speed float32,
-	shader uint32,
-	model *Model.Model) *Entity {
+														y float32,
+														z float32,
+														x_speed float32,
+														y_speed float32,
+														z_speed float32,
+														shader uint32,
+														model *Model.Model) *Entity {
 	entity.location = mgl32.Vec3{x, y, z}
 	entity.speed_vec = mgl32.Vec3{x_speed, y_speed, z_speed}
 
-	entity.x_orient = 0.0
-	entity.y_orient = 0.0
-	entity.z_orient = 0.0
-	entity.x_rotate_speed = 0.0 // (rand.Float32() * 2) - 1
-	entity.y_rotate_speed = 0.0 // (rand.Float32() * 2) - 1
-	entity.z_rotate_speed = 0.0 // (rand.Float32() * 2) - 1
+	entity.x_orient = x
+	entity.y_orient = y
+	entity.z_orient = z
+	entity.x_rotate_speed = x_speed
+	entity.y_rotate_speed = y_speed
+	entity.z_rotate_speed = z_speed
 
 	entity.drag = float32(0.05)
 	entity.rotational_drag = float32(0.05)
@@ -81,54 +81,7 @@ func (entity *Entity) Init(x float32,
 }
 
 func (entity *Entity) Update(elapsed float32) {
-	new_y_speed := entity.speed_vec.Y() + GRAV_ACCEL * elapsed
-	if new_y_speed < TERM_VEL {
-		new_y_speed = TERM_VEL
-	}
-	entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), new_y_speed, entity.speed_vec.Z()}
-
-	entity.location = entity.location.Add(entity.speed_vec)
-
-	entity.x_orient += entity.x_rotate_speed * elapsed
-	entity.y_orient += entity.y_rotate_speed * elapsed
-	entity.z_orient += entity.z_rotate_speed * elapsed
-
-	curr_xrspd := entity.x_rotate_speed
-	if curr_xrspd != 0.0 {
-		entity.x_rotate_speed = (abs32(curr_xrspd)/curr_xrspd) *
-		max32((abs32(curr_xrspd) - (entity.drag * elapsed)), 0.0)
-	} else {
-		entity.x_rotate_speed = 0.0
-	}
-
-	curr_yrspd := entity.y_rotate_speed
-	if curr_yrspd != 0.0 {
-		entity.y_rotate_speed = (abs32(curr_yrspd)/curr_yrspd) *
-		max32((abs32(curr_yrspd) - (entity.drag * elapsed)), 0.0)
-	} else {
-		entity.y_rotate_speed = 0.0
-	}
-
-	curr_zrspd := entity.z_rotate_speed
-	if curr_zrspd != 0.0 {
-		entity.z_rotate_speed = (abs32(curr_zrspd)/curr_zrspd) *
-		max32((abs32(curr_zrspd) - (entity.drag * elapsed)), 0.0)
-	} else {
-		entity.z_rotate_speed = 0.0
-	}
-
-	trans_mat := mgl32.Translate3D(entity.location.X(), entity.location.Y(), entity.location.Z())
-
-	x_rotate_mat := mgl32.HomogRotate3D(entity.x_orient, mgl32.Vec3{1, 0, 0})
-	y_rotate_mat := mgl32.HomogRotate3D(entity.y_orient, mgl32.Vec3{0, 1, 0})
-	z_rotate_mat := mgl32.HomogRotate3D(entity.z_orient, mgl32.Vec3{0, 0, -1})
-
-	rotate_mat := x_rotate_mat.Mul4(y_rotate_mat).Mul4(z_rotate_mat)
-	trans_rot_mat := trans_mat.Mul4(rotate_mat)
-
-	scale_factor := float32(10.0)
-	scale_mat := mgl32.Scale3D(scale_factor, scale_factor, scale_factor)
-	entity.model_mat = scale_mat.Mul4(trans_rot_mat)
+	//	moved to Entity.physics call in GameState.Update
 }
 
 func (entity * Entity) Draw(model_uniform int32) {

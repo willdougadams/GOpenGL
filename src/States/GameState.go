@@ -2,6 +2,7 @@ package States
 
 import (
 	"math/rand"
+	"time"
 
 	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/gl/v4.1-core/gl"
@@ -46,22 +47,23 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 
 	game.models = make([]*Model.Model, 0)
 	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader))
-	game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Body.png", game.shader))
+	// game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Body.png", game.shader))
 
 	game.hud = new(HUD.HUD).Init(width, height)
 
 	game.w = width
 	game.h = height
 
+	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 	game.manager = manager
 	game.entities = make([]*Entity.Entity, 0)
-	for i := 0; i < 2; i++ {
-		x := (rand.Float32() * 10) - 5
-		y := (rand.Float32() * 10) - 5
-		z := (rand.Float32() * 10) - 5
-		x_speed := float32(0.0)
-		y_speed := (rand.Float32() * 10)
-		z_speed := float32(0.0)
+	for i := 0; i < 20; i++ {
+		x := (random.Float32() * 10) - 5
+		y := (random.Float32() * 10) - 5
+		z := (random.Float32() * 10) - 5
+		x_speed := float32(0) //(random.Float32() * 10)
+		y_speed := (random.Float32() * 0.25)
+		z_speed := float32(0) //(random.Float32() * 10)
 		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.models[i%len(game.models)]))
 	}
 
@@ -71,15 +73,13 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 }
 
 func (game *GameState) Update(elapsed float32) {
-	gl.UseProgram(game.shader)
-
-	game.gordon.Update(elapsed)
-
-	Entity.Physics(game.land, game.entities, elapsed)
-
 	if game.manager.window.GetKey(glfw.KeyY) == glfw.Press {
 		game.manager.ChangeState()
 	}
+
+	gl.UseProgram(game.shader)
+	game.gordon.Update(elapsed)
+	Entity.Physics(game.land, game.entities, elapsed)
 
 	update_map := make(map[string]float32)
 	update_map["new_fps"] = float32(1/elapsed)

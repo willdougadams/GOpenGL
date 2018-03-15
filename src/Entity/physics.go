@@ -16,7 +16,9 @@ func gravity(ent *Entity, elapsed float32) {
 		new_y_speed = TERM_VEL
 	}
 	ent.speed_vec = mgl32.Vec3{ent.speed_vec.X(), new_y_speed, ent.speed_vec.Z()}
+}
 
+func inertia(ent *Entity, elapsed float32) {
 	ent.location = ent.location.Add(ent.speed_vec)
 
 	ent.x_orient += ent.x_rotate_speed * elapsed
@@ -25,16 +27,14 @@ func gravity(ent *Entity, elapsed float32) {
 
 	curr_xrspd := ent.x_rotate_speed
 	if curr_xrspd != 0.0 {
-		ent.x_rotate_speed = (abs32(curr_xrspd)/curr_xrspd) *
-		max32((abs32(curr_xrspd) - (ent.drag * elapsed)), 0.0)
+		ent.x_rotate_speed = (abs32(curr_xrspd)/curr_xrspd) * max32((abs32(curr_xrspd) - (ent.drag * elapsed)), 0.0)
 	} else {
 		ent.x_rotate_speed = 0.0
 	}
 
 	curr_yrspd := ent.y_rotate_speed
 	if curr_yrspd != 0.0 {
-		ent.y_rotate_speed = (abs32(curr_yrspd)/curr_yrspd) *
-		max32((abs32(curr_yrspd) - (ent.drag * elapsed)), 0.0)
+		ent.y_rotate_speed = (abs32(curr_yrspd)/curr_yrspd) * max32((abs32(curr_yrspd) - (ent.drag * elapsed)), 0.0)
 	} else {
 		ent.y_rotate_speed = 0.0
 	}
@@ -63,10 +63,12 @@ func gravity(ent *Entity, elapsed float32) {
 
 func Physics(land *Landscape.Landscape, ents []*Entity, elapsed float32) {
 	for _, ent := range ents {
+		inertia(ent, elapsed)
+
 		heightmap_height := land.GetHeight(int(ent.X()), int(ent.Z()))
 		if ent.Y() <= heightmap_height {
 			ent.SetY(heightmap_height)
-			ent.SetYSpeed(float32(0))
+			ent.SetYSpeed(0.0)
 		} else {
 			gravity(ent, elapsed)
 		}

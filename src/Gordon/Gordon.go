@@ -54,6 +54,11 @@ func (gord *Gordon) Init(x, y, z float32,
 }
 
 func (gord *Gordon) Update(elapsed float32) {
+	if gord.window.GetKey(glfw.KeyEscape) == glfw.Press {
+		fmt.Printf("\nESC pressed, exiting...\n")
+		gord.window.SetShouldClose(true)
+	}
+
 	xpos, ypos := gord.window.GetCursorPos()
 	gord.window.SetCursorPos(float64(gord.window_w/2.0), float64(gord.window_h/2.0))
 
@@ -63,10 +68,10 @@ func (gord *Gordon) Update(elapsed float32) {
 	gord.orientation = mgl32.Vec3{float32(math.Cos(gord.vertical_angle) * math.Sin(gord.horizontal_angle)), float32(math.Sin(gord.vertical_angle)), float32(math.Cos(gord.vertical_angle) * math.Cos(gord.horizontal_angle))}
 
 	right := mgl32.Vec3{float32(math.Sin(gord.horizontal_angle - 3.14/2.0)), 0.0, float32(math.Cos(gord.horizontal_angle - 3.14/2.0))}
-
 	up := right.Cross(gord.orientation)
-
 	move_dist := elapsed * gord.move_speed
+
+
 	if gord.window.GetKey(glfw.KeyW) == glfw.Press {
 		gord.location = gord.location.Add(gord.orientation.Mul(move_dist))
 	}
@@ -80,13 +85,7 @@ func (gord *Gordon) Update(elapsed float32) {
 		gord.location = gord.location.Add(right.Mul(-move_dist))
 	}
 
-	if gord.window.GetKey(glfw.KeyEscape) == glfw.Press {
-		fmt.Printf("\nESC pressed, exiting...\n")
-		gord.window.SetShouldClose(true)
-	}
-
 	gord.camera = mgl32.LookAtV(gord.location, gord.location.Add(gord.orientation), up)
-
 	gl.UniformMatrix4fv(int32(gord.camera_uniform), 1, false, &gord.camera[0])
 	gl.UniformMatrix4fv(gord.projection_uniform, 1, false, &gord.projection[0])
 }
