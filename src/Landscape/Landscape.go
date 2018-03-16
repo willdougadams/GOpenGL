@@ -5,6 +5,7 @@ import (
 	"Model"
 
 	"github.com/go-gl/mathgl/mgl32"
+	"github.com/larspensjo/Go-simplex-noise/simplexnoise"
 )
 
 const GRAV_ACCEL = -9.8
@@ -12,9 +13,9 @@ const TERM_VEL = 1.75 * GRAV_ACCEL
 const TERRAIN_SIZE = 100
 
 type Landscape struct {
-	model *Model.Model
-	heightmap []float32
-	scale_factor float32
+	model              *Model.Model
+	heightmap          []float32
+	scale_factor       float32
 	x_offset, z_offset int64
 }
 
@@ -22,8 +23,8 @@ func (land *Landscape) Init(shader uint32) *Landscape {
 	Debugs.Print("Init Landscape...\n")
 	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", "res/chêne/textures/grass.png", shader)
 
-	for i, _ := range land.model.Faces[1:len(land.model.Faces)-1] {
-		if i % 4 == 1 {
+	for i, _ := range land.model.Faces[1 : len(land.model.Faces)-1] {
+		if i%4 == 1 {
 			x := int64(land.model.Faces[i-1])
 			z := int64(land.model.Faces[i+1])
 
@@ -51,11 +52,12 @@ func (land *Landscape) Init(shader uint32) *Landscape {
 func (land *Landscape) Update() {}
 
 func (land *Landscape) Draw(model_uniform int32) {
+	return
 	scale_mat := mgl32.Scale3D(land.scale_factor, land.scale_factor, land.scale_factor)
 	model_mat := mgl32.Ident4().Mul4(scale_mat)
 	land.model.Draw(model_uniform, model_mat)
 }
 
 func (land *Landscape) GetHeight(x, z int) float32 {
-	return float32(0.0)
+	return float32(simplexnoise.Noise2(float64(x), float64(z)))
 }

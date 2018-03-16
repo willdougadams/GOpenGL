@@ -31,7 +31,7 @@ func abs32(a float32) float32 {
 }
 
 func gravity(ent *Entity, elapsed float32) {
-	new_y_speed := ent.speed_vec.Y() + GRAV_ACCEL * elapsed
+	new_y_speed := ent.speed_vec.Y() + GRAV_ACCEL*elapsed
 	if new_y_speed < TERM_VEL {
 		new_y_speed = TERM_VEL
 	}
@@ -47,22 +47,22 @@ func inertia(ent *Entity, elapsed float32) {
 
 	curr_xrspd := ent.x_rotate_speed
 	if curr_xrspd != 0.0 {
-		ent.x_rotate_speed = (abs32(curr_xrspd)/curr_xrspd) * max32((abs32(curr_xrspd) - (ent.drag * elapsed)), 0.0)
+		ent.x_rotate_speed = (abs32(curr_xrspd) / curr_xrspd) * max32((abs32(curr_xrspd)-(ent.drag*elapsed)), 0.0)
 	} else {
 		ent.x_rotate_speed = 0.0
 	}
 
 	curr_yrspd := ent.y_rotate_speed
 	if curr_yrspd != 0.0 {
-		ent.y_rotate_speed = (abs32(curr_yrspd)/curr_yrspd) * max32((abs32(curr_yrspd) - (ent.drag * elapsed)), 0.0)
+		ent.y_rotate_speed = (abs32(curr_yrspd) / curr_yrspd) * max32((abs32(curr_yrspd)-(ent.drag*elapsed)), 0.0)
 	} else {
 		ent.y_rotate_speed = 0.0
 	}
 
 	curr_zrspd := ent.z_rotate_speed
 	if curr_zrspd != 0.0 {
-		ent.z_rotate_speed = (abs32(curr_zrspd)/curr_zrspd) *
-		max32((abs32(curr_zrspd) - (ent.drag * elapsed)), 0.0)
+		ent.z_rotate_speed = (abs32(curr_zrspd) / curr_zrspd) *
+			max32((abs32(curr_zrspd)-(ent.drag*elapsed)), 0.0)
 	} else {
 		ent.z_rotate_speed = 0.0
 	}
@@ -89,6 +89,8 @@ func Physics(land *Landscape.Landscape, ents []*Entity, elapsed float32) {
 		if ent.Y() <= heightmap_height {
 			ent.SetY(heightmap_height)
 			ent.SetYSpeed(0.0)
+			ent.SetXSpeed(ent.XSpeed() * 0.5)
+			ent.SetZSpeed(ent.XSpeed() * 0.5)
 		} else {
 			gravity(ent, elapsed)
 		}

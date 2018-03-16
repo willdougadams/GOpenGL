@@ -10,15 +10,9 @@ in vec2 uv;
 out vec4 outputColor;
 
 void main() {
-  vec4 light_color = vec4(0.88, 0.61, 0.21, 0.0);
-  vec4 light_location = light_location;
-
-  normalize(frag_norm);
-
+  vec4 light_color = vec4(1.0, 1.0, 1.0, 0.0);
   vec4 tex_color = texture(tex, uv);
+  float diff = max(0.0, dot(normalize(light_location-world_vert), normalize(frag_norm)));
 
-  float diff = max(0.0, dot(normalize(light_location-world_vert), frag_norm));
-  vec4 diffuse = (diff * tex_color);
-
-  outputColor = diffuse;
+  outputColor = tex_color + diff * light_color;
 }
