@@ -51,12 +51,21 @@ func (entity *Entity) Init(x float32,
 	entity.location = mgl32.Vec3{x, y, z}
 	entity.speed_vec = mgl32.Vec3{x_speed, y_speed, z_speed}
 
+<<<<<<< HEAD
 	entity.x_orient = 0.0
 	entity.y_orient = 0.0
 	entity.z_orient = 0.0
 	entity.x_rotate_speed = 0.0
 	entity.y_rotate_speed = 0.0
 	entity.z_rotate_speed = 0.0
+=======
+	entity.x_orient = float32(0)
+	entity.y_orient = float32(0)
+	entity.z_orient = float32(0)
+	entity.x_rotate_speed = float32(0)
+	entity.y_rotate_speed = float32(0)
+	entity.z_rotate_speed = float32(0)
+>>>>>>> 8894a74c73fbcd3bc19b72095fe24f53d35e5fa1
 
 	entity.drag = float32(0.05)
 	entity.rotational_drag = float32(0.05)
