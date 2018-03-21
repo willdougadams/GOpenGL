@@ -14,6 +14,7 @@ type Entity struct {
 	model                                          *Model.Model
 
 	model_mat mgl32.Mat4
+	model_scale float32
 }
 
 func (entity *Entity) X() float32 { return entity.location.X() }
@@ -45,22 +46,24 @@ func (entity *Entity) Init(x float32,
 	y_speed float32,
 	z_speed float32,
 	shader uint32,
-	model *Model.Model) *Entity {
+	model *Model.Model,
+	model_scale float32) *Entity {
 	entity.location = mgl32.Vec3{x, y, z}
 	entity.speed_vec = mgl32.Vec3{x_speed, y_speed, z_speed}
 
-	entity.x_orient = x
-	entity.y_orient = y
-	entity.z_orient = z
-	entity.x_rotate_speed = x_speed * 2
-	entity.y_rotate_speed = y_speed * 2
-	entity.z_rotate_speed = z_speed * 2
+	entity.x_orient = 0.0
+	entity.y_orient = 0.0
+	entity.z_orient = 0.0
+	entity.x_rotate_speed = 0.0
+	entity.y_rotate_speed = 0.0
+	entity.z_rotate_speed = 0.0
 
 	entity.drag = float32(0.05)
 	entity.rotational_drag = float32(0.05)
 
 	entity.model = model
 	entity.model_mat = mgl32.Ident4()
+	entity.model_scale = model_scale
 
 	return entity
 }

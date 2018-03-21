@@ -48,8 +48,12 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	game.land = new(Landscape.Landscape).Init(game.shader)
 
 	game.models = make([]*Model.Model, 0)
-	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader))
-	// game.models = append(game.models, new(Model.Model).Init("res/wolf/Wolf_dae.dae", "res/wolf/textures/Wolf_Body.png", game.shader))
+	model_scales := make([]float32, 0)
+
+	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader, 1.0))
+	model_scales = append(model_scales, 1.0)
+	game.models = append(game.models, new(Model.Model).Init("res/cat/cat.obj", "res/cat/cat-texture.png", game.shader, 1.0))
+	model_scales = append(model_scales, 0.08)
 
 	game.hud = new(HUD.HUD).Init(width, height)
 
@@ -63,10 +67,10 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 		x := (random.Float32() * 10) - 5
 		y := (random.Float32() * 10) - 5
 		z := (random.Float32() * 10) - 5
-		x_speed := (random.Float32() * 0.25)
-		y_speed := (random.Float32() * 0.25)
-		z_speed := (random.Float32() * 0.25)
-		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.models[i%len(game.models)]))
+		x_speed := (random.Float32() * 1.0)
+		y_speed := (random.Float32() * 1.0)
+		z_speed := (random.Float32() * 1.0)
+		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.models[i%len(game.models)], model_scales[i%len(model_scales)]))
 	}
 
 	game.ticks = 0

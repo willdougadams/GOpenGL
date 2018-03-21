@@ -76,7 +76,7 @@ func inertia(ent *Entity, elapsed float32) {
 	rotate_mat := x_rotate_mat.Mul4(y_rotate_mat).Mul4(z_rotate_mat)
 	trans_rot_mat := trans_mat.Mul4(rotate_mat)
 
-	scale_factor := float32(10.0)
+	scale_factor := ent.model_scale
 	scale_mat := mgl32.Scale3D(scale_factor, scale_factor, scale_factor)
 	ent.model_mat = scale_mat.Mul4(trans_rot_mat)
 }
@@ -85,12 +85,12 @@ func Physics(land *Landscape.Landscape, ents []*Entity, elapsed float32) {
 	for _, ent := range ents {
 		inertia(ent, elapsed)
 
-		heightmap_height := land.GetHeight(int(ent.X()), int(ent.Z()))
+		heightmap_height := land.GetHeight(ent.X(), ent.Z())
 		if ent.Y() <= heightmap_height {
 			ent.SetY(heightmap_height)
 			ent.SetYSpeed(0.0)
 			ent.SetXSpeed(ent.XSpeed() * 0.5)
-			ent.SetZSpeed(ent.XSpeed() * 0.5)
+			ent.SetZSpeed(ent.ZSpeed() * 0.5)
 		} else {
 			gravity(ent, elapsed)
 		}

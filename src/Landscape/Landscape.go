@@ -21,7 +21,7 @@ type Landscape struct {
 
 func (land *Landscape) Init(shader uint32) *Landscape {
 	Debugs.Print("Init Landscape...\n")
-	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", "res/chêne/textures/grass.png", shader)
+	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", "res/chêne/textures/grass.png", shader, 1.0)
 
 	for i, _ := range land.model.Faces[1 : len(land.model.Faces)-1] {
 		if i%4 == 1 {
@@ -58,6 +58,6 @@ func (land *Landscape) Draw(model_uniform int32) {
 	land.model.Draw(model_uniform, model_mat)
 }
 
-func (land *Landscape) GetHeight(x, z int) float32 {
+func (land *Landscape) GetHeight(x, z float32) float32 {
 	return float32(simplexnoise.Noise2(float64(x), float64(z)))
 }

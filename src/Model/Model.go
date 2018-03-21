@@ -17,7 +17,7 @@ type Model struct {
 	Faces, UVs, Normals []float32
 }
 
-func (model *Model) Init(model_filename string, texture_filename string, shader_program uint32) *Model {
+func (model *Model) Init(model_filename string, texture_filename string, shader_program uint32, scale_factor float32) *Model {
 	Debugs.Print(fmt.Sprintf("Initializing Model from %s\n\t%s", model_filename, texture_filename))
 
 	meshes, mesh_err := assimp.ParseFile(model_filename)

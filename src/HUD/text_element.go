@@ -35,12 +35,6 @@ func (elem *text_element) Init(hud *HUD, font *v41.Font, float_formatting rune) 
 func (elem *text_element) Update(changes map[string]float32) {
   float_string := strconv.FormatFloat(float64(changes["new_fps"]), byte(elem.float_formatting), -1, 32)
   elem.Text.SetString(fmt.Sprintf("Frames per second: %s", float_string))
-
-  /*
-  x_pos := elem.Text.X2.X // -float32(elem.hud.w/2) + (elem.Text.Width()/2)
-  y_pos := elem.Text.X2.Y
-  elem.Text.SetPosition(mgl32.Vec2{x_pos, y_pos})
-  */
 }
 
 func (elem *text_element) Draw() {
