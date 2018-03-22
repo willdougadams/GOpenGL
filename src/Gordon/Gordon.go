@@ -27,6 +27,7 @@ type Gordon struct {
 	mouse_sensitivity float64
 
 	gravity float64
+	mode string
 }
 
 func (gord *Gordon) Init(x, y, z float32,
@@ -56,6 +57,7 @@ func (gord *Gordon) Init(x, y, z float32,
 	gl.UniformMatrix4fv(int32(gord.camera_uniform), 1, false, &gord.camera[0])
 
 	gord.entity = entity
+	gord.mode = "normal"
 
 	return gord
 }
@@ -66,7 +68,9 @@ func (gord *Gordon) Update(elapsed float32) {
 		gord.window.SetShouldClose(true)
 	}
 
-	gord.location = gord.entity.GetLocation()
+	if gord.mode != "god" {
+		gord.location = gord.entity.GetLocation()
+	}
 
 	xpos, ypos := gord.window.GetCursorPos()
 	gord.window.SetCursorPos(float64(gord.window_w/2.0), float64(gord.window_h/2.0))
