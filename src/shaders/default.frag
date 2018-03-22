@@ -5,7 +5,7 @@ uniform vec4 light_location;
 
 in vec4 world_vert;     // vert position
 in vec4 frag_norm;
-in vec2 UV;
+in vec2 uv;
 
 out vec4 outputColor;
 
@@ -19,5 +19,5 @@ void main() {
 
   vec4 diffuse = diff * light_color;
 
-  outputColor = (ambient + diffuse) * texture(tex, UV);
+  outputColor = (ambient + diffuse) * texture(tex, uv);
 }

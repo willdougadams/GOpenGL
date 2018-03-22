@@ -39,6 +39,14 @@ func (entity *Entity) SetZSpeed(z_spd float32) {
 	entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), entity.speed_vec.Y(), z_spd}
 }
 
+func (entity *Entity) GetLocation() mgl32.Vec3 {
+	return entity.location
+}
+
+func (entity *Entity) SetLocation(loc mgl32.Vec3) {
+	entity.location = loc
+}
+
 func (entity *Entity) Init(x float32,
 	y float32,
 	z float32,
@@ -51,21 +59,12 @@ func (entity *Entity) Init(x float32,
 	entity.location = mgl32.Vec3{x, y, z}
 	entity.speed_vec = mgl32.Vec3{x_speed, y_speed, z_speed}
 
-<<<<<<< HEAD
 	entity.x_orient = 0.0
 	entity.y_orient = 0.0
 	entity.z_orient = 0.0
 	entity.x_rotate_speed = 0.0
 	entity.y_rotate_speed = 0.0
 	entity.z_rotate_speed = 0.0
-=======
-	entity.x_orient = float32(0)
-	entity.y_orient = float32(0)
-	entity.z_orient = float32(0)
-	entity.x_rotate_speed = float32(0)
-	entity.y_rotate_speed = float32(0)
-	entity.z_rotate_speed = float32(0)
->>>>>>> 8894a74c73fbcd3bc19b72095fe24f53d35e5fa1
 
 	entity.drag = float32(0.05)
 	entity.rotational_drag = float32(0.05)
@@ -82,7 +81,9 @@ func (entity *Entity) Update(elapsed float32) {
 }
 
 func (entity *Entity) Draw(model_uniform int32) {
-	entity.model.Draw(model_uniform, entity.model_mat)
+	if entity.model != nil {
+		entity.model.Draw(model_uniform, entity.model_mat)
+	}
 }
 
 func (entity *Entity) Stop() {

@@ -13,6 +13,7 @@ out vec4 frag_norm;
 out vec2 uv;
 
 void main() {
+  uv = UV;
   frag_norm = projection * camera * model * vec4(norm, 0.0);
   world_vert = projection * camera * model * vec4(vert, 1.0);
 

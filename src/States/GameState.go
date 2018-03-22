@@ -44,7 +44,8 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	game.light_loc_uniform = gl.GetUniformLocation(game.shader, gl.Str("light_location\x00"))
 	gl.Uniform4f(game.light_loc_uniform, 0.0, 100.0, 0.0, 1.0)
 
-	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window)
+	g_ent := new(Entity.Entity).Init(0, 0, 0, 0, 0, 0, game.shader, nil, 1.0)
+	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window, g_ent)
 	game.land = new(Landscape.Landscape).Init(game.shader)
 
 	game.models = make([]*Model.Model, 0)
@@ -72,6 +73,8 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 		z_speed := (random.Float32() * 1.0)
 		game.entities = append(game.entities, new(Entity.Entity).Init(x, y, z, x_speed, y_speed, z_speed, game.shader, game.models[i%len(game.models)], model_scales[i%len(model_scales)]))
 	}
+
+	game.entities = append(game.entities, g_ent)
 
 	game.ticks = 0
 

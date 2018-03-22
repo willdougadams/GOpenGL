@@ -1,14 +1,18 @@
 package Gordon
 
 import (
-	"github.com/go-gl/mathgl/mgl32"
-	"github.com/go-gl/glfw/v3.2/glfw"
 	"fmt"
 	"math"
+
+	"Entity"
+
+	"github.com/go-gl/mathgl/mgl32"
+	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/gl/v4.1-core/gl"
 )
 
 type Gordon struct {
+	entity *Entity.Entity
 	location, orientation mgl32.Vec3
 	move_speed float32
 
@@ -29,7 +33,8 @@ func (gord *Gordon) Init(x, y, z float32,
 						shader uint32,
 						width int,
 						height int,
-						window *glfw.Window) *Gordon {
+						window *glfw.Window,
+						entity *Entity.Entity) *Gordon {
 	gord.shader = shader
 	gord.location = mgl32.Vec3{x, y, z}
 	gord.orientation = mgl32.Vec3{0.0, 10.0, 0.0}
@@ -50,6 +55,8 @@ func (gord *Gordon) Init(x, y, z float32,
 	gord.camera_uniform = gl.GetUniformLocation(gord.shader, gl.Str("camera\x00"))
 	gl.UniformMatrix4fv(int32(gord.camera_uniform), 1, false, &gord.camera[0])
 
+	gord.entity = entity
+
 	return gord
 }
 
@@ -58,6 +65,8 @@ func (gord *Gordon) Update(elapsed float32) {
 		fmt.Printf("\nESC pressed, exiting...\n")
 		gord.window.SetShouldClose(true)
 	}
+
+	gord.location = gord.entity.GetLocation()
 
 	xpos, ypos := gord.window.GetCursorPos()
 	gord.window.SetCursorPos(float64(gord.window_w/2.0), float64(gord.window_h/2.0))
@@ -70,6 +79,16 @@ func (gord *Gordon) Update(elapsed float32) {
 	right := mgl32.Vec3{float32(math.Sin(gord.horizontal_angle - 3.14/2.0)), 0.0, float32(math.Cos(gord.horizontal_angle - 3.14/2.0))}
 	up := right.Cross(gord.orientation)
 	move_dist := elapsed * gord.move_speed
+
+	if gord.window.GetKey(glfw.KeyLeftShift) == glfw.Press { // Run
+		move_dist *= 10
+	}
+	if gord.window.GetKey(glfw.KeyLeftControl) == glfw.Press { // Walk
+		move_dist /= 10
+	}
+	if gord.window.GetKey(glfw.KeySpace) == glfw.Press && gord.entity.YSpeed() == 0 {
+		gord.entity.SetYSpeed(1.0)
+	}
 
 
 	if gord.window.GetKey(glfw.KeyW) == glfw.Press {
@@ -88,4 +107,6 @@ func (gord *Gordon) Update(elapsed float32) {
 	gord.camera = mgl32.LookAtV(gord.location, gord.location.Add(gord.orientation), up)
 	gl.UniformMatrix4fv(int32(gord.camera_uniform), 1, false, &gord.camera[0])
 	gl.UniformMatrix4fv(gord.projection_uniform, 1, false, &gord.projection[0])
+
+	gord.entity.SetLocation(gord.location)
 }
