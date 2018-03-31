@@ -2,7 +2,8 @@ package States
 
 import (
 	"os"
-	"fmt"
+
+	"Debugs"
 
 	"github.com/go-gl/glfw/v3.2/glfw"
 	"github.com/go-gl/mathgl/mgl32"
@@ -34,7 +35,7 @@ func (menu *MenuState) Init(manager *StateManager, width int, height int, window
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println("Font loaded from disk...")
+		Debugs.Print("Font loaded from disk...")
 	} else {
 		fd, err := os.Open("res/fonts/font_1_honokamin.ttf")
 		if err != nil {

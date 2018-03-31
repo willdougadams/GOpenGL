@@ -4,7 +4,11 @@ import (
 	"Debugs"
 	"Model"
 
-	"github.com/go-gl/mathgl/mgl32"
+	"fmt"
+	"reflect"
+
+	// "github.com/go-gl/mathgl/mgl32"
+	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/larspensjo/Go-simplex-noise/simplexnoise"
 )
 
@@ -13,49 +17,77 @@ const TERM_VEL = 1.75 * GRAV_ACCEL
 const TERRAIN_SIZE = 100
 
 type Landscape struct {
-	model              *Model.Model
-	heightmap          []float32
-	scale_factor       float32
-	x_offset, z_offset int64
+	vao, shader uint32
+	scale_factor float32
+	width, depth int
 }
 
-func (land *Landscape) Init(shader uint32) *Landscape {
+func (land *Landscape) Init() *Landscape {
 	Debugs.Print("Init Landscape...\n")
-	land.model = new(Model.Model).Init("res/chêne/tree 1.obj", "res/chêne/textures/grass.png", shader, 1.0)
+	verts := []float32{}
+	colors := []float32{}
 
-	for i, _ := range land.model.Faces[1 : len(land.model.Faces)-1] {
-		if i%4 == 1 {
-			x := int64(land.model.Faces[i-1])
-			z := int64(land.model.Faces[i+1])
+	land.width = 100
+	land.depth = 100
 
-			if x < land.x_offset {
-				land.x_offset = x
-			}
-			if z < land.z_offset {
-				land.z_offset = z
-			}
+	for row := -land.depth; row < land.depth; row++ {
+		for col := -land.width; col < land.width; col++ {
+			fmt.Printf(fmt.Sprintf("%d, %d\n", row, col))
+			r := float32(row)
+			c := float32(col)
+			verts = append(verts, r, 0.0, c)
+			colors = append(colors, 1.0, 0.0, 0.0)
+
+			verts = append(verts, r, 0.0, c+1.0)
+			colors = append(colors, 0.0, 1.0, 0.0)
+
+			verts = append(verts, r+1.0, 0.0, c)
+			colors = append(colors, 0.0, 0.0, 1.0)
+
+			verts = append(verts, r+1.0, 0.0, c+1.0)
+			colors = append(colors, 1.0, 0.0, 1.0)
 		}
 	}
 
-	if land.x_offset < 0 {
-		land.x_offset = -land.x_offset
+	var shader_err error
+	land.shader, shader_err = Model.NewProgram("src/shaders/terrain.vert", "src/shaders/terrain.frag")
+	if shader_err != nil {
+		Debugs.Print("[!!] Failed to load lanscape shader, exiting...")
 	}
-	if land.z_offset < 0 {
-		land.z_offset = -land.z_offset
-	}
+	gl.UseProgram(land.shader)
+	gl.BindFragDataLocation(land.shader, 0, gl.Str("color\x00"))
 
-	land.scale_factor = float32(1.0)
+	gl.GenVertexArrays(1, &land.vao)
+	gl.BindVertexArray(land.vao)
+
+	var vbo uint32
+	gl.GenBuffers(1, &vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
+	buffer_size := int( uintptr(len(verts)) * reflect.TypeOf(verts).Elem().Size() )
+	gl.BufferData(gl.ARRAY_BUFFER, buffer_size, gl.Ptr(verts), gl.STATIC_DRAW)
+	vert_attrib := uint32(gl.GetAttribLocation(land.shader, gl.Str("vert\x00")))
+	gl.EnableVertexAttribArray(vert_attrib)
+	gl.VertexAttribPointer(vert_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
+
+	gl.GenBuffers(1, &vbo)
+	gl.BindBuffer(gl.ARRAY_BUFFER, vbo)
+	buffer_size = int( uintptr(len(colors)) * reflect.TypeOf(colors).Elem().Size() )
+	gl.BufferData(gl.ARRAY_BUFFER, buffer_size, gl.Ptr(colors), gl.STATIC_DRAW)
+	color_attrib := uint32(gl.GetAttribLocation(land.shader, gl.Str("color\x00")))
+	gl.EnableVertexAttribArray(color_attrib)
+	gl.VertexAttribPointer(color_attrib, 3, gl.FLOAT, false, 0, gl.PtrOffset(0))
 
 	return land
 }
 
 func (land *Landscape) Update() {}
 
-func (land *Landscape) Draw(model_uniform int32) {
-	return
-	scale_mat := mgl32.Scale3D(land.scale_factor, land.scale_factor, land.scale_factor)
-	model_mat := mgl32.Ident4().Mul4(scale_mat)
-	land.model.Draw(model_uniform, model_mat)
+func (land *Landscape) Draw() {
+	gl.UseProgram(land.shader)
+	gl.BindVertexArray(land.vao)
+	//gl.UniformMatrix4fv(model_uniform, 1, false, &entity_model[0])
+	//gl.BindTexture(gl.TEXTURE_2D, model.texture)
+	gl.DrawArrays(gl.TRIANGLE_STRIP, 0, int32( land.width * land.depth * 12) )
 }
 
 func (land *Landscape) GetHeight(x, z float32) float32 {

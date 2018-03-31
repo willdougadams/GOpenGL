@@ -94,7 +94,6 @@ func (gord *Gordon) Update(elapsed float32) {
 		gord.entity.SetYSpeed(1.0)
 	}
 
-
 	if gord.window.GetKey(glfw.KeyW) == glfw.Press {
 		gord.location = gord.location.Add(gord.orientation.Mul(move_dist))
 	}

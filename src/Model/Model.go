@@ -2,7 +2,6 @@ package Model
 
 import (
 	"fmt"
-
 	"Debugs"
 
 	"github.com/go-gl/mathgl/mgl32"
@@ -22,9 +21,9 @@ func (model *Model) Init(model_filename string, texture_filename string, shader_
 
 	meshes, mesh_err := assimp.ParseFile(model_filename)
 	if mesh_err != nil {
-		fmt.Printf(fmt.Sprintf("Failed to load assimp mesh: %s\n", mesh_err))
+		Debugs.Print(fmt.Sprintf("Failed to load assimp mesh: %s\n", mesh_err))
 	} else {
-		fmt.Printf(fmt.Sprintf("mesh:\n%v\n", meshes))
+		Debugs.Print(fmt.Sprintf("mesh:\n%v\n", meshes))
 	}
 
 	model.Faces = []float32{}

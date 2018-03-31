@@ -46,7 +46,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 
 	g_ent := new(Entity.Entity).Init(0, 0, 0, 0, 0, 0, game.shader, nil, 1.0)
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window, g_ent)
-	game.land = new(Landscape.Landscape).Init(game.shader)
+	game.land = new(Landscape.Landscape).Init()
 
 	game.models = make([]*Model.Model, 0)
 	model_scales := make([]float32, 0)
@@ -54,7 +54,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	game.models = append(game.models, new(Model.Model).Init("res/music_box/music_box.obj", "res/music_box/music_box_d.png", game.shader, 1.0))
 	model_scales = append(model_scales, 1.0)
 	game.models = append(game.models, new(Model.Model).Init("res/cat/cat.obj", "res/cat/cat-texture.png", game.shader, 1.0))
-	model_scales = append(model_scales, 0.08)
+	model_scales = append(model_scales, 0.008)
 
 	game.hud = new(HUD.HUD).Init(width, height)
 
@@ -64,7 +64,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 	random := rand.New(rand.NewSource(time.Now().UnixNano()))
 	game.manager = manager
 	game.entities = make([]*Entity.Entity, 0)
-	for i := 0; i < 20; i++ {
+	for i := 0; i < 2; i++ {
 		x := (random.Float32() * 10) - 5
 		y := (random.Float32() * 10) - 5
 		z := (random.Float32() * 10) - 5
@@ -100,7 +100,7 @@ func (game *GameState) Update(elapsed float32) {
 func (game *GameState) Draw() {
 	gl.UseProgram(game.shader)
 
-	game.land.Draw(game.model_uniform)
+	game.land.Draw()
 
 	for _, ent := range game.entities {
 		ent.Draw(game.model_uniform)

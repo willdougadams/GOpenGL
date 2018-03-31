@@ -6,6 +6,7 @@ uniform vec4 light_location;
 in vec4 world_vert;     // vert position
 in vec4 frag_norm;
 in vec2 uv;
+in mat4 mvp;
 
 out vec4 outputColor;
 
@@ -15,7 +16,7 @@ void main() {
   float ambient_strength = 0.1;
   vec4 ambient = ambient_strength * light_color;
 
-  float diff = max(0.0, dot(normalize(light_location-world_vert), normalize(frag_norm)));
+  float diff = max(0.0, dot(normalize((mvp*light_location)-world_vert), normalize(frag_norm)));
 
   vec4 diffuse = diff * light_color;
 
