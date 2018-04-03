@@ -7,6 +7,7 @@ import (
 )
 
 type Entity struct {
+	height float32
 	location, speed_vec                            mgl32.Vec3
 	x_orient, y_orient, z_orient                   float32
 	x_rotate_speed, y_rotate_speed, z_rotate_speed float32
@@ -16,6 +17,8 @@ type Entity struct {
 	model_mat mgl32.Mat4
 	model_scale float32
 }
+
+func (entity *Entity) Height() float32 { return entity.height }
 
 func (entity *Entity) X() float32 { return entity.location.X() }
 func (entity *Entity) Y() float32 { return entity.location.Y() }
@@ -53,14 +56,15 @@ func (entity *Entity) SetLocation(loc mgl32.Vec3) {
 }
 
 func (entity *Entity) Init(x float32,
-	y float32,
-	z float32,
-	x_speed float32,
-	y_speed float32,
-	z_speed float32,
-	shader uint32,
-	model *Model.Model,
-	model_scale float32) *Entity {
+		y float32,
+		z float32,
+		x_speed float32,
+		y_speed float32,
+		z_speed float32,
+		shader uint32,
+		model *Model.Model,
+		model_scale float32) *Entity {
+	entity.height = 0.5
 	entity.location = mgl32.Vec3{x, y, z}
 	entity.speed_vec = mgl32.Vec3{x_speed, y_speed, z_speed}
 

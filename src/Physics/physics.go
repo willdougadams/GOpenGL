@@ -90,8 +90,9 @@ func Physics(land *Landscape.Landscape, ents []*Entity.Entity, elapsed float32) 
 		inertia(ent, elapsed)
 
 		heightmap_height := land.GetHeight(ent.X(), ent.Z())
-		if ent.Y() <= heightmap_height {
-			ent.SetY(heightmap_height)
+		eye_level := heightmap_height + ent.Height()
+		if ent.Y() <= eye_level {
+			ent.SetY(eye_level)
 			ent.SetYSpeed(0.0)
 			ent.SetXSpeed(ent.XSpeed() * 0.5)
 			ent.SetZSpeed(ent.ZSpeed() * 0.5)

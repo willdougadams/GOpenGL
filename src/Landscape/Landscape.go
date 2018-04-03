@@ -36,26 +36,28 @@ func (land *Landscape) Init(gord *Gordon.Gordon) *Landscape {
 		for row := -land.distance; row < land.distance; row++ {
 			c := float32(col)
 			r := float32(row)
-			y := land.GetHeight(c, r)
-			vertex_data = append(vertex_data, c,     y, r)
+
+			y := land.GetHeight(c, r+1)
+			vertex_data = append(vertex_data, c, y, r+1.0)
+			y = land.GetHeight(c, r)
+			vertex_data = append(vertex_data, c, y, r)
 			y = land.GetHeight(c+1, r)
 			vertex_data = append(vertex_data, c+1.0, y, r)
-			y = land.GetHeight(c, r+1)
-			vertex_data = append(vertex_data, c,     y, r+1.0)
+
 			y = land.GetHeight(c+1, r+1)
 			vertex_data = append(vertex_data, c+1.0, y, r+1.0)
+			y = land.GetHeight(c, r+1)
+			vertex_data = append(vertex_data, c, y, r+1.0)
+			y = land.GetHeight(c+1, r)
+			vertex_data = append(vertex_data, c+1.0, y, r)
 
 			s1 := rand.NewSource(time.Now().UnixNano())
 			r1 := rand.New(s1)
 
-			r, g, b := r1.Float32(), r1.Float32(), r1.Float32()
-			color_data = append(color_data, r, g, b)
-			r, g, b = r1.Float32(), r1.Float32(), r1.Float32()
-			color_data = append(color_data, r, g, b)
-			r, g, b = r1.Float32(), r1.Float32(), r1.Float32()
-			color_data = append(color_data, r, g, b)
-			r, g, b = r1.Float32(), r1.Float32(), r1.Float32()
-			color_data = append(color_data, r, g, b)
+			for it := 0; it < 6; it ++ {
+				r, g, b := r1.Float32(), r1.Float32(), r1.Float32()
+				color_data = append(color_data, r, g, b)
+			}
 		}
 	}
 
@@ -73,11 +75,11 @@ func (land *Landscape) Init(gord *Gordon.Gordon) *Landscape {
 
 	gl.GenBuffers(1, &land.vert_buffer)
 	gl.BindBuffer(gl.ARRAY_BUFFER, land.vert_buffer)
-	gl.BufferData(gl.ARRAY_BUFFER, len(vertex_data) * 4, gl.Ptr(vertex_data), gl.STATIC_DRAW)
+	gl.BufferData(gl.ARRAY_BUFFER, len(vertex_data) * 3, gl.Ptr(vertex_data), gl.STATIC_DRAW)
 
 	gl.GenBuffers(1, &land.color_buffer)
 	gl.BindBuffer(gl.ARRAY_BUFFER, land.color_buffer)
-	gl.BufferData(gl.ARRAY_BUFFER, len(color_data) * 4, gl.Ptr(color_data), gl.STATIC_DRAW)
+	gl.BufferData(gl.ARRAY_BUFFER, len(color_data) * 3, gl.Ptr(color_data), gl.STATIC_DRAW)
 
 	land.verts = vertex_data
 	land.colors = color_data
@@ -103,7 +105,7 @@ func (land *Landscape) Draw() {
 	gl.BindBuffer(gl.ARRAY_BUFFER, land.color_buffer)
 	gl.VertexAttribPointer(1, 3, gl.FLOAT, false, 0, nil)
 
-	gl.DrawArrays(gl.TRIANGLE_STRIP, 0, int32(len(land.verts)))
+	gl.DrawArrays(gl.TRIANGLES, 0, int32(len(land.verts)/3))
 
 	gl.DisableVertexAttribArray(0)
 	gl.DisableVertexAttribArray(1)
