@@ -113,3 +113,7 @@ func (gord *Gordon) Update(elapsed float32) {
 
 	gord.entity.SetLocation(gord.location)
 }
+
+func (gord *Gordon) GetViewProjection() mgl32.Mat4 {
+	return gord.projection.Mul4(gord.camera)
+}

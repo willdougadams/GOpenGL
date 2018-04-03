@@ -12,6 +12,7 @@ import (
 	"Entity"
 	"Gordon"
 	"HUD"
+	"Physics"
 	"Landscape"
 	"Model"
 )
@@ -46,7 +47,7 @@ func (game *GameState) Init(manager *StateManager, width int, height int, window
 
 	g_ent := new(Entity.Entity).Init(0, 0, 0, 0, 0, 0, game.shader, nil, 1.0)
 	game.gordon = new(Gordon.Gordon).Init(0.0, 0.0, 0.0, game.shader, width, height, window, g_ent)
-	game.land = new(Landscape.Landscape).Init()
+	game.land = new(Landscape.Landscape).Init(game.gordon)
 
 	game.models = make([]*Model.Model, 0)
 	model_scales := make([]float32, 0)
@@ -85,10 +86,11 @@ func (game *GameState) Update(elapsed float32) {
 	if game.manager.window.GetKey(glfw.KeyY) == glfw.Press {
 		game.manager.ChangeState()
 	}
+	game.land.Update(elapsed)
 	gl.UseProgram(game.shader)
 	gl.Uniform4f(game.light_loc_uniform, float32(math.Cos(float64(game.ticks/10)))*100, 100.0, 0.0, 1.0)
 	game.gordon.Update(elapsed)
-	Entity.Physics(game.land, game.entities, elapsed)
+	Physics.Physics(game.land, game.entities, elapsed)
 
 	update_map := make(map[string]float32)
 	update_map["new_fps"] = float32(1 / elapsed)

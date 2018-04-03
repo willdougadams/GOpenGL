@@ -24,6 +24,7 @@ func (entity *Entity) Z() float32 { return entity.location.Z() }
 func (entity *Entity) XSpeed() float32 { return entity.speed_vec.X() }
 func (entity *Entity) YSpeed() float32 { return entity.speed_vec.Y() }
 func (entity *Entity) ZSpeed() float32 { return entity.speed_vec.Z() }
+func (entity *Entity) SpeedVec() mgl32.Vec3 { return entity.speed_vec }
 
 func (entity *Entity) SetX(new_x float32) { entity.location = mgl32.Vec3{new_x, entity.Y(), entity.Z()} }
 func (entity *Entity) SetY(new_y float32) { entity.location = mgl32.Vec3{entity.X(), new_y, entity.Z()} }
@@ -37,6 +38,10 @@ func (entity *Entity) SetYSpeed(y_spd float32) {
 }
 func (entity *Entity) SetZSpeed(z_spd float32) {
 	entity.speed_vec = mgl32.Vec3{entity.speed_vec.X(), entity.speed_vec.Y(), z_spd}
+}
+
+func (entity *Entity) SetSpeedVec(new_speed mgl32.Vec3) {
+	entity.speed_vec = new_speed
 }
 
 func (entity *Entity) GetLocation() mgl32.Vec3 {

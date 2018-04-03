@@ -1,9 +1,10 @@
-package Entity
+package Physics
 
 import (
+	"Entity"
 	"Landscape"
 
-	"github.com/go-gl/mathgl/mgl32"
+	// "github.com/go-gl/mathgl/mgl32"
 )
 
 const GRAV_ACCEL = -9.8
@@ -30,17 +31,19 @@ func abs32(a float32) float32 {
 	return ab
 }
 
-func gravity(ent *Entity, elapsed float32) {
-	new_y_speed := ent.speed_vec.Y() + GRAV_ACCEL*elapsed
+func gravity(ent *Entity.Entity, elapsed float32) {
+	new_y_speed := ent.YSpeed() + GRAV_ACCEL*elapsed
 	if new_y_speed < TERM_VEL {
 		new_y_speed = TERM_VEL
 	}
-	ent.speed_vec = mgl32.Vec3{ent.speed_vec.X(), new_y_speed, ent.speed_vec.Z()}
+	ent.SetXSpeed(ent.XSpeed())
+	ent.SetYSpeed(new_y_speed)
+	ent.SetZSpeed(ent.XSpeed())
 }
 
-func inertia(ent *Entity, elapsed float32) {
-	ent.location = ent.location.Add(ent.speed_vec)
-
+func inertia(ent *Entity.Entity, elapsed float32) {
+	ent.SetLocation(ent.GetLocation().Add(ent.SpeedVec()))
+	/*
 	ent.x_orient += ent.x_rotate_speed * elapsed
 	ent.y_orient += ent.y_rotate_speed * elapsed
 	ent.z_orient += ent.z_rotate_speed * elapsed
@@ -79,9 +82,10 @@ func inertia(ent *Entity, elapsed float32) {
 	scale_factor := ent.model_scale
 	scale_mat := mgl32.Scale3D(scale_factor, scale_factor, scale_factor)
 	ent.model_mat = scale_mat.Mul4(trans_rot_mat)
+	*/
 }
 
-func Physics(land *Landscape.Landscape, ents []*Entity, elapsed float32) {
+func Physics(land *Landscape.Landscape, ents []*Entity.Entity, elapsed float32) {
 	for _, ent := range ents {
 		inertia(ent, elapsed)
 
