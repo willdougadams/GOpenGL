@@ -4,8 +4,9 @@ import (
 	"Model"
 	"Gordon"
 
-	"time"
-	"math/rand"
+	"fmt"
+	//"time"
+	//"math/rand"
 
 	"github.com/go-gl/mathgl/mgl32"
   "github.com/go-gl/gl/v4.1-core/gl"
@@ -51,11 +52,11 @@ func (land *Landscape) Init(gord *Gordon.Gordon) *Landscape {
 			y = land.GetHeight(c+1, r)
 			vertex_data = append(vertex_data, c+1.0, y, r)
 
-			s1 := rand.NewSource(time.Now().UnixNano())
-			r1 := rand.New(s1)
-
 			for it := 0; it < 6; it ++ {
-				r, g, b := r1.Float32(), r1.Float32(), r1.Float32()
+				r := (float32(simplexnoise.Noise1(float64(c+r)))+1)*0.1
+				g := (float32(simplexnoise.Noise1(float64(c+r)))+1)*0.5
+				fmt.Printf("%v\n", g)
+				b := (float32(simplexnoise.Noise1(float64(c+r)))+1)*0.1
 				color_data = append(color_data, r, g, b)
 			}
 		}
@@ -112,5 +113,10 @@ func (land *Landscape) Draw() {
 }
 
 func (land *Landscape) GetHeight(x, z float32) float32 {
-	return float32(simplexnoise.Noise2(float64(x), float64(z)))
+	a := simplexnoise.Noise2(float64(x/10), float64(z/10))
+	b := simplexnoise.Noise2(float64(x/20), float64(z/20))
+	c := simplexnoise.Noise2(float64(x/30), float64(z/30)) * 2
+	d := simplexnoise.Noise2(float64(x/40), float64(z/40)) * 2
+	e := simplexnoise.Noise2(float64(x/100), float64(z/100)) * 10
+	return float32(a + b + c + d + e)
 }

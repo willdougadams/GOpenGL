@@ -64,7 +64,7 @@ func (entity *Entity) Init(x float32,
 		shader uint32,
 		model *Model.Model,
 		model_scale float32) *Entity {
-	entity.height = 0.5
+	entity.height = 1.0
 	entity.location = mgl32.Vec3{x, y, z}
 	entity.speed_vec = mgl32.Vec3{x_speed, y_speed, z_speed}
 
