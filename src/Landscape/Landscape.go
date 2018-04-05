@@ -4,7 +4,7 @@ import (
 	"Model"
 	"Gordon"
 
-	"fmt"
+	//"fmt"
 	//"time"
 	//"math/rand"
 
@@ -38,27 +38,59 @@ func (land *Landscape) Init(gord *Gordon.Gordon) *Landscape {
 			c := float32(col)
 			r := float32(row)
 
-			y := land.GetHeight(c, r+1)
-			vertex_data = append(vertex_data, c, y, r+1.0)
-			y = land.GetHeight(c, r)
-			vertex_data = append(vertex_data, c, y, r)
+			x := c
+			z := r+1
+			y := land.GetHeight(x, z)
+			vertex_data = append(vertex_data, x, y, z)
+			red := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			g := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+			b := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			color_data = append(color_data, red, g, b)
+
+			x = c
+			z = r
+			y = land.GetHeight(x, z)
+			vertex_data = append(vertex_data, x, y, z)
+			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			color_data = append(color_data, red, g, b)
+
+			x = c+1
+			z = r
+			y = land.GetHeight(x, z)
+			vertex_data = append(vertex_data, x, y, z)
+			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			color_data = append(color_data, red, g, b)
+
+			x = c+1
+			z = r+1
+			y = land.GetHeight(x, z)
+			vertex_data = append(vertex_data, x, y, z)
+			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			color_data = append(color_data, red, g, b)
+
+			x = c
+			z = r+1
+			y = land.GetHeight(x, z)
+			vertex_data = append(vertex_data, x, y, z)
+			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			color_data = append(color_data, red, g, b)
+
+			x = c+1
+			z = r
 			y = land.GetHeight(c+1, r)
 			vertex_data = append(vertex_data, c+1.0, y, r)
-
-			y = land.GetHeight(c+1, r+1)
-			vertex_data = append(vertex_data, c+1.0, y, r+1.0)
-			y = land.GetHeight(c, r+1)
-			vertex_data = append(vertex_data, c, y, r+1.0)
-			y = land.GetHeight(c+1, r)
-			vertex_data = append(vertex_data, c+1.0, y, r)
-
-			for it := 0; it < 6; it ++ {
-				r := (float32(simplexnoise.Noise1(float64(c+r)))+1)*0.1
-				g := (float32(simplexnoise.Noise1(float64(c+r)))+1)*0.5
-				fmt.Printf("%v\n", g)
-				b := (float32(simplexnoise.Noise1(float64(c+r)))+1)*0.1
-				color_data = append(color_data, r, g, b)
-			}
+			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			color_data = append(color_data, red, g, b)
 		}
 	}
 
