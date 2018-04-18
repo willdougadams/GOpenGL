@@ -1,4 +1,5 @@
-#version 430
+//#version 430
+#version 330
 
 layout(vertices = 16) out;
 
@@ -7,7 +8,7 @@ const int BC = 3;
 const int CD = 0;
 const int DA = 1;
 
-		
+
 void main()
 {
 
@@ -17,10 +18,10 @@ void main()
 			gl_TessLevelOuter[BC] = 1;
 			gl_TessLevelOuter[CD] = 1;
 			gl_TessLevelOuter[DA] = 1;
-	
+
 			gl_TessLevelInner[0] = 1;
-			gl_TessLevelInner[1] = 1;	
+			gl_TessLevelInner[1] = 1;
 	}
-	
+
 	gl_out[gl_InvocationID].gl_Position = gl_in[gl_InvocationID].gl_Position;
 }

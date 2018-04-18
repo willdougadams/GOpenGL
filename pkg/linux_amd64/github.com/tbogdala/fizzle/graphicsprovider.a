@@ -1,1857 +1,0 @@
-!<arch>
-__.PKGDEF       0           0     0     644     70656     `
-go object linux amd64 go1.6.2 X:none
-build id "bcd801f4a74faa4eea87a0e78aa7885ee409d77c"
-
-$$
-package graphicsprovider
-	type @"".Enum uint32
-	type @"".Texture uint32
-	type @"".Buffer uint32
-	type @"".Program uint32
-	type @"".Shader uint32
-	type @"".Bitfield uint32
-	type @"".GraphicsProvider interface { ActiveTexture(@"".t @"".Texture); AttachShader(@"".p @"".Program, @"".s @"".Shader); BindBuffer(@"".target @"".Enum, @"".b @"".Buffer); BindFragDataLocation(@"".p @"".Program, @"".color uint32, @"".name string); BindFramebuffer(@"".target @"".Enum, @"".fb @"".Buffer); BindRenderbuffer(@"".target @"".Enum, @"".renderbuffer @"".Buffer); BindTexture(@"".target @"".Enum, @"".t @"".Texture); BindVertexArray(@"".a uint32); BlendEquation(@"".mode @"".Enum); BlendFunc(@"".sFactor @"".Enum, @"".dFactor @"".Enum); BlitFramebuffer(@"".srcX0 int32, @"".srcY0 int32, @"".srcX1 int32, @"".srcY1 int32, @"".dstX0 int32, @"".dstY0 int32, @"".dstX1 int32, @"".dstY1 int32, @"".mask @"".Bitfield, @"".filter @"".Enum); BufferData(@"".target @"".Enum, @"".size int, @"".data @"unsafe".Pointer, @"".usage @"".Enum); CheckFramebufferStatus(@"".target @"".Enum) (? @"".Enum); Clear(@"".mask @"".Enum); ClearColor(@"".red float32, @"".green float32, @"".blue float32, @"".alpha float32); CompileShader(@"".s @"".Shader); CreateProgram() (? @"".Program); CreateShader(@"".ty @"".Enum) (? @"".Shader); CullFace(@"".mode @"".Enum); DeleteBuffer(@"".b @"".Buffer); DeleteFramebuffer(@"".fb @"".Buffer); DeleteProgram(@"".p @"".Program); DeleteRenderbuffer(@"".rb @"".Buffer); DeleteShader(@"".s @"".Shader); DeleteTexture(@"".v @"".Texture); DeleteVertexArray(@"".a uint32); DepthMask(@"".flag bool); Disable(@"".e @"".Enum); DrawArrays(@"".mode @"".Enum, @"".first int32, @"".count int32); DrawBuffers(@"".buffers []uint32); DrawElements(@"".mode @"".Enum, @"".count int32, @"".xtype @"".Enum, @"".indices @"unsafe".Pointer); Enable(@"".e @"".Enum); EnableVertexAttribArray(@"".a uint32); FramebufferRenderbuffer(@"".target @"".Enum, @"".attachment @"".Enum, @"".renderbuffertarget @"".Enum, @"".renderbuffer @"".Buffer); FramebufferTexture2D(@"".target @"".Enum, @"".attachment @"".Enum, @"".textarget @"".Enum, @"".texture @"".Texture, @"".level int32); GenBuffer() (? @"".Buffer); GenFramebuffer() (? @"".Buffer); GenRenderbuffer() (? @"".Buffer); GenTexture() (? @"".Texture); GenVertexArray() (? uint32); GenerateMipmap(@"".t @"".Enum); GetAttribLocation(@"".p @"".Program, @"".name string) (? int32); GetError() (? uint32); GetProgramInfoLog(@"".s @"".Program) (? string); GetProgramiv(@"".p @"".Program, @"".pname @"".Enum, @"".params *int32); GetShaderInfoLog(@"".s @"".Shader) (? string); GetShaderiv(@"".s @"".Shader, @"".pname @"".Enum, @"".params *int32); GetUniformLocation(@"".p @"".Program, @"".name string) (? int32); LinkProgram(@"".p @"".Program); PolygonMode(@"".face @"".Enum, @"".mode @"".Enum); PolygonOffset(@"".factor float32, @"".units float32); Ptr(@"".data interface {}) (? @"unsafe".Pointer); PtrOffset(@"".offset int) (? @"unsafe".Pointer); ReadBuffer(@"".src @"".Enum); RenderbufferStorage(@"".target @"".Enum, @"".internalformat @"".Enum, @"".width int32, @"".height int32); RenderbufferStorageMultisample(@"".target @"".Enum, @"".samples int32, @"".internalformat @"".Enum, @"".width int32, @"".height int32); Scissor(@"".x int32, @"".y int32, @"".w int32, @"".h int32); ShaderSource(@"".s @"".Shader, @"".source string); TexImage2D(@"".target @"".Enum, @"".level int32, @"".intfmt int32, @"".width int32, @"".height int32, @"".border int32, @"".format @"".Enum, @"".ty @"".Enum, @"".ptr @"unsafe".Pointer, @"".dataLength int); TexImage2DMultisample(@"".target @"".Enum, @"".samples int32, @"".intfmt @"".Enum, @"".width int32, @"".height int32, @"".fixedsamplelocations bool); TexParameterf(@"".target @"".Enum, @"".pname @"".Enum, @"".param float32); TexParameterfv(@"".target @"".Enum, @"".pname @"".Enum, @"".params *float32); TexParameteri(@"".target @"".Enum, @"".pname @"".Enum, @"".param int32); TexStorage3D(@"".target @"".Enum, @"".level int32, @"".intfmt uint32, @"".width int32, @"".height int32, @"".depth int32); TexSubImage3D(@"".target @"".Enum, @"".level int32, @"".xoff int32, @"".yoff int32, @"".zoff int32, @"".width int32, @"".height int32, @"".depth int32, @"".fmt @"".Enum, @"".ty @"".Enum, @"".ptr @"unsafe".Pointer); Uniform1f(@"".location int32, @"".v float32); Uniform1fv(@"".location int32, @"".values []float32); Uniform1i(@"".location int32, @"".v int32); Uniform1iv(@"".location int32, @"".values []int32); Uniform3f(@"".location int32, @"".v0 float32, @"".v1 float32, @"".v2 float32); Uniform3fv(@"".location int32, @"".value []float32); Uniform4f(@"".location int32, @"".v0 float32, @"".v1 float32, @"".v2 float32, @"".v3 float32); Uniform4fv(@"".location int32, @"".value []float32); UniformMatrix4fv(@"".location int32, @"".count int32, @"".transpose bool, @"".value interface {}); UseProgram(@"".p @"".Program); VertexAttribIPointer(@"".dst uint32, @"".size int32, @"".ty @"".Enum, @"".stride int32, @"".ptr @"unsafe".Pointer); VertexAttribPointer(@"".dst uint32, @"".size int32, @"".ty @"".Enum, @"".normalized bool, @"".stride int32, @"".ptr @"unsafe".Pointer); Viewport(@"".x int32, @"".y int32, @"".width int32, @"".height int32) }
-	const @"".ACTIVE_ATOMIC_COUNTER_BUFFERS = 0x92d9
-	const @"".ACTIVE_ATTRIBUTES = 0x8b89
-	const @"".ACTIVE_ATTRIBUTE_MAX_LENGTH = 0x8b8a
-	const @"".ACTIVE_PROGRAM = 0x8259
-	const @"".ACTIVE_PROGRAM_EXT = 0x8b8d
-	const @"".ACTIVE_RESOURCES = 0x92f5
-	const @"".ACTIVE_SUBROUTINES = 0x8de5
-	const @"".ACTIVE_SUBROUTINE_MAX_LENGTH = 0x8e48
-	const @"".ACTIVE_SUBROUTINE_UNIFORMS = 0x8de6
-	const @"".ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS = 0x8e47
-	const @"".ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH = 0x8e49
-	const @"".ACTIVE_TEXTURE = 0x84e0
-	const @"".ACTIVE_UNIFORMS = 0x8b86
-	const @"".ACTIVE_UNIFORM_BLOCKS = 0x8a36
-	const @"".ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH = 0x8a35
-	const @"".ACTIVE_UNIFORM_MAX_LENGTH = 0x8b87
-	const @"".ACTIVE_VARIABLES = 0x9305
-	const @"".ALIASED_LINE_WIDTH_RANGE = 0x846e
-	const @"".ALL_BARRIER_BITS = 0xffffffff
-	const @"".ALL_COMPLETED_NV = 0x84f2
-	const @"".ALL_SHADER_BITS = 0xffffffff
-	const @"".ALL_SHADER_BITS_EXT = 0xffffffff
-	const @"".ALPHA = 0x1906
-	const @"".ALREADY_SIGNALED = 0x911a
-	const @"".ALWAYS = 0x207
-	const @"".AND = 0x1501
-	const @"".AND_INVERTED = 0x1504
-	const @"".AND_REVERSE = 0x1502
-	const @"".ANY_SAMPLES_PASSED = 0x8c2f
-	const @"".ANY_SAMPLES_PASSED_CONSERVATIVE = 0x8d6a
-	const @"".ARRAY_BUFFER = 0x8892
-	const @"".ARRAY_BUFFER_BINDING = 0x8894
-	const @"".ARRAY_SIZE = 0x92fb
-	const @"".ARRAY_STRIDE = 0x92fe
-	const @"".ATOMIC_COUNTER_BARRIER_BIT = 0x1000
-	const @"".ATOMIC_COUNTER_BUFFER = 0x92c0
-	const @"".ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS = 0x92c5
-	const @"".ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES = 0x92c6
-	const @"".ATOMIC_COUNTER_BUFFER_BINDING = 0x92c1
-	const @"".ATOMIC_COUNTER_BUFFER_DATA_SIZE = 0x92c4
-	const @"".ATOMIC_COUNTER_BUFFER_INDEX = 0x9301
-	const @"".ATOMIC_COUNTER_BUFFER_REFERENCED_BY_COMPUTE_SHADER = 0x90ed
-	const @"".ATOMIC_COUNTER_BUFFER_REFERENCED_BY_FRAGMENT_SHADER = 0x92cb
-	const @"".ATOMIC_COUNTER_BUFFER_REFERENCED_BY_GEOMETRY_SHADER = 0x92ca
-	const @"".ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_CONTROL_SHADER = 0x92c8
-	const @"".ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_EVALUATION_SHADER = 0x92c9
-	const @"".ATOMIC_COUNTER_BUFFER_REFERENCED_BY_VERTEX_SHADER = 0x92c7
-	const @"".ATOMIC_COUNTER_BUFFER_SIZE = 0x92c3
-	const @"".ATOMIC_COUNTER_BUFFER_START = 0x92c2
-	const @"".ATTACHED_SHADERS = 0x8b85
-	const @"".AUTO_GENERATE_MIPMAP = 0x8295
-	const @"".BACK = 0x405
-	const @"".BACK_LEFT = 0x402
-	const @"".BACK_RIGHT = 0x403
-	const @"".BGR = 0x80e0
-	const @"".BGRA = 0x80e1
-	const @"".BGRA_INTEGER = 0x8d9b
-	const @"".BGR_INTEGER = 0x8d9a
-	const @"".BLEND = 0xbe2
-	const @"".BLEND_ADVANCED_COHERENT_KHR = 0x9285
-	const @"".BLEND_ADVANCED_COHERENT_NV = 0x9285
-	const @"".BLEND_COLOR = 0x8005
-	const @"".BLEND_DST = 0xbe0
-	const @"".BLEND_DST_ALPHA = 0x80ca
-	const @"".BLEND_DST_RGB = 0x80c8
-	const @"".BLEND_EQUATION = 0x8009
-	const @"".BLEND_EQUATION_ALPHA = 0x883d
-	const @"".BLEND_EQUATION_EXT = 0x8009
-	const @"".BLEND_EQUATION_RGB = 0x8009
-	const @"".BLEND_OVERLAP_NV = 0x9281
-	const @"".BLEND_PREMULTIPLIED_SRC_NV = 0x9280
-	const @"".BLEND_SRC = 0xbe1
-	const @"".BLEND_SRC_ALPHA = 0x80cb
-	const @"".BLEND_SRC_RGB = 0x80c9
-	const @"".BLOCK_INDEX = 0x92fd
-	const @"".BLUE = 0x1905
-	const @"".BLUE_INTEGER = 0x8d96
-	const @"".BLUE_NV = 0x1905
-	const @"".BOOL = 0x8b56
-	const @"".BOOL_VEC2 = 0x8b57
-	const @"".BOOL_VEC3 = 0x8b58
-	const @"".BOOL_VEC4 = 0x8b59
-	const @"".BUFFER = 0x82e0
-	const @"".BUFFER_ACCESS = 0x88bb
-	const @"".BUFFER_ACCESS_FLAGS = 0x911f
-	const @"".BUFFER_BINDING = 0x9302
-	const @"".BUFFER_DATA_SIZE = 0x9303
-	const @"".BUFFER_IMMUTABLE_STORAGE = 0x821f
-	const @"".BUFFER_KHR = 0x82e0
-	const @"".BUFFER_MAPPED = 0x88bc
-	const @"".BUFFER_MAP_LENGTH = 0x9120
-	const @"".BUFFER_MAP_OFFSET = 0x9121
-	const @"".BUFFER_MAP_POINTER = 0x88bd
-	const @"".BUFFER_OBJECT_EXT = 0x9151
-	const @"".BUFFER_SIZE = 0x8764
-	const @"".BUFFER_STORAGE_FLAGS = 0x8220
-	const @"".BUFFER_UPDATE_BARRIER_BIT = 0x200
-	const @"".BUFFER_USAGE = 0x8765
-	const @"".BUFFER_VARIABLE = 0x92e5
-	const @"".BYTE = 0x1400
-	const @"".CAVEAT_SUPPORT = 0x82b8
-	const @"".CCW = 0x901
-	const @"".CLAMP_READ_COLOR = 0x891c
-	const @"".CLAMP_TO_BORDER = 0x812d
-	const @"".CLAMP_TO_EDGE = 0x812f
-	const @"".CLEAR = 0x1500
-	const @"".CLEAR_BUFFER = 0x82b4
-	const @"".CLEAR_TEXTURE = 0x9365
-	const @"".CLIENT_MAPPED_BUFFER_BARRIER_BIT = 0x4000
-	const @"".CLIENT_STORAGE_BIT = 0x200
-	const @"".CLIPPING_INPUT_PRIMITIVES_ARB = 0x82f6
-	const @"".CLIPPING_OUTPUT_PRIMITIVES_ARB = 0x82f7
-	const @"".CLIP_DEPTH_MODE = 0x935d
-	const @"".CLIP_DISTANCE0 = 0x3000
-	const @"".CLIP_DISTANCE1 = 0x3001
-	const @"".CLIP_DISTANCE2 = 0x3002
-	const @"".CLIP_DISTANCE3 = 0x3003
-	const @"".CLIP_DISTANCE4 = 0x3004
-	const @"".CLIP_DISTANCE5 = 0x3005
-	const @"".CLIP_DISTANCE6 = 0x3006
-	const @"".CLIP_DISTANCE7 = 0x3007
-	const @"".CLIP_ORIGIN = 0x935c
-	const @"".COLOR = 0x1800
-	const @"".COLORBURN_KHR = 0x929a
-	const @"".COLORBURN_NV = 0x929a
-	const @"".COLORDODGE_KHR = 0x9299
-	const @"".COLORDODGE_NV = 0x9299
-	const @"".COLOR_ATTACHMENT0 = 0x8ce0
-	const @"".COLOR_ATTACHMENT1 = 0x8ce1
-	const @"".COLOR_ATTACHMENT10 = 0x8cea
-	const @"".COLOR_ATTACHMENT11 = 0x8ceb
-	const @"".COLOR_ATTACHMENT12 = 0x8cec
-	const @"".COLOR_ATTACHMENT13 = 0x8ced
-	const @"".COLOR_ATTACHMENT14 = 0x8cee
-	const @"".COLOR_ATTACHMENT15 = 0x8cef
-	const @"".COLOR_ATTACHMENT2 = 0x8ce2
-	const @"".COLOR_ATTACHMENT3 = 0x8ce3
-	const @"".COLOR_ATTACHMENT4 = 0x8ce4
-	const @"".COLOR_ATTACHMENT5 = 0x8ce5
-	const @"".COLOR_ATTACHMENT6 = 0x8ce6
-	const @"".COLOR_ATTACHMENT7 = 0x8ce7
-	const @"".COLOR_ATTACHMENT8 = 0x8ce8
-	const @"".COLOR_ATTACHMENT9 = 0x8ce9
-	const @"".COLOR_BUFFER_BIT = 0x4000
-	const @"".COLOR_CLEAR_VALUE = 0xc22
-	const @"".COLOR_COMPONENTS = 0x8283
-	const @"".COLOR_ENCODING = 0x8296
-	const @"".COLOR_LOGIC_OP = 0xbf2
-	const @"".COLOR_RENDERABLE = 0x8286
-	const @"".COLOR_WRITEMASK = 0xc23
-	const @"".COMMAND_BARRIER_BIT = 0x40
-	const @"".COMPARE_REF_TO_TEXTURE = 0x884e
-	const @"".COMPATIBLE_SUBROUTINES = 0x8e4b
-	const @"".COMPILE_STATUS = 0x8b81
-	const @"".COMPRESSED_R11_EAC = 0x9270
-	const @"".COMPRESSED_RED = 0x8225
-	const @"".COMPRESSED_RED_RGTC1 = 0x8dbb
-	const @"".COMPRESSED_RG = 0x8226
-	const @"".COMPRESSED_RG11_EAC = 0x9272
-	const @"".COMPRESSED_RGB = 0x84ed
-	const @"".COMPRESSED_RGB8_ETC2 = 0x9274
-	const @"".COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2 = 0x9276
-	const @"".COMPRESSED_RGBA = 0x84ee
-	const @"".COMPRESSED_RGBA8_ETC2_EAC = 0x9278
-	const @"".COMPRESSED_RGBA_ASTC_10x10_KHR = 0x93bb
-	const @"".COMPRESSED_RGBA_ASTC_10x5_KHR = 0x93b8
-	const @"".COMPRESSED_RGBA_ASTC_10x6_KHR = 0x93b9
-	const @"".COMPRESSED_RGBA_ASTC_10x8_KHR = 0x93ba
-	const @"".COMPRESSED_RGBA_ASTC_12x10_KHR = 0x93bc
-	const @"".COMPRESSED_RGBA_ASTC_12x12_KHR = 0x93bd
-	const @"".COMPRESSED_RGBA_ASTC_4x4_KHR = 0x93b0
-	const @"".COMPRESSED_RGBA_ASTC_5x4_KHR = 0x93b1
-	const @"".COMPRESSED_RGBA_ASTC_5x5_KHR = 0x93b2
-	const @"".COMPRESSED_RGBA_ASTC_6x5_KHR = 0x93b3
-	const @"".COMPRESSED_RGBA_ASTC_6x6_KHR = 0x93b4
-	const @"".COMPRESSED_RGBA_ASTC_8x5_KHR = 0x93b5
-	const @"".COMPRESSED_RGBA_ASTC_8x6_KHR = 0x93b6
-	const @"".COMPRESSED_RGBA_ASTC_8x8_KHR = 0x93b7
-	const @"".COMPRESSED_RGBA_BPTC_UNORM_ARB = 0x8e8c
-	const @"".COMPRESSED_RGBA_S3TC_DXT1_EXT = 0x83f1
-	const @"".COMPRESSED_RGBA_S3TC_DXT3_EXT = 0x83f2
-	const @"".COMPRESSED_RGBA_S3TC_DXT5_EXT = 0x83f3
-	const @"".COMPRESSED_RGB_BPTC_SIGNED_FLOAT_ARB = 0x8e8e
-	const @"".COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_ARB = 0x8e8f
-	const @"".COMPRESSED_RGB_S3TC_DXT1_EXT = 0x83f0
-	const @"".COMPRESSED_RG_RGTC2 = 0x8dbd
-	const @"".COMPRESSED_SIGNED_R11_EAC = 0x9271
-	const @"".COMPRESSED_SIGNED_RED_RGTC1 = 0x8dbc
-	const @"".COMPRESSED_SIGNED_RG11_EAC = 0x9273
-	const @"".COMPRESSED_SIGNED_RG_RGTC2 = 0x8dbe
-	const @"".COMPRESSED_SRGB = 0x8c48
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR = 0x93db
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR = 0x93d8
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR = 0x93d9
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR = 0x93da
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR = 0x93dc
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR = 0x93dd
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR = 0x93d0
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR = 0x93d1
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR = 0x93d2
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR = 0x93d3
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR = 0x93d4
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR = 0x93d5
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR = 0x93d6
-	const @"".COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR = 0x93d7
-	const @"".COMPRESSED_SRGB8_ALPHA8_ETC2_EAC = 0x9279
-	const @"".COMPRESSED_SRGB8_ETC2 = 0x9275
-	const @"".COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2 = 0x9277
-	const @"".COMPRESSED_SRGB_ALPHA = 0x8c49
-	const @"".COMPRESSED_SRGB_ALPHA_BPTC_UNORM_ARB = 0x8e8d
-	const @"".COMPRESSED_TEXTURE_FORMATS = 0x86a3
-	const @"".COMPUTE_SHADER = 0x91b9
-	const @"".COMPUTE_SHADER_BIT = 0x20
-	const @"".COMPUTE_SHADER_INVOCATIONS_ARB = 0x82f5
-	const @"".COMPUTE_SUBROUTINE = 0x92ed
-	const @"".COMPUTE_SUBROUTINE_UNIFORM = 0x92f3
-	const @"".COMPUTE_TEXTURE = 0x82a0
-	const @"".COMPUTE_WORK_GROUP_SIZE = 0x8267
-	const @"".CONDITION_SATISFIED = 0x911c
-	const @"".CONJOINT_NV = 0x9284
-	const @"".CONSTANT_ALPHA = 0x8003
-	const @"".CONSTANT_COLOR = 0x8001
-	const @"".CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x2
-	const @"".CONTEXT_CORE_PROFILE_BIT = 0x1
-	const @"".CONTEXT_FLAGS = 0x821e
-	const @"".CONTEXT_FLAG_DEBUG_BIT = 0x2
-	const @"".CONTEXT_FLAG_DEBUG_BIT_KHR = 0x2
-	const @"".CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT = 0x1
-	const @"".CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB = 0x4
-	const @"".CONTEXT_LOST = 0x507
-	const @"".CONTEXT_LOST_KHR = 0x507
-	const @"".CONTEXT_PROFILE_MASK = 0x9126
-	const @"".CONTEXT_RELEASE_BEHAVIOR = 0x82fb
-	const @"".CONTEXT_RELEASE_BEHAVIOR_FLUSH = 0x82fc
-	const @"".CONTEXT_RELEASE_BEHAVIOR_FLUSH_KHR = 0x82fc
-	const @"".CONTEXT_RELEASE_BEHAVIOR_KHR = 0x82fb
-	const @"".CONTEXT_ROBUST_ACCESS = 0x90f3
-	const @"".CONTEXT_ROBUST_ACCESS_KHR = 0x90f3
-	const @"".CONTRAST_NV = 0x92a1
-	const @"".COPY = 0x1503
-	const @"".COPY_INVERTED = 0x150c
-	const @"".COPY_READ_BUFFER = 0x8f36
-	const @"".COPY_READ_BUFFER_BINDING = 0x8f36
-	const @"".COPY_WRITE_BUFFER = 0x8f37
-	const @"".COPY_WRITE_BUFFER_BINDING = 0x8f37
-	const @"".COUNTER_RANGE_AMD = 0x8bc1
-	const @"".COUNTER_TYPE_AMD = 0x8bc0
-	const @"".CULL_FACE = 0xb44
-	const @"".CULL_FACE_MODE = 0xb45
-	const @"".CURRENT_PROGRAM = 0x8b8d
-	const @"".CURRENT_QUERY = 0x8865
-	const @"".CURRENT_VERTEX_ATTRIB = 0x8626
-	const @"".CW = 0x900
-	const @"".DARKEN_KHR = 0x9297
-	const @"".DARKEN_NV = 0x9297
-	const @"".DEBUG_CALLBACK_FUNCTION = 0x8244
-	const @"".DEBUG_CALLBACK_FUNCTION_ARB = 0x8244
-	const @"".DEBUG_CALLBACK_FUNCTION_KHR = 0x8244
-	const @"".DEBUG_CALLBACK_USER_PARAM = 0x8245
-	const @"".DEBUG_CALLBACK_USER_PARAM_ARB = 0x8245
-	const @"".DEBUG_CALLBACK_USER_PARAM_KHR = 0x8245
-	const @"".DEBUG_GROUP_STACK_DEPTH = 0x826d
-	const @"".DEBUG_GROUP_STACK_DEPTH_KHR = 0x826d
-	const @"".DEBUG_LOGGED_MESSAGES = 0x9145
-	const @"".DEBUG_LOGGED_MESSAGES_ARB = 0x9145
-	const @"".DEBUG_LOGGED_MESSAGES_KHR = 0x9145
-	const @"".DEBUG_NEXT_LOGGED_MESSAGE_LENGTH = 0x8243
-	const @"".DEBUG_NEXT_LOGGED_MESSAGE_LENGTH_ARB = 0x8243
-	const @"".DEBUG_NEXT_LOGGED_MESSAGE_LENGTH_KHR = 0x8243
-	const @"".DEBUG_OUTPUT = 0x92e0
-	const @"".DEBUG_OUTPUT_KHR = 0x92e0
-	const @"".DEBUG_OUTPUT_SYNCHRONOUS = 0x8242
-	const @"".DEBUG_OUTPUT_SYNCHRONOUS_ARB = 0x8242
-	const @"".DEBUG_OUTPUT_SYNCHRONOUS_KHR = 0x8242
-	const @"".DEBUG_SEVERITY_HIGH = 0x9146
-	const @"".DEBUG_SEVERITY_HIGH_ARB = 0x9146
-	const @"".DEBUG_SEVERITY_HIGH_KHR = 0x9146
-	const @"".DEBUG_SEVERITY_LOW = 0x9148
-	const @"".DEBUG_SEVERITY_LOW_ARB = 0x9148
-	const @"".DEBUG_SEVERITY_LOW_KHR = 0x9148
-	const @"".DEBUG_SEVERITY_MEDIUM = 0x9147
-	const @"".DEBUG_SEVERITY_MEDIUM_ARB = 0x9147
-	const @"".DEBUG_SEVERITY_MEDIUM_KHR = 0x9147
-	const @"".DEBUG_SEVERITY_NOTIFICATION = 0x826b
-	const @"".DEBUG_SEVERITY_NOTIFICATION_KHR = 0x826b
-	const @"".DEBUG_SOURCE_API = 0x8246
-	const @"".DEBUG_SOURCE_API_ARB = 0x8246
-	const @"".DEBUG_SOURCE_API_KHR = 0x8246
-	const @"".DEBUG_SOURCE_APPLICATION = 0x824a
-	const @"".DEBUG_SOURCE_APPLICATION_ARB = 0x824a
-	const @"".DEBUG_SOURCE_APPLICATION_KHR = 0x824a
-	const @"".DEBUG_SOURCE_OTHER = 0x824b
-	const @"".DEBUG_SOURCE_OTHER_ARB = 0x824b
-	const @"".DEBUG_SOURCE_OTHER_KHR = 0x824b
-	const @"".DEBUG_SOURCE_SHADER_COMPILER = 0x8248
-	const @"".DEBUG_SOURCE_SHADER_COMPILER_ARB = 0x8248
-	const @"".DEBUG_SOURCE_SHADER_COMPILER_KHR = 0x8248
-	const @"".DEBUG_SOURCE_THIRD_PARTY = 0x8249
-	const @"".DEBUG_SOURCE_THIRD_PARTY_ARB = 0x8249
-	const @"".DEBUG_SOURCE_THIRD_PARTY_KHR = 0x8249
-	const @"".DEBUG_SOURCE_WINDOW_SYSTEM = 0x8247
-	const @"".DEBUG_SOURCE_WINDOW_SYSTEM_ARB = 0x8247
-	const @"".DEBUG_SOURCE_WINDOW_SYSTEM_KHR = 0x8247
-	const @"".DEBUG_TYPE_DEPRECATED_BEHAVIOR = 0x824d
-	const @"".DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB = 0x824d
-	const @"".DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR = 0x824d
-	const @"".DEBUG_TYPE_ERROR = 0x824c
-	const @"".DEBUG_TYPE_ERROR_ARB = 0x824c
-	const @"".DEBUG_TYPE_ERROR_KHR = 0x824c
-	const @"".DEBUG_TYPE_MARKER = 0x8268
-	const @"".DEBUG_TYPE_MARKER_KHR = 0x8268
-	const @"".DEBUG_TYPE_OTHER = 0x8251
-	const @"".DEBUG_TYPE_OTHER_ARB = 0x8251
-	const @"".DEBUG_TYPE_OTHER_KHR = 0x8251
-	const @"".DEBUG_TYPE_PERFORMANCE = 0x8250
-	const @"".DEBUG_TYPE_PERFORMANCE_ARB = 0x8250
-	const @"".DEBUG_TYPE_PERFORMANCE_KHR = 0x8250
-	const @"".DEBUG_TYPE_POP_GROUP = 0x826a
-	const @"".DEBUG_TYPE_POP_GROUP_KHR = 0x826a
-	const @"".DEBUG_TYPE_PORTABILITY = 0x824f
-	const @"".DEBUG_TYPE_PORTABILITY_ARB = 0x824f
-	const @"".DEBUG_TYPE_PORTABILITY_KHR = 0x824f
-	const @"".DEBUG_TYPE_PUSH_GROUP = 0x8269
-	const @"".DEBUG_TYPE_PUSH_GROUP_KHR = 0x8269
-	const @"".DEBUG_TYPE_UNDEFINED_BEHAVIOR = 0x824e
-	const @"".DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB = 0x824e
-	const @"".DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR = 0x824e
-	const @"".DECODE_EXT = 0x8a49
-	const @"".DECR = 0x1e03
-	const @"".DECR_WRAP = 0x8508
-	const @"".DELETE_STATUS = 0x8b80
-	const @"".DEPTH = 0x1801
-	const @"".DEPTH24_STENCIL8 = 0x88f0
-	const @"".DEPTH32F_STENCIL8 = 0x8cad
-	const @"".DEPTH_ATTACHMENT = 0x8d00
-	const @"".DEPTH_BUFFER_BIT = 0x100
-	const @"".DEPTH_CLAMP = 0x864f
-	const @"".DEPTH_CLEAR_VALUE = 0xb73
-	const @"".DEPTH_COMPONENT = 0x1902
-	const @"".DEPTH_COMPONENT16 = 0x81a5
-	const @"".DEPTH_COMPONENT24 = 0x81a6
-	const @"".DEPTH_COMPONENT32 = 0x81a7
-	const @"".DEPTH_COMPONENT32F = 0x8cac
-	const @"".DEPTH_COMPONENTS = 0x8284
-	const @"".DEPTH_FUNC = 0xb74
-	const @"".DEPTH_RANGE = 0xb70
-	const @"".DEPTH_RENDERABLE = 0x8287
-	const @"".DEPTH_STENCIL = 0x84f9
-	const @"".DEPTH_STENCIL_ATTACHMENT = 0x821a
-	const @"".DEPTH_STENCIL_TEXTURE_MODE = 0x90ea
-	const @"".DEPTH_TEST = 0xb71
-	const @"".DEPTH_WRITEMASK = 0xb72
-	const @"".DIFFERENCE_KHR = 0x929e
-	const @"".DIFFERENCE_NV = 0x929e
-	const @"".DISJOINT_NV = 0x9283
-	const @"".DISPATCH_INDIRECT_BUFFER = 0x90ee
-	const @"".DISPATCH_INDIRECT_BUFFER_BINDING = 0x90ef
-	const @"".DITHER = 0xbd0
-	const @"".DONT_CARE = 0x1100
-	const @"".DOUBLE = 0x140a
-	const @"".DOUBLEBUFFER = 0xc32
-	const @"".DOUBLE_MAT2 = 0x8f46
-	const @"".DOUBLE_MAT2x3 = 0x8f49
-	const @"".DOUBLE_MAT2x4 = 0x8f4a
-	const @"".DOUBLE_MAT3 = 0x8f47
-	const @"".DOUBLE_MAT3x2 = 0x8f4b
-	const @"".DOUBLE_MAT3x4 = 0x8f4c
-	const @"".DOUBLE_MAT4 = 0x8f48
-	const @"".DOUBLE_MAT4x2 = 0x8f4d
-	const @"".DOUBLE_MAT4x3 = 0x8f4e
-	const @"".DOUBLE_VEC2 = 0x8ffc
-	const @"".DOUBLE_VEC3 = 0x8ffd
-	const @"".DOUBLE_VEC4 = 0x8ffe
-	const @"".DRAW_BUFFER = 0xc01
-	const @"".DRAW_BUFFER0 = 0x8825
-	const @"".DRAW_BUFFER1 = 0x8826
-	const @"".DRAW_BUFFER10 = 0x882f
-	const @"".DRAW_BUFFER11 = 0x8830
-	const @"".DRAW_BUFFER12 = 0x8831
-	const @"".DRAW_BUFFER13 = 0x8832
-	const @"".DRAW_BUFFER14 = 0x8833
-	const @"".DRAW_BUFFER15 = 0x8834
-	const @"".DRAW_BUFFER2 = 0x8827
-	const @"".DRAW_BUFFER3 = 0x8828
-	const @"".DRAW_BUFFER4 = 0x8829
-	const @"".DRAW_BUFFER5 = 0x882a
-	const @"".DRAW_BUFFER6 = 0x882b
-	const @"".DRAW_BUFFER7 = 0x882c
-	const @"".DRAW_BUFFER8 = 0x882d
-	const @"".DRAW_BUFFER9 = 0x882e
-	const @"".DRAW_FRAMEBUFFER = 0x8ca9
-	const @"".DRAW_FRAMEBUFFER_BINDING = 0x8ca6
-	const @"".DRAW_INDIRECT_BUFFER = 0x8f3f
-	const @"".DRAW_INDIRECT_BUFFER_BINDING = 0x8f43
-	const @"".DST_ALPHA = 0x304
-	const @"".DST_ATOP_NV = 0x928f
-	const @"".DST_COLOR = 0x306
-	const @"".DST_IN_NV = 0x928b
-	const @"".DST_NV = 0x9287
-	const @"".DST_OUT_NV = 0x928d
-	const @"".DST_OVER_NV = 0x9289
-	const @"".DYNAMIC_COPY = 0x88ea
-	const @"".DYNAMIC_DRAW = 0x88e8
-	const @"".DYNAMIC_READ = 0x88e9
-	const @"".DYNAMIC_STORAGE_BIT = 0x100
-	const @"".ELEMENT_ARRAY_BARRIER_BIT = 0x2
-	const @"".ELEMENT_ARRAY_BUFFER = 0x8893
-	const @"".ELEMENT_ARRAY_BUFFER_BINDING = 0x8895
-	const @"".EQUAL = 0x202
-	const @"".EQUIV = 0x1509
-	const @"".EXCLUSION_KHR = 0x92a0
-	const @"".EXCLUSION_NV = 0x92a0
-	const @"".EXTENSIONS = 0x1f03
-	const @"".FALSE = 0x0
-	const @"".FASTEST = 0x1101
-	const @"".FENCE_CONDITION_NV = 0x84f4
-	const @"".FENCE_STATUS_NV = 0x84f3
-	const @"".FILL = 0x1b02
-	const @"".FILTER = 0x829a
-	const @"".FIRST_VERTEX_CONVENTION = 0x8e4d
-	const @"".FIXED = 0x140c
-	const @"".FIXED_OES = 0x140c
-	const @"".FIXED_ONLY = 0x891d
-	const @"".FLOAT = 0x1406
-	const @"".FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8dad
-	const @"".FLOAT_MAT2 = 0x8b5a
-	const @"".FLOAT_MAT2x3 = 0x8b65
-	const @"".FLOAT_MAT2x4 = 0x8b66
-	const @"".FLOAT_MAT3 = 0x8b5b
-	const @"".FLOAT_MAT3x2 = 0x8b67
-	const @"".FLOAT_MAT3x4 = 0x8b68
-	const @"".FLOAT_MAT4 = 0x8b5c
-	const @"".FLOAT_MAT4x2 = 0x8b69
-	const @"".FLOAT_MAT4x3 = 0x8b6a
-	const @"".FLOAT_VEC2 = 0x8b50
-	const @"".FLOAT_VEC3 = 0x8b51
-	const @"".FLOAT_VEC4 = 0x8b52
-	const @"".FRACTIONAL_EVEN = 0x8e7c
-	const @"".FRACTIONAL_ODD = 0x8e7b
-	const @"".FRAGMENT_INTERPOLATION_OFFSET_BITS = 0x8e5d
-	const @"".FRAGMENT_SHADER = 0x8b30
-	const @"".FRAGMENT_SHADER_BIT = 0x2
-	const @"".FRAGMENT_SHADER_BIT_EXT = 0x2
-	const @"".FRAGMENT_SHADER_DERIVATIVE_HINT = 0x8b8b
-	const @"".FRAGMENT_SHADER_INVOCATIONS_ARB = 0x82f4
-	const @"".FRAGMENT_SUBROUTINE = 0x92ec
-	const @"".FRAGMENT_SUBROUTINE_UNIFORM = 0x92f2
-	const @"".FRAGMENT_TEXTURE = 0x829f
-	const @"".FRAMEBUFFER = 0x8d40
-	const @"".FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE = 0x8215
-	const @"".FRAMEBUFFER_ATTACHMENT_BLUE_SIZE = 0x8214
-	const @"".FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING = 0x8210
-	const @"".FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE = 0x8211
-	const @"".FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE = 0x8216
-	const @"".FRAMEBUFFER_ATTACHMENT_GREEN_SIZE = 0x8213
-	const @"".FRAMEBUFFER_ATTACHMENT_LAYERED = 0x8da7
-	const @"".FRAMEBUFFER_ATTACHMENT_OBJECT_NAME = 0x8cd1
-	const @"".FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE = 0x8cd0
-	const @"".FRAMEBUFFER_ATTACHMENT_RED_SIZE = 0x8212
-	const @"".FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE = 0x8217
-	const @"".FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8cd3
-	const @"".FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER = 0x8cd4
-	const @"".FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL = 0x8cd2
-	const @"".FRAMEBUFFER_BARRIER_BIT = 0x400
-	const @"".FRAMEBUFFER_BINDING = 0x8ca6
-	const @"".FRAMEBUFFER_BLEND = 0x828b
-	const @"".FRAMEBUFFER_COMPLETE = 0x8cd5
-	const @"".FRAMEBUFFER_DEFAULT = 0x8218
-	const @"".FRAMEBUFFER_DEFAULT_FIXED_SAMPLE_LOCATIONS = 0x9314
-	const @"".FRAMEBUFFER_DEFAULT_HEIGHT = 0x9311
-	const @"".FRAMEBUFFER_DEFAULT_LAYERS = 0x9312
-	const @"".FRAMEBUFFER_DEFAULT_SAMPLES = 0x9313
-	const @"".FRAMEBUFFER_DEFAULT_WIDTH = 0x9310
-	const @"".FRAMEBUFFER_INCOMPLETE_ATTACHMENT = 0x8cd6
-	const @"".FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER = 0x8cdb
-	const @"".FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS = 0x8da8
-	const @"".FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8cd7
-	const @"".FRAMEBUFFER_INCOMPLETE_MULTISAMPLE = 0x8d56
-	const @"".FRAMEBUFFER_INCOMPLETE_READ_BUFFER = 0x8cdc
-	const @"".FRAMEBUFFER_RENDERABLE = 0x8289
-	const @"".FRAMEBUFFER_RENDERABLE_LAYERED = 0x828a
-	const @"".FRAMEBUFFER_SRGB = 0x8db9
-	const @"".FRAMEBUFFER_UNDEFINED = 0x8219
-	const @"".FRAMEBUFFER_UNSUPPORTED = 0x8cdd
-	const @"".FRONT = 0x404
-	const @"".FRONT_AND_BACK = 0x408
-	const @"".FRONT_FACE = 0xb46
-	const @"".FRONT_LEFT = 0x400
-	const @"".FRONT_RIGHT = 0x401
-	const @"".FULL_SUPPORT = 0x82b7
-	const @"".FUNC_ADD = 0x8006
-	const @"".FUNC_ADD_EXT = 0x8006
-	const @"".FUNC_REVERSE_SUBTRACT = 0x800b
-	const @"".FUNC_SUBTRACT = 0x800a
-	const @"".GEOMETRY_INPUT_TYPE = 0x8917
-	const @"".GEOMETRY_OUTPUT_TYPE = 0x8918
-	const @"".GEOMETRY_SHADER = 0x8dd9
-	const @"".GEOMETRY_SHADER_BIT = 0x4
-	const @"".GEOMETRY_SHADER_INVOCATIONS = 0x887f
-	const @"".GEOMETRY_SHADER_PRIMITIVES_EMITTED_ARB = 0x82f3
-	const @"".GEOMETRY_SUBROUTINE = 0x92eb
-	const @"".GEOMETRY_SUBROUTINE_UNIFORM = 0x92f1
-	const @"".GEOMETRY_TEXTURE = 0x829e
-	const @"".GEOMETRY_VERTICES_OUT = 0x8916
-	const @"".GEQUAL = 0x206
-	const @"".GET_TEXTURE_IMAGE_FORMAT = 0x8291
-	const @"".GET_TEXTURE_IMAGE_TYPE = 0x8292
-	const @"".GREATER = 0x204
-	const @"".GREEN = 0x1904
-	const @"".GREEN_INTEGER = 0x8d95
-	const @"".GREEN_NV = 0x1904
-	const @"".GUILTY_CONTEXT_RESET = 0x8253
-	const @"".GUILTY_CONTEXT_RESET_ARB = 0x8253
-	const @"".GUILTY_CONTEXT_RESET_KHR = 0x8253
-	const @"".HALF_FLOAT = 0x140b
-	const @"".HARDLIGHT_KHR = 0x929b
-	const @"".HARDLIGHT_NV = 0x929b
-	const @"".HARDMIX_NV = 0x92a9
-	const @"".HIGH_FLOAT = 0x8df2
-	const @"".HIGH_INT = 0x8df5
-	const @"".HSL_COLOR_KHR = 0x92af
-	const @"".HSL_COLOR_NV = 0x92af
-	const @"".HSL_HUE_KHR = 0x92ad
-	const @"".HSL_HUE_NV = 0x92ad
-	const @"".HSL_LUMINOSITY_KHR = 0x92b0
-	const @"".HSL_LUMINOSITY_NV = 0x92b0
-	const @"".HSL_SATURATION_KHR = 0x92ae
-	const @"".HSL_SATURATION_NV = 0x92ae
-	const @"".IMAGE_1D = 0x904c
-	const @"".IMAGE_1D_ARRAY = 0x9052
-	const @"".IMAGE_2D = 0x904d
-	const @"".IMAGE_2D_ARRAY = 0x9053
-	const @"".IMAGE_2D_MULTISAMPLE = 0x9055
-	const @"".IMAGE_2D_MULTISAMPLE_ARRAY = 0x9056
-	const @"".IMAGE_2D_RECT = 0x904f
-	const @"".IMAGE_3D = 0x904e
-	const @"".IMAGE_BINDING_ACCESS = 0x8f3e
-	const @"".IMAGE_BINDING_FORMAT = 0x906e
-	const @"".IMAGE_BINDING_LAYER = 0x8f3d
-	const @"".IMAGE_BINDING_LAYERED = 0x8f3c
-	const @"".IMAGE_BINDING_LEVEL = 0x8f3b
-	const @"".IMAGE_BINDING_NAME = 0x8f3a
-	const @"".IMAGE_BUFFER = 0x9051
-	const @"".IMAGE_CLASS_10_10_10_2 = 0x82c3
-	const @"".IMAGE_CLASS_11_11_10 = 0x82c2
-	const @"".IMAGE_CLASS_1_X_16 = 0x82be
-	const @"".IMAGE_CLASS_1_X_32 = 0x82bb
-	const @"".IMAGE_CLASS_1_X_8 = 0x82c1
-	const @"".IMAGE_CLASS_2_X_16 = 0x82bd
-	const @"".IMAGE_CLASS_2_X_32 = 0x82ba
-	const @"".IMAGE_CLASS_2_X_8 = 0x82c0
-	const @"".IMAGE_CLASS_4_X_16 = 0x82bc
-	const @"".IMAGE_CLASS_4_X_32 = 0x82b9
-	const @"".IMAGE_CLASS_4_X_8 = 0x82bf
-	const @"".IMAGE_COMPATIBILITY_CLASS = 0x82a8
-	const @"".IMAGE_CUBE = 0x9050
-	const @"".IMAGE_CUBE_MAP_ARRAY = 0x9054
-	const @"".IMAGE_FORMAT_COMPATIBILITY_BY_CLASS = 0x90c9
-	const @"".IMAGE_FORMAT_COMPATIBILITY_BY_SIZE = 0x90c8
-	const @"".IMAGE_FORMAT_COMPATIBILITY_TYPE = 0x90c7
-	const @"".IMAGE_PIXEL_FORMAT = 0x82a9
-	const @"".IMAGE_PIXEL_TYPE = 0x82aa
-	const @"".IMAGE_TEXEL_SIZE = 0x82a7
-	const @"".IMPLEMENTATION_COLOR_READ_FORMAT = 0x8b9b
-	const @"".IMPLEMENTATION_COLOR_READ_FORMAT_OES = 0x8b9b
-	const @"".IMPLEMENTATION_COLOR_READ_TYPE = 0x8b9a
-	const @"".IMPLEMENTATION_COLOR_READ_TYPE_OES = 0x8b9a
-	const @"".INCR = 0x1e02
-	const @"".INCR_WRAP = 0x8507
-	const @"".INFO_LOG_LENGTH = 0x8b84
-	const @"".INNOCENT_CONTEXT_RESET = 0x8254
-	const @"".INNOCENT_CONTEXT_RESET_ARB = 0x8254
-	const @"".INNOCENT_CONTEXT_RESET_KHR = 0x8254
-	const @"".INT = 0x1404
-	const @"".INTERLEAVED_ATTRIBS = 0x8c8c
-	const @"".INTERNALFORMAT_ALPHA_SIZE = 0x8274
-	const @"".INTERNALFORMAT_ALPHA_TYPE = 0x827b
-	const @"".INTERNALFORMAT_BLUE_SIZE = 0x8273
-	const @"".INTERNALFORMAT_BLUE_TYPE = 0x827a
-	const @"".INTERNALFORMAT_DEPTH_SIZE = 0x8275
-	const @"".INTERNALFORMAT_DEPTH_TYPE = 0x827c
-	const @"".INTERNALFORMAT_GREEN_SIZE = 0x8272
-	const @"".INTERNALFORMAT_GREEN_TYPE = 0x8279
-	const @"".INTERNALFORMAT_PREFERRED = 0x8270
-	const @"".INTERNALFORMAT_RED_SIZE = 0x8271
-	const @"".INTERNALFORMAT_RED_TYPE = 0x8278
-	const @"".INTERNALFORMAT_SHARED_SIZE = 0x8277
-	const @"".INTERNALFORMAT_STENCIL_SIZE = 0x8276
-	const @"".INTERNALFORMAT_STENCIL_TYPE = 0x827d
-	const @"".INTERNALFORMAT_SUPPORTED = 0x826f
-	const @"".INT_2_10_10_10_REV = 0x8d9f
-	const @"".INT_IMAGE_1D = 0x9057
-	const @"".INT_IMAGE_1D_ARRAY = 0x905d
-	const @"".INT_IMAGE_2D = 0x9058
-	const @"".INT_IMAGE_2D_ARRAY = 0x905e
-	const @"".INT_IMAGE_2D_MULTISAMPLE = 0x9060
-	const @"".INT_IMAGE_2D_MULTISAMPLE_ARRAY = 0x9061
-	const @"".INT_IMAGE_2D_RECT = 0x905a
-	const @"".INT_IMAGE_3D = 0x9059
-	const @"".INT_IMAGE_BUFFER = 0x905c
-	const @"".INT_IMAGE_CUBE = 0x905b
-	const @"".INT_IMAGE_CUBE_MAP_ARRAY = 0x905f
-	const @"".INT_SAMPLER_1D = 0x8dc9
-	const @"".INT_SAMPLER_1D_ARRAY = 0x8dce
-	const @"".INT_SAMPLER_2D = 0x8dca
-	const @"".INT_SAMPLER_2D_ARRAY = 0x8dcf
-	const @"".INT_SAMPLER_2D_MULTISAMPLE = 0x9109
-	const @"".INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910c
-	const @"".INT_SAMPLER_2D_RECT = 0x8dcd
-	const @"".INT_SAMPLER_3D = 0x8dcb
-	const @"".INT_SAMPLER_BUFFER = 0x8dd0
-	const @"".INT_SAMPLER_CUBE = 0x8dcc
-	const @"".INT_SAMPLER_CUBE_MAP_ARRAY_ARB = 0x900e
-	const @"".INT_VEC2 = 0x8b53
-	const @"".INT_VEC3 = 0x8b54
-	const @"".INT_VEC4 = 0x8b55
-	const @"".INVALID_ENUM = 0x500
-	const @"".INVALID_FRAMEBUFFER_OPERATION = 0x506
-	const @"".INVALID_INDEX = 0xffffffff
-	const @"".INVALID_OPERATION = 0x502
-	const @"".INVALID_VALUE = 0x501
-	const @"".INVERT = 0x150a
-	const @"".INVERT_OVG_NV = 0x92b4
-	const @"".INVERT_RGB_NV = 0x92a3
-	const @"".ISOLINES = 0x8e7a
-	const @"".IS_PER_PATCH = 0x92e7
-	const @"".IS_ROW_MAJOR = 0x9300
-	const @"".KEEP = 0x1e00
-	const @"".LAST_VERTEX_CONVENTION = 0x8e4e
-	const @"".LAYER_PROVOKING_VERTEX = 0x825e
-	const @"".LEFT = 0x406
-	const @"".LEQUAL = 0x203
-	const @"".LESS = 0x201
-	const @"".LIGHTEN_KHR = 0x9298
-	const @"".LIGHTEN_NV = 0x9298
-	const @"".LINE = 0x1b01
-	const @"".LINEAR = 0x2601
-	const @"".LINEARBURN_NV = 0x92a5
-	const @"".LINEARDODGE_NV = 0x92a4
-	const @"".LINEARLIGHT_NV = 0x92a7
-	const @"".LINEAR_MIPMAP_LINEAR = 0x2703
-	const @"".LINEAR_MIPMAP_NEAREST = 0x2701
-	const @"".LINES = 0x1
-	const @"".LINES_ADJACENCY = 0xa
-	const @"".LINE_LOOP = 0x2
-	const @"".LINE_SMOOTH = 0xb20
-	const @"".LINE_SMOOTH_HINT = 0xc52
-	const @"".LINE_STRIP = 0x3
-	const @"".LINE_STRIP_ADJACENCY = 0xb
-	const @"".LINE_WIDTH = 0xb21
-	const @"".LINE_WIDTH_GRANULARITY = 0xb23
-	const @"".LINE_WIDTH_RANGE = 0xb22
-	const @"".LINK_STATUS = 0x8b82
-	const @"".LOCATION = 0x930e
-	const @"".LOCATION_COMPONENT = 0x934a
-	const @"".LOCATION_INDEX = 0x930f
-	const @"".LOGIC_OP_MODE = 0xbf0
-	const @"".LOSE_CONTEXT_ON_RESET = 0x8252
-	const @"".LOSE_CONTEXT_ON_RESET_ARB = 0x8252
-	const @"".LOSE_CONTEXT_ON_RESET_KHR = 0x8252
-	const @"".LOWER_LEFT = 0x8ca1
-	const @"".LOW_FLOAT = 0x8df0
-	const @"".LOW_INT = 0x8df3
-	const @"".MAJOR_VERSION = 0x821b
-	const @"".MANUAL_GENERATE_MIPMAP = 0x8294
-	const @"".MAP_COHERENT_BIT = 0x80
-	const @"".MAP_FLUSH_EXPLICIT_BIT = 0x10
-	const @"".MAP_INVALIDATE_BUFFER_BIT = 0x8
-	const @"".MAP_INVALIDATE_RANGE_BIT = 0x4
-	const @"".MAP_PERSISTENT_BIT = 0x40
-	const @"".MAP_READ_BIT = 0x1
-	const @"".MAP_UNSYNCHRONIZED_BIT = 0x20
-	const @"".MAP_WRITE_BIT = 0x2
-	const @"".MATRIX_STRIDE = 0x92ff
-	const @"".MAX = 0x8008
-	const @"".MAX_3D_TEXTURE_SIZE = 0x8073
-	const @"".MAX_ARRAY_TEXTURE_LAYERS = 0x88ff
-	const @"".MAX_ATOMIC_COUNTER_BUFFER_BINDINGS = 0x92dc
-	const @"".MAX_ATOMIC_COUNTER_BUFFER_SIZE = 0x92d8
-	const @"".MAX_CLIP_DISTANCES = 0xd32
-	const @"".MAX_COLOR_ATTACHMENTS = 0x8cdf
-	const @"".MAX_COLOR_TEXTURE_SAMPLES = 0x910e
-	const @"".MAX_COMBINED_ATOMIC_COUNTERS = 0x92d7
-	const @"".MAX_COMBINED_ATOMIC_COUNTER_BUFFERS = 0x92d1
-	const @"".MAX_COMBINED_CLIP_AND_CULL_DISTANCES = 0x82fa
-	const @"".MAX_COMBINED_COMPUTE_UNIFORM_COMPONENTS = 0x8266
-	const @"".MAX_COMBINED_DIMENSIONS = 0x8282
-	const @"".MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS = 0x8a33
-	const @"".MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS = 0x8a32
-	const @"".MAX_COMBINED_IMAGE_UNIFORMS = 0x90cf
-	const @"".MAX_COMBINED_IMAGE_UNITS_AND_FRAGMENT_OUTPUTS = 0x8f39
-	const @"".MAX_COMBINED_SHADER_OUTPUT_RESOURCES = 0x8f39
-	const @"".MAX_COMBINED_SHADER_STORAGE_BLOCKS = 0x90dc
-	const @"".MAX_COMBINED_TESS_CONTROL_UNIFORM_COMPONENTS = 0x8e1e
-	const @"".MAX_COMBINED_TESS_EVALUATION_UNIFORM_COMPONENTS = 0x8e1f
-	const @"".MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8b4d
-	const @"".MAX_COMBINED_UNIFORM_BLOCKS = 0x8a2e
-	const @"".MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS = 0x8a31
-	const @"".MAX_COMPUTE_ATOMIC_COUNTERS = 0x8265
-	const @"".MAX_COMPUTE_ATOMIC_COUNTER_BUFFERS = 0x8264
-	const @"".MAX_COMPUTE_FIXED_GROUP_INVOCATIONS_ARB = 0x90eb
-	const @"".MAX_COMPUTE_FIXED_GROUP_SIZE_ARB = 0x91bf
-	const @"".MAX_COMPUTE_IMAGE_UNIFORMS = 0x91bd
-	const @"".MAX_COMPUTE_SHADER_STORAGE_BLOCKS = 0x90db
-	const @"".MAX_COMPUTE_SHARED_MEMORY_SIZE = 0x8262
-	const @"".MAX_COMPUTE_TEXTURE_IMAGE_UNITS = 0x91bc
-	const @"".MAX_COMPUTE_UNIFORM_BLOCKS = 0x91bb
-	const @"".MAX_COMPUTE_UNIFORM_COMPONENTS = 0x8263
-	const @"".MAX_COMPUTE_VARIABLE_GROUP_INVOCATIONS_ARB = 0x9344
-	const @"".MAX_COMPUTE_VARIABLE_GROUP_SIZE_ARB = 0x9345
-	const @"".MAX_COMPUTE_WORK_GROUP_COUNT = 0x91be
-	const @"".MAX_COMPUTE_WORK_GROUP_INVOCATIONS = 0x90eb
-	const @"".MAX_COMPUTE_WORK_GROUP_SIZE = 0x91bf
-	const @"".MAX_CUBE_MAP_TEXTURE_SIZE = 0x851c
-	const @"".MAX_CULL_DISTANCES = 0x82f9
-	const @"".MAX_DEBUG_GROUP_STACK_DEPTH = 0x826c
-	const @"".MAX_DEBUG_GROUP_STACK_DEPTH_KHR = 0x826c
-	const @"".MAX_DEBUG_LOGGED_MESSAGES = 0x9144
-	const @"".MAX_DEBUG_LOGGED_MESSAGES_ARB = 0x9144
-	const @"".MAX_DEBUG_LOGGED_MESSAGES_KHR = 0x9144
-	const @"".MAX_DEBUG_MESSAGE_LENGTH = 0x9143
-	const @"".MAX_DEBUG_MESSAGE_LENGTH_ARB = 0x9143
-	const @"".MAX_DEBUG_MESSAGE_LENGTH_KHR = 0x9143
-	const @"".MAX_DEPTH = 0x8280
-	const @"".MAX_DEPTH_TEXTURE_SAMPLES = 0x910f
-	const @"".MAX_DRAW_BUFFERS = 0x8824
-	const @"".MAX_DUAL_SOURCE_DRAW_BUFFERS = 0x88fc
-	const @"".MAX_ELEMENTS_INDICES = 0x80e9
-	const @"".MAX_ELEMENTS_VERTICES = 0x80e8
-	const @"".MAX_ELEMENT_INDEX = 0x8d6b
-	const @"".MAX_EXT = 0x8008
-	const @"".MAX_FRAGMENT_ATOMIC_COUNTERS = 0x92d6
-	const @"".MAX_FRAGMENT_ATOMIC_COUNTER_BUFFERS = 0x92d0
-	const @"".MAX_FRAGMENT_IMAGE_UNIFORMS = 0x90ce
-	const @"".MAX_FRAGMENT_INPUT_COMPONENTS = 0x9125
-	const @"".MAX_FRAGMENT_INTERPOLATION_OFFSET = 0x8e5c
-	const @"".MAX_FRAGMENT_SHADER_STORAGE_BLOCKS = 0x90da
-	const @"".MAX_FRAGMENT_UNIFORM_BLOCKS = 0x8a2d
-	const @"".MAX_FRAGMENT_UNIFORM_COMPONENTS = 0x8b49
-	const @"".MAX_FRAGMENT_UNIFORM_VECTORS = 0x8dfd
-	const @"".MAX_FRAMEBUFFER_HEIGHT = 0x9316
-	const @"".MAX_FRAMEBUFFER_LAYERS = 0x9317
-	const @"".MAX_FRAMEBUFFER_SAMPLES = 0x9318
-	const @"".MAX_FRAMEBUFFER_WIDTH = 0x9315
-	const @"".MAX_GEOMETRY_ATOMIC_COUNTERS = 0x92d5
-	const @"".MAX_GEOMETRY_ATOMIC_COUNTER_BUFFERS = 0x92cf
-	const @"".MAX_GEOMETRY_IMAGE_UNIFORMS = 0x90cd
-	const @"".MAX_GEOMETRY_INPUT_COMPONENTS = 0x9123
-	const @"".MAX_GEOMETRY_OUTPUT_COMPONENTS = 0x9124
-	const @"".MAX_GEOMETRY_OUTPUT_VERTICES = 0x8de0
-	const @"".MAX_GEOMETRY_SHADER_INVOCATIONS = 0x8e5a
-	const @"".MAX_GEOMETRY_SHADER_STORAGE_BLOCKS = 0x90d7
-	const @"".MAX_GEOMETRY_TEXTURE_IMAGE_UNITS = 0x8c29
-	const @"".MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS = 0x8de1
-	const @"".MAX_GEOMETRY_UNIFORM_BLOCKS = 0x8a2c
-	const @"".MAX_GEOMETRY_UNIFORM_COMPONENTS = 0x8ddf
-	const @"".MAX_HEIGHT = 0x827f
-	const @"".MAX_IMAGE_SAMPLES = 0x906d
-	const @"".MAX_IMAGE_UNITS = 0x8f38
-	const @"".MAX_INTEGER_SAMPLES = 0x9110
-	const @"".MAX_LABEL_LENGTH = 0x82e8
-	const @"".MAX_LABEL_LENGTH_KHR = 0x82e8
-	const @"".MAX_LAYERS = 0x8281
-	const @"".MAX_NAME_LENGTH = 0x92f6
-	const @"".MAX_NUM_ACTIVE_VARIABLES = 0x92f7
-	const @"".MAX_NUM_COMPATIBLE_SUBROUTINES = 0x92f8
-	const @"".MAX_PATCH_VERTICES = 0x8e7d
-	const @"".MAX_PROGRAM_TEXEL_OFFSET = 0x8905
-	const @"".MAX_PROGRAM_TEXTURE_GATHER_COMPONENTS_ARB = 0x8f9f
-	const @"".MAX_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 0x8e5f
-	const @"".MAX_RECTANGLE_TEXTURE_SIZE = 0x84f8
-	const @"".MAX_RENDERBUFFER_SIZE = 0x84e8
-	const @"".MAX_SAMPLES = 0x8d57
-	const @"".MAX_SAMPLE_MASK_WORDS = 0x8e59
-	const @"".MAX_SERVER_WAIT_TIMEOUT = 0x9111
-	const @"".MAX_SHADER_STORAGE_BLOCK_SIZE = 0x90de
-	const @"".MAX_SHADER_STORAGE_BUFFER_BINDINGS = 0x90dd
-	const @"".MAX_SPARSE_3D_TEXTURE_SIZE_ARB = 0x9199
-	const @"".MAX_SPARSE_ARRAY_TEXTURE_LAYERS_ARB = 0x919a
-	const @"".MAX_SPARSE_TEXTURE_SIZE_ARB = 0x9198
-	const @"".MAX_SUBROUTINES = 0x8de7
-	const @"".MAX_SUBROUTINE_UNIFORM_LOCATIONS = 0x8de8
-	const @"".MAX_TESS_CONTROL_ATOMIC_COUNTERS = 0x92d3
-	const @"".MAX_TESS_CONTROL_ATOMIC_COUNTER_BUFFERS = 0x92cd
-	const @"".MAX_TESS_CONTROL_IMAGE_UNIFORMS = 0x90cb
-	const @"".MAX_TESS_CONTROL_INPUT_COMPONENTS = 0x886c
-	const @"".MAX_TESS_CONTROL_OUTPUT_COMPONENTS = 0x8e83
-	const @"".MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS = 0x90d8
-	const @"".MAX_TESS_CONTROL_TEXTURE_IMAGE_UNITS = 0x8e81
-	const @"".MAX_TESS_CONTROL_TOTAL_OUTPUT_COMPONENTS = 0x8e85
-	const @"".MAX_TESS_CONTROL_UNIFORM_BLOCKS = 0x8e89
-	const @"".MAX_TESS_CONTROL_UNIFORM_COMPONENTS = 0x8e7f
-	const @"".MAX_TESS_EVALUATION_ATOMIC_COUNTERS = 0x92d4
-	const @"".MAX_TESS_EVALUATION_ATOMIC_COUNTER_BUFFERS = 0x92ce
-	const @"".MAX_TESS_EVALUATION_IMAGE_UNIFORMS = 0x90cc
-	const @"".MAX_TESS_EVALUATION_INPUT_COMPONENTS = 0x886d
-	const @"".MAX_TESS_EVALUATION_OUTPUT_COMPONENTS = 0x8e86
-	const @"".MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS = 0x90d9
-	const @"".MAX_TESS_EVALUATION_TEXTURE_IMAGE_UNITS = 0x8e82
-	const @"".MAX_TESS_EVALUATION_UNIFORM_BLOCKS = 0x8e8a
-	const @"".MAX_TESS_EVALUATION_UNIFORM_COMPONENTS = 0x8e80
-	const @"".MAX_TESS_GEN_LEVEL = 0x8e7e
-	const @"".MAX_TESS_PATCH_COMPONENTS = 0x8e84
-	const @"".MAX_TEXTURE_BUFFER_SIZE = 0x8c2b
-	const @"".MAX_TEXTURE_IMAGE_UNITS = 0x8872
-	const @"".MAX_TEXTURE_LOD_BIAS = 0x84fd
-	const @"".MAX_TEXTURE_LOD_BIAS_EXT = 0x84fd
-	const @"".MAX_TEXTURE_MAX_ANISOTROPY_EXT = 0x84ff
-	const @"".MAX_TEXTURE_SIZE = 0xd33
-	const @"".MAX_TRANSFORM_FEEDBACK_BUFFERS = 0x8e70
-	const @"".MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS = 0x8c8a
-	const @"".MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS = 0x8c8b
-	const @"".MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS = 0x8c80
-	const @"".MAX_UNIFORM_BLOCK_SIZE = 0x8a30
-	const @"".MAX_UNIFORM_BUFFER_BINDINGS = 0x8a2f
-	const @"".MAX_UNIFORM_LOCATIONS = 0x826e
-	const @"".MAX_VARYING_COMPONENTS = 0x8b4b
-	const @"".MAX_VARYING_FLOATS = 0x8b4b
-	const @"".MAX_VARYING_VECTORS = 0x8dfc
-	const @"".MAX_VERTEX_ATOMIC_COUNTERS = 0x92d2
-	const @"".MAX_VERTEX_ATOMIC_COUNTER_BUFFERS = 0x92cc
-	const @"".MAX_VERTEX_ATTRIBS = 0x8869
-	const @"".MAX_VERTEX_ATTRIB_BINDINGS = 0x82da
-	const @"".MAX_VERTEX_ATTRIB_RELATIVE_OFFSET = 0x82d9
-	const @"".MAX_VERTEX_IMAGE_UNIFORMS = 0x90ca
-	const @"".MAX_VERTEX_OUTPUT_COMPONENTS = 0x9122
-	const @"".MAX_VERTEX_SHADER_STORAGE_BLOCKS = 0x90d6
-	const @"".MAX_VERTEX_STREAMS = 0x8e71
-	const @"".MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8b4c
-	const @"".MAX_VERTEX_UNIFORM_BLOCKS = 0x8a2b
-	const @"".MAX_VERTEX_UNIFORM_COMPONENTS = 0x8b4a
-	const @"".MAX_VERTEX_UNIFORM_VECTORS = 0x8dfb
-	const @"".MAX_VIEWPORTS = 0x825b
-	const @"".MAX_VIEWPORT_DIMS = 0xd3a
-	const @"".MAX_WIDTH = 0x827e
-	const @"".MEDIUM_FLOAT = 0x8df1
-	const @"".MEDIUM_INT = 0x8df4
-	const @"".MIN = 0x8007
-	const @"".MINOR_VERSION = 0x821c
-	const @"".MINUS_CLAMPED_NV = 0x92b3
-	const @"".MINUS_NV = 0x929f
-	const @"".MIN_EXT = 0x8007
-	const @"".MIN_FRAGMENT_INTERPOLATION_OFFSET = 0x8e5b
-	const @"".MIN_MAP_BUFFER_ALIGNMENT = 0x90bc
-	const @"".MIN_PROGRAM_TEXEL_OFFSET = 0x8904
-	const @"".MIN_PROGRAM_TEXTURE_GATHER_OFFSET_ARB = 0x8e5e
-	const @"".MIN_SAMPLE_SHADING_VALUE_ARB = 0x8c37
-	const @"".MIN_SPARSE_LEVEL_ARB = 0x919b
-	const @"".MIPMAP = 0x8293
-	const @"".MIRRORED_REPEAT = 0x8370
-	const @"".MIRROR_CLAMP_TO_EDGE = 0x8743
-	const @"".MULTIPLY_KHR = 0x9294
-	const @"".MULTIPLY_NV = 0x9294
-	const @"".MULTISAMPLE = 0x809d
-	const @"".NAMED_STRING_LENGTH_ARB = 0x8de9
-	const @"".NAMED_STRING_TYPE_ARB = 0x8dea
-	const @"".NAME_LENGTH = 0x92f9
-	const @"".NAND = 0x150e
-	const @"".NEAREST = 0x2600
-	const @"".NEAREST_MIPMAP_LINEAR = 0x2702
-	const @"".NEAREST_MIPMAP_NEAREST = 0x2700
-	const @"".NEGATIVE_ONE_TO_ONE = 0x935e
-	const @"".NEVER = 0x200
-	const @"".NICEST = 0x1102
-	const @"".NONE = 0x0
-	const @"".NOOP = 0x1505
-	const @"".NOR = 0x1508
-	const @"".NOTEQUAL = 0x205
-	const @"".NO_ERROR = 0x0
-	const @"".NO_RESET_NOTIFICATION = 0x8261
-	const @"".NO_RESET_NOTIFICATION_ARB = 0x8261
-	const @"".NO_RESET_NOTIFICATION_KHR = 0x8261
-	const @"".NUM_ACTIVE_VARIABLES = 0x9304
-	const @"".NUM_COMPATIBLE_SUBROUTINES = 0x8e4a
-	const @"".NUM_COMPRESSED_TEXTURE_FORMATS = 0x86a2
-	const @"".NUM_EXTENSIONS = 0x821d
-	const @"".NUM_PROGRAM_BINARY_FORMATS = 0x87fe
-	const @"".NUM_SAMPLE_COUNTS = 0x9380
-	const @"".NUM_SHADER_BINARY_FORMATS = 0x8df9
-	const @"".NUM_VIRTUAL_PAGE_SIZES_ARB = 0x91a8
-	const @"".OBJECT_TYPE = 0x9112
-	const @"".OFFSET = 0x92fc
-	const @"".ONE = 0x1
-	const @"".ONE_MINUS_CONSTANT_ALPHA = 0x8004
-	const @"".ONE_MINUS_CONSTANT_COLOR = 0x8002
-	const @"".ONE_MINUS_DST_ALPHA = 0x305
-	const @"".ONE_MINUS_DST_COLOR = 0x307
-	const @"".ONE_MINUS_SRC1_ALPHA = 0x88fb
-	const @"".ONE_MINUS_SRC1_COLOR = 0x88fa
-	const @"".ONE_MINUS_SRC_ALPHA = 0x303
-	const @"".ONE_MINUS_SRC_COLOR = 0x301
-	const @"".OR = 0x1507
-	const @"".OR_INVERTED = 0x150d
-	const @"".OR_REVERSE = 0x150b
-	const @"".OUT_OF_MEMORY = 0x505
-	const @"".OVERLAY_KHR = 0x9296
-	const @"".OVERLAY_NV = 0x9296
-	const @"".PACK_ALIGNMENT = 0xd05
-	const @"".PACK_COMPRESSED_BLOCK_DEPTH = 0x912d
-	const @"".PACK_COMPRESSED_BLOCK_HEIGHT = 0x912c
-	const @"".PACK_COMPRESSED_BLOCK_SIZE = 0x912e
-	const @"".PACK_COMPRESSED_BLOCK_WIDTH = 0x912b
-	const @"".PACK_IMAGE_HEIGHT = 0x806c
-	const @"".PACK_LSB_FIRST = 0xd01
-	const @"".PACK_ROW_LENGTH = 0xd02
-	const @"".PACK_SKIP_IMAGES = 0x806b
-	const @"".PACK_SKIP_PIXELS = 0xd04
-	const @"".PACK_SKIP_ROWS = 0xd03
-	const @"".PACK_SWAP_BYTES = 0xd00
-	const @"".PALETTE4_R5_G6_B5_OES = 0x8b92
-	const @"".PALETTE4_RGB5_A1_OES = 0x8b94
-	const @"".PALETTE4_RGB8_OES = 0x8b90
-	const @"".PALETTE4_RGBA4_OES = 0x8b93
-	const @"".PALETTE4_RGBA8_OES = 0x8b91
-	const @"".PALETTE8_R5_G6_B5_OES = 0x8b97
-	const @"".PALETTE8_RGB5_A1_OES = 0x8b99
-	const @"".PALETTE8_RGB8_OES = 0x8b95
-	const @"".PALETTE8_RGBA4_OES = 0x8b98
-	const @"".PALETTE8_RGBA8_OES = 0x8b96
-	const @"".PARAMETER_BUFFER_ARB = 0x80ee
-	const @"".PARAMETER_BUFFER_BINDING_ARB = 0x80ef
-	const @"".PATCHES = 0xe
-	const @"".PATCH_DEFAULT_INNER_LEVEL = 0x8e73
-	const @"".PATCH_DEFAULT_OUTER_LEVEL = 0x8e74
-	const @"".PATCH_VERTICES = 0x8e72
-	const @"".PERCENTAGE_AMD = 0x8bc3
-	const @"".PERFMON_RESULT_AMD = 0x8bc6
-	const @"".PERFMON_RESULT_AVAILABLE_AMD = 0x8bc4
-	const @"".PERFMON_RESULT_SIZE_AMD = 0x8bc5
-	const @"".PERFQUERY_COUNTER_DATA_BOOL32_INTEL = 0x94fc
-	const @"".PERFQUERY_COUNTER_DATA_DOUBLE_INTEL = 0x94fb
-	const @"".PERFQUERY_COUNTER_DATA_FLOAT_INTEL = 0x94fa
-	const @"".PERFQUERY_COUNTER_DATA_UINT32_INTEL = 0x94f8
-	const @"".PERFQUERY_COUNTER_DATA_UINT64_INTEL = 0x94f9
-	const @"".PERFQUERY_COUNTER_DESC_LENGTH_MAX_INTEL = 0x94ff
-	const @"".PERFQUERY_COUNTER_DURATION_NORM_INTEL = 0x94f1
-	const @"".PERFQUERY_COUNTER_DURATION_RAW_INTEL = 0x94f2
-	const @"".PERFQUERY_COUNTER_EVENT_INTEL = 0x94f0
-	const @"".PERFQUERY_COUNTER_NAME_LENGTH_MAX_INTEL = 0x94fe
-	const @"".PERFQUERY_COUNTER_RAW_INTEL = 0x94f4
-	const @"".PERFQUERY_COUNTER_THROUGHPUT_INTEL = 0x94f3
-	const @"".PERFQUERY_COUNTER_TIMESTAMP_INTEL = 0x94f5
-	const @"".PERFQUERY_DONOT_FLUSH_INTEL = 0x83f9
-	const @"".PERFQUERY_FLUSH_INTEL = 0x83fa
-	const @"".PERFQUERY_GLOBAL_CONTEXT_INTEL = 0x1
-	const @"".PERFQUERY_GPA_EXTENDED_COUNTERS_INTEL = 0x9500
-	const @"".PERFQUERY_QUERY_NAME_LENGTH_MAX_INTEL = 0x94fd
-	const @"".PERFQUERY_SINGLE_CONTEXT_INTEL = 0x0
-	const @"".PERFQUERY_WAIT_INTEL = 0x83fb
-	const @"".PINLIGHT_NV = 0x92a8
-	const @"".PIXEL_BUFFER_BARRIER_BIT = 0x80
-	const @"".PIXEL_PACK_BUFFER = 0x88eb
-	const @"".PIXEL_PACK_BUFFER_BINDING = 0x88ed
-	const @"".PIXEL_UNPACK_BUFFER = 0x88ec
-	const @"".PIXEL_UNPACK_BUFFER_BINDING = 0x88ef
-	const @"".PLUS_CLAMPED_ALPHA_NV = 0x92b2
-	const @"".PLUS_CLAMPED_NV = 0x92b1
-	const @"".PLUS_DARKER_NV = 0x9292
-	const @"".PLUS_NV = 0x9291
-	const @"".POINT = 0x1b00
-	const @"".POINTS = 0x0
-	const @"".POINT_FADE_THRESHOLD_SIZE = 0x8128
-	const @"".POINT_SIZE = 0xb11
-	const @"".POINT_SIZE_GRANULARITY = 0xb13
-	const @"".POINT_SIZE_RANGE = 0xb12
-	const @"".POINT_SPRITE_COORD_ORIGIN = 0x8ca0
-	const @"".POLYGON_MODE = 0xb40
-	const @"".POLYGON_OFFSET_FACTOR = 0x8038
-	const @"".POLYGON_OFFSET_FILL = 0x8037
-	const @"".POLYGON_OFFSET_LINE = 0x2a02
-	const @"".POLYGON_OFFSET_POINT = 0x2a01
-	const @"".POLYGON_OFFSET_UNITS = 0x2a00
-	const @"".POLYGON_SMOOTH = 0xb41
-	const @"".POLYGON_SMOOTH_HINT = 0xc53
-	const @"".PRIMITIVES_GENERATED = 0x8c87
-	const @"".PRIMITIVES_SUBMITTED_ARB = 0x82ef
-	const @"".PRIMITIVE_RESTART = 0x8f9d
-	const @"".PRIMITIVE_RESTART_FIXED_INDEX = 0x8d69
-	const @"".PRIMITIVE_RESTART_INDEX = 0x8f9e
-	const @"".PROGRAM = 0x82e2
-	const @"".PROGRAM_BINARY_FORMATS = 0x87ff
-	const @"".PROGRAM_BINARY_LENGTH = 0x8741
-	const @"".PROGRAM_BINARY_RETRIEVABLE_HINT = 0x8257
-	const @"".PROGRAM_INPUT = 0x92e3
-	const @"".PROGRAM_KHR = 0x82e2
-	const @"".PROGRAM_OBJECT_EXT = 0x8b40
-	const @"".PROGRAM_OUTPUT = 0x92e4
-	const @"".PROGRAM_PIPELINE = 0x82e4
-	const @"".PROGRAM_PIPELINE_BINDING = 0x825a
-	const @"".PROGRAM_PIPELINE_BINDING_EXT = 0x825a
-	const @"".PROGRAM_PIPELINE_OBJECT_EXT = 0x8a4f
-	const @"".PROGRAM_POINT_SIZE = 0x8642
-	const @"".PROGRAM_SEPARABLE = 0x8258
-	const @"".PROGRAM_SEPARABLE_EXT = 0x8258
-	const @"".PROVOKING_VERTEX = 0x8e4f
-	const @"".PROXY_TEXTURE_1D = 0x8063
-	const @"".PROXY_TEXTURE_1D_ARRAY = 0x8c19
-	const @"".PROXY_TEXTURE_2D = 0x8064
-	const @"".PROXY_TEXTURE_2D_ARRAY = 0x8c1b
-	const @"".PROXY_TEXTURE_2D_MULTISAMPLE = 0x9101
-	const @"".PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9103
-	const @"".PROXY_TEXTURE_3D = 0x8070
-	const @"".PROXY_TEXTURE_CUBE_MAP = 0x851b
-	const @"".PROXY_TEXTURE_CUBE_MAP_ARRAY_ARB = 0x900b
-	const @"".PROXY_TEXTURE_RECTANGLE = 0x84f7
-	const @"".QUADS = 0x7
-	const @"".QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION = 0x8e4c
-	const @"".QUERY = 0x82e3
-	const @"".QUERY_BUFFER = 0x9192
-	const @"".QUERY_BUFFER_BARRIER_BIT = 0x8000
-	const @"".QUERY_BUFFER_BINDING = 0x9193
-	const @"".QUERY_BY_REGION_NO_WAIT = 0x8e16
-	const @"".QUERY_BY_REGION_NO_WAIT_INVERTED = 0x8e1a
-	const @"".QUERY_BY_REGION_WAIT = 0x8e15
-	const @"".QUERY_BY_REGION_WAIT_INVERTED = 0x8e19
-	const @"".QUERY_COUNTER_BITS = 0x8864
-	const @"".QUERY_KHR = 0x82e3
-	const @"".QUERY_NO_WAIT = 0x8e14
-	const @"".QUERY_NO_WAIT_INVERTED = 0x8e18
-	const @"".QUERY_OBJECT_EXT = 0x9153
-	const @"".QUERY_RESULT = 0x8866
-	const @"".QUERY_RESULT_AVAILABLE = 0x8867
-	const @"".QUERY_RESULT_NO_WAIT = 0x9194
-	const @"".QUERY_TARGET = 0x82ea
-	const @"".QUERY_WAIT = 0x8e13
-	const @"".QUERY_WAIT_INVERTED = 0x8e17
-	const @"".R11F_G11F_B10F = 0x8c3a
-	const @"".R16 = 0x822a
-	const @"".R16F = 0x822d
-	const @"".R16I = 0x8233
-	const @"".R16UI = 0x8234
-	const @"".R16_SNORM = 0x8f98
-	const @"".R32F = 0x822e
-	const @"".R32I = 0x8235
-	const @"".R32UI = 0x8236
-	const @"".R3_G3_B2 = 0x2a10
-	const @"".R8 = 0x8229
-	const @"".R8I = 0x8231
-	const @"".R8UI = 0x8232
-	const @"".R8_SNORM = 0x8f94
-	const @"".RASTERIZER_DISCARD = 0x8c89
-	const @"".READ_BUFFER = 0xc02
-	const @"".READ_FRAMEBUFFER = 0x8ca8
-	const @"".READ_FRAMEBUFFER_BINDING = 0x8caa
-	const @"".READ_ONLY = 0x88b8
-	const @"".READ_PIXELS = 0x828c
-	const @"".READ_PIXELS_FORMAT = 0x828d
-	const @"".READ_PIXELS_TYPE = 0x828e
-	const @"".READ_WRITE = 0x88ba
-	const @"".RED = 0x1903
-	const @"".RED_INTEGER = 0x8d94
-	const @"".RED_NV = 0x1903
-	const @"".REFERENCED_BY_COMPUTE_SHADER = 0x930b
-	const @"".REFERENCED_BY_FRAGMENT_SHADER = 0x930a
-	const @"".REFERENCED_BY_GEOMETRY_SHADER = 0x9309
-	const @"".REFERENCED_BY_TESS_CONTROL_SHADER = 0x9307
-	const @"".REFERENCED_BY_TESS_EVALUATION_SHADER = 0x9308
-	const @"".REFERENCED_BY_VERTEX_SHADER = 0x9306
-	const @"".RENDERBUFFER = 0x8d41
-	const @"".RENDERBUFFER_ALPHA_SIZE = 0x8d53
-	const @"".RENDERBUFFER_BINDING = 0x8ca7
-	const @"".RENDERBUFFER_BLUE_SIZE = 0x8d52
-	const @"".RENDERBUFFER_DEPTH_SIZE = 0x8d54
-	const @"".RENDERBUFFER_GREEN_SIZE = 0x8d51
-	const @"".RENDERBUFFER_HEIGHT = 0x8d43
-	const @"".RENDERBUFFER_INTERNAL_FORMAT = 0x8d44
-	const @"".RENDERBUFFER_RED_SIZE = 0x8d50
-	const @"".RENDERBUFFER_SAMPLES = 0x8cab
-	const @"".RENDERBUFFER_STENCIL_SIZE = 0x8d55
-	const @"".RENDERBUFFER_WIDTH = 0x8d42
-	const @"".RENDERER = 0x1f01
-	const @"".REPEAT = 0x2901
-	const @"".REPLACE = 0x1e01
-	const @"".RESET_NOTIFICATION_STRATEGY = 0x8256
-	const @"".RESET_NOTIFICATION_STRATEGY_ARB = 0x8256
-	const @"".RESET_NOTIFICATION_STRATEGY_KHR = 0x8256
-	const @"".RG = 0x8227
-	const @"".RG16 = 0x822c
-	const @"".RG16F = 0x822f
-	const @"".RG16I = 0x8239
-	const @"".RG16UI = 0x823a
-	const @"".RG16_SNORM = 0x8f99
-	const @"".RG32F = 0x8230
-	const @"".RG32I = 0x823b
-	const @"".RG32UI = 0x823c
-	const @"".RG8 = 0x822b
-	const @"".RG8I = 0x8237
-	const @"".RG8UI = 0x8238
-	const @"".RG8_SNORM = 0x8f95
-	const @"".RGB = 0x1907
-	const @"".RGB10 = 0x8052
-	const @"".RGB10_A2 = 0x8059
-	const @"".RGB10_A2UI = 0x906f
-	const @"".RGB12 = 0x8053
-	const @"".RGB16 = 0x8054
-	const @"".RGB16F = 0x881b
-	const @"".RGB16I = 0x8d89
-	const @"".RGB16UI = 0x8d77
-	const @"".RGB16_SNORM = 0x8f9a
-	const @"".RGB32F = 0x8815
-	const @"".RGB32I = 0x8d83
-	const @"".RGB32UI = 0x8d71
-	const @"".RGB4 = 0x804f
-	const @"".RGB5 = 0x8050
-	const @"".RGB565 = 0x8d62
-	const @"".RGB5_A1 = 0x8057
-	const @"".RGB8 = 0x8051
-	const @"".RGB8I = 0x8d8f
-	const @"".RGB8UI = 0x8d7d
-	const @"".RGB8_SNORM = 0x8f96
-	const @"".RGB9_E5 = 0x8c3d
-	const @"".RGBA = 0x1908
-	const @"".RGBA12 = 0x805a
-	const @"".RGBA16 = 0x805b
-	const @"".RGBA16F = 0x881a
-	const @"".RGBA16I = 0x8d88
-	const @"".RGBA16UI = 0x8d76
-	const @"".RGBA16_SNORM = 0x8f9b
-	const @"".RGBA2 = 0x8055
-	const @"".RGBA32F = 0x8814
-	const @"".RGBA32I = 0x8d82
-	const @"".RGBA32UI = 0x8d70
-	const @"".RGBA4 = 0x8056
-	const @"".RGBA8 = 0x8058
-	const @"".RGBA8I = 0x8d8e
-	const @"".RGBA8UI = 0x8d7c
-	const @"".RGBA8_SNORM = 0x8f97
-	const @"".RGBA_INTEGER = 0x8d99
-	const @"".RGB_422_APPLE = 0x8a1f
-	const @"".RGB_INTEGER = 0x8d98
-	const @"".RGB_RAW_422_APPLE = 0x8a51
-	const @"".RG_INTEGER = 0x8228
-	const @"".RIGHT = 0x407
-	const @"".SAMPLER = 0x82e6
-	const @"".SAMPLER_1D = 0x8b5d
-	const @"".SAMPLER_1D_ARRAY = 0x8dc0
-	const @"".SAMPLER_1D_ARRAY_SHADOW = 0x8dc3
-	const @"".SAMPLER_1D_SHADOW = 0x8b61
-	const @"".SAMPLER_2D = 0x8b5e
-	const @"".SAMPLER_2D_ARRAY = 0x8dc1
-	const @"".SAMPLER_2D_ARRAY_SHADOW = 0x8dc4
-	const @"".SAMPLER_2D_MULTISAMPLE = 0x9108
-	const @"".SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910b
-	const @"".SAMPLER_2D_RECT = 0x8b63
-	const @"".SAMPLER_2D_RECT_SHADOW = 0x8b64
-	const @"".SAMPLER_2D_SHADOW = 0x8b62
-	const @"".SAMPLER_3D = 0x8b5f
-	const @"".SAMPLER_BINDING = 0x8919
-	const @"".SAMPLER_BUFFER = 0x8dc2
-	const @"".SAMPLER_CUBE = 0x8b60
-	const @"".SAMPLER_CUBE_MAP_ARRAY_ARB = 0x900c
-	const @"".SAMPLER_CUBE_MAP_ARRAY_SHADOW_ARB = 0x900d
-	const @"".SAMPLER_CUBE_SHADOW = 0x8dc5
-	const @"".SAMPLER_KHR = 0x82e6
-	const @"".SAMPLES = 0x80a9
-	const @"".SAMPLES_PASSED = 0x8914
-	const @"".SAMPLE_ALPHA_TO_COVERAGE = 0x809e
-	const @"".SAMPLE_ALPHA_TO_ONE = 0x809f
-	const @"".SAMPLE_BUFFERS = 0x80a8
-	const @"".SAMPLE_COVERAGE = 0x80a0
-	const @"".SAMPLE_COVERAGE_INVERT = 0x80ab
-	const @"".SAMPLE_COVERAGE_VALUE = 0x80aa
-	const @"".SAMPLE_MASK = 0x8e51
-	const @"".SAMPLE_MASK_VALUE = 0x8e52
-	const @"".SAMPLE_POSITION = 0x8e50
-	const @"".SAMPLE_SHADING_ARB = 0x8c36
-	const @"".SCISSOR_BOX = 0xc10
-	const @"".SCISSOR_TEST = 0xc11
-	const @"".SCREEN_KHR = 0x9295
-	const @"".SCREEN_NV = 0x9295
-	const @"".SEPARATE_ATTRIBS = 0x8c8d
-	const @"".SET = 0x150f
-	const @"".SHADER = 0x82e1
-	const @"".SHADER_BINARY_FORMATS = 0x8df8
-	const @"".SHADER_COMPILER = 0x8dfa
-	const @"".SHADER_IMAGE_ACCESS_BARRIER_BIT = 0x20
-	const @"".SHADER_IMAGE_ATOMIC = 0x82a6
-	const @"".SHADER_IMAGE_LOAD = 0x82a4
-	const @"".SHADER_IMAGE_STORE = 0x82a5
-	const @"".SHADER_INCLUDE_ARB = 0x8dae
-	const @"".SHADER_KHR = 0x82e1
-	const @"".SHADER_OBJECT_EXT = 0x8b48
-	const @"".SHADER_SOURCE_LENGTH = 0x8b88
-	const @"".SHADER_STORAGE_BARRIER_BIT = 0x2000
-	const @"".SHADER_STORAGE_BLOCK = 0x92e6
-	const @"".SHADER_STORAGE_BUFFER = 0x90d2
-	const @"".SHADER_STORAGE_BUFFER_BINDING = 0x90d3
-	const @"".SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT = 0x90df
-	const @"".SHADER_STORAGE_BUFFER_SIZE = 0x90d5
-	const @"".SHADER_STORAGE_BUFFER_START = 0x90d4
-	const @"".SHADER_TYPE = 0x8b4f
-	const @"".SHADING_LANGUAGE_VERSION = 0x8b8c
-	const @"".SHORT = 0x1402
-	const @"".SIGNALED = 0x9119
-	const @"".SIGNED_NORMALIZED = 0x8f9c
-	const @"".SIMULTANEOUS_TEXTURE_AND_DEPTH_TEST = 0x82ac
-	const @"".SIMULTANEOUS_TEXTURE_AND_DEPTH_WRITE = 0x82ae
-	const @"".SIMULTANEOUS_TEXTURE_AND_STENCIL_TEST = 0x82ad
-	const @"".SIMULTANEOUS_TEXTURE_AND_STENCIL_WRITE = 0x82af
-	const @"".SKIP_DECODE_EXT = 0x8a4a
-	const @"".SMOOTH_LINE_WIDTH_GRANULARITY = 0xb23
-	const @"".SMOOTH_LINE_WIDTH_RANGE = 0xb22
-	const @"".SMOOTH_POINT_SIZE_GRANULARITY = 0xb13
-	const @"".SMOOTH_POINT_SIZE_RANGE = 0xb12
-	const @"".SOFTLIGHT_KHR = 0x929c
-	const @"".SOFTLIGHT_NV = 0x929c
-	const @"".SPARSE_BUFFER_PAGE_SIZE_ARB = 0x82f8
-	const @"".SPARSE_STORAGE_BIT_ARB = 0x400
-	const @"".SPARSE_TEXTURE_FULL_ARRAY_CUBE_MIPMAPS_ARB = 0x91a9
-	const @"".SRC1_ALPHA = 0x8589
-	const @"".SRC1_COLOR = 0x88f9
-	const @"".SRC_ALPHA = 0x302
-	const @"".SRC_ALPHA_SATURATE = 0x308
-	const @"".SRC_ATOP_NV = 0x928e
-	const @"".SRC_COLOR = 0x300
-	const @"".SRC_IN_NV = 0x928a
-	const @"".SRC_NV = 0x9286
-	const @"".SRC_OUT_NV = 0x928c
-	const @"".SRC_OVER_NV = 0x9288
-	const @"".SRGB = 0x8c40
-	const @"".SRGB8 = 0x8c41
-	const @"".SRGB8_ALPHA8 = 0x8c43
-	const @"".SRGB_ALPHA = 0x8c42
-	const @"".SRGB_DECODE_ARB = 0x8299
-	const @"".SRGB_READ = 0x8297
-	const @"".SRGB_WRITE = 0x8298
-	const @"".STACK_OVERFLOW = 0x503
-	const @"".STACK_OVERFLOW_KHR = 0x503
-	const @"".STACK_UNDERFLOW = 0x504
-	const @"".STACK_UNDERFLOW_KHR = 0x504
-	const @"".STATIC_COPY = 0x88e6
-	const @"".STATIC_DRAW = 0x88e4
-	const @"".STATIC_READ = 0x88e5
-	const @"".STENCIL = 0x1802
-	const @"".STENCIL_ATTACHMENT = 0x8d20
-	const @"".STENCIL_BACK_FAIL = 0x8801
-	const @"".STENCIL_BACK_FUNC = 0x8800
-	const @"".STENCIL_BACK_PASS_DEPTH_FAIL = 0x8802
-	const @"".STENCIL_BACK_PASS_DEPTH_PASS = 0x8803
-	const @"".STENCIL_BACK_REF = 0x8ca3
-	const @"".STENCIL_BACK_VALUE_MASK = 0x8ca4
-	const @"".STENCIL_BACK_WRITEMASK = 0x8ca5
-	const @"".STENCIL_BUFFER_BIT = 0x400
-	const @"".STENCIL_CLEAR_VALUE = 0xb91
-	const @"".STENCIL_COMPONENTS = 0x8285
-	const @"".STENCIL_FAIL = 0xb94
-	const @"".STENCIL_FUNC = 0xb92
-	const @"".STENCIL_INDEX = 0x1901
-	const @"".STENCIL_INDEX1 = 0x8d46
-	const @"".STENCIL_INDEX16 = 0x8d49
-	const @"".STENCIL_INDEX4 = 0x8d47
-	const @"".STENCIL_INDEX8 = 0x8d48
-	const @"".STENCIL_PASS_DEPTH_FAIL = 0xb95
-	const @"".STENCIL_PASS_DEPTH_PASS = 0xb96
-	const @"".STENCIL_REF = 0xb97
-	const @"".STENCIL_RENDERABLE = 0x8288
-	const @"".STENCIL_TEST = 0xb90
-	const @"".STENCIL_VALUE_MASK = 0xb93
-	const @"".STENCIL_WRITEMASK = 0xb98
-	const @"".STEREO = 0xc33
-	const @"".STREAM_COPY = 0x88e2
-	const @"".STREAM_DRAW = 0x88e0
-	const @"".STREAM_READ = 0x88e1
-	const @"".SUBPIXEL_BITS = 0xd50
-	const @"".SYNC_CL_EVENT_ARB = 0x8240
-	const @"".SYNC_CL_EVENT_COMPLETE_ARB = 0x8241
-	const @"".SYNC_CONDITION = 0x9113
-	const @"".SYNC_FENCE = 0x9116
-	const @"".SYNC_FLAGS = 0x9115
-	const @"".SYNC_FLUSH_COMMANDS_BIT = 0x1
-	const @"".SYNC_GPU_COMMANDS_COMPLETE = 0x9117
-	const @"".SYNC_STATUS = 0x9114
-	const @"".TESS_CONTROL_OUTPUT_VERTICES = 0x8e75
-	const @"".TESS_CONTROL_SHADER = 0x8e88
-	const @"".TESS_CONTROL_SHADER_BIT = 0x8
-	const @"".TESS_CONTROL_SHADER_PATCHES_ARB = 0x82f1
-	const @"".TESS_CONTROL_SUBROUTINE = 0x92e9
-	const @"".TESS_CONTROL_SUBROUTINE_UNIFORM = 0x92ef
-	const @"".TESS_CONTROL_TEXTURE = 0x829c
-	const @"".TESS_EVALUATION_SHADER = 0x8e87
-	const @"".TESS_EVALUATION_SHADER_BIT = 0x10
-	const @"".TESS_EVALUATION_SHADER_INVOCATIONS_ARB = 0x82f2
-	const @"".TESS_EVALUATION_SUBROUTINE = 0x92ea
-	const @"".TESS_EVALUATION_SUBROUTINE_UNIFORM = 0x92f0
-	const @"".TESS_EVALUATION_TEXTURE = 0x829d
-	const @"".TESS_GEN_MODE = 0x8e76
-	const @"".TESS_GEN_POINT_MODE = 0x8e79
-	const @"".TESS_GEN_SPACING = 0x8e77
-	const @"".TESS_GEN_VERTEX_ORDER = 0x8e78
-	const @"".TEXTURE = 0x1702
-	const @"".TEXTURE0 = 0x84c0
-	const @"".TEXTURE1 = 0x84c1
-	const @"".TEXTURE10 = 0x84ca
-	const @"".TEXTURE11 = 0x84cb
-	const @"".TEXTURE12 = 0x84cc
-	const @"".TEXTURE13 = 0x84cd
-	const @"".TEXTURE14 = 0x84ce
-	const @"".TEXTURE15 = 0x84cf
-	const @"".TEXTURE16 = 0x84d0
-	const @"".TEXTURE17 = 0x84d1
-	const @"".TEXTURE18 = 0x84d2
-	const @"".TEXTURE19 = 0x84d3
-	const @"".TEXTURE2 = 0x84c2
-	const @"".TEXTURE20 = 0x84d4
-	const @"".TEXTURE21 = 0x84d5
-	const @"".TEXTURE22 = 0x84d6
-	const @"".TEXTURE23 = 0x84d7
-	const @"".TEXTURE24 = 0x84d8
-	const @"".TEXTURE25 = 0x84d9
-	const @"".TEXTURE26 = 0x84da
-	const @"".TEXTURE27 = 0x84db
-	const @"".TEXTURE28 = 0x84dc
-	const @"".TEXTURE29 = 0x84dd
-	const @"".TEXTURE3 = 0x84c3
-	const @"".TEXTURE30 = 0x84de
-	const @"".TEXTURE31 = 0x84df
-	const @"".TEXTURE4 = 0x84c4
-	const @"".TEXTURE5 = 0x84c5
-	const @"".TEXTURE6 = 0x84c6
-	const @"".TEXTURE7 = 0x84c7
-	const @"".TEXTURE8 = 0x84c8
-	const @"".TEXTURE9 = 0x84c9
-	const @"".TEXTURE_1D = 0xde0
-	const @"".TEXTURE_1D_ARRAY = 0x8c18
-	const @"".TEXTURE_2D = 0xde1
-	const @"".TEXTURE_2D_ARRAY = 0x8c1a
-	const @"".TEXTURE_2D_MULTISAMPLE = 0x9100
-	const @"".TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9102
-	const @"".TEXTURE_3D = 0x806f
-	const @"".TEXTURE_ALPHA_SIZE = 0x805f
-	const @"".TEXTURE_ALPHA_TYPE = 0x8c13
-	const @"".TEXTURE_BASE_LEVEL = 0x813c
-	const @"".TEXTURE_BINDING = 0x82eb
-	const @"".TEXTURE_BINDING_1D = 0x8068
-	const @"".TEXTURE_BINDING_1D_ARRAY = 0x8c1c
-	const @"".TEXTURE_BINDING_2D = 0x8069
-	const @"".TEXTURE_BINDING_2D_ARRAY = 0x8c1d
-	const @"".TEXTURE_BINDING_2D_MULTISAMPLE = 0x9104
-	const @"".TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY = 0x9105
-	const @"".TEXTURE_BINDING_3D = 0x806a
-	const @"".TEXTURE_BINDING_BUFFER = 0x8c2c
-	const @"".TEXTURE_BINDING_CUBE_MAP = 0x8514
-	const @"".TEXTURE_BINDING_CUBE_MAP_ARRAY = 0x900a
-	const @"".TEXTURE_BINDING_CUBE_MAP_ARRAY_ARB = 0x900a
-	const @"".TEXTURE_BINDING_RECTANGLE = 0x84f6
-	const @"".TEXTURE_BLUE_SIZE = 0x805e
-	const @"".TEXTURE_BLUE_TYPE = 0x8c12
-	const @"".TEXTURE_BORDER_COLOR = 0x1004
-	const @"".TEXTURE_BUFFER = 0x8c2a
-	const @"".TEXTURE_BUFFER_DATA_STORE_BINDING = 0x8c2d
-	const @"".TEXTURE_BUFFER_OFFSET = 0x919d
-	const @"".TEXTURE_BUFFER_OFFSET_ALIGNMENT = 0x919f
-	const @"".TEXTURE_BUFFER_SIZE = 0x919e
-	const @"".TEXTURE_COMPARE_FUNC = 0x884d
-	const @"".TEXTURE_COMPARE_MODE = 0x884c
-	const @"".TEXTURE_COMPRESSED = 0x86a1
-	const @"".TEXTURE_COMPRESSED_BLOCK_HEIGHT = 0x82b2
-	const @"".TEXTURE_COMPRESSED_BLOCK_SIZE = 0x82b3
-	const @"".TEXTURE_COMPRESSED_BLOCK_WIDTH = 0x82b1
-	const @"".TEXTURE_COMPRESSED_IMAGE_SIZE = 0x86a0
-	const @"".TEXTURE_COMPRESSION_HINT = 0x84ef
-	const @"".TEXTURE_CUBE_MAP = 0x8513
-	const @"".TEXTURE_CUBE_MAP_ARRAY = 0x9009
-	const @"".TEXTURE_CUBE_MAP_ARRAY_ARB = 0x9009
-	const @"".TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516
-	const @"".TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518
-	const @"".TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851a
-	const @"".TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515
-	const @"".TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517
-	const @"".TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519
-	const @"".TEXTURE_CUBE_MAP_SEAMLESS = 0x884f
-	const @"".TEXTURE_DEPTH = 0x8071
-	const @"".TEXTURE_DEPTH_SIZE = 0x884a
-	const @"".TEXTURE_DEPTH_TYPE = 0x8c16
-	const @"".TEXTURE_FETCH_BARRIER_BIT = 0x8
-	const @"".TEXTURE_FILTER_CONTROL_EXT = 0x8500
-	const @"".TEXTURE_FIXED_SAMPLE_LOCATIONS = 0x9107
-	const @"".TEXTURE_GATHER = 0x82a2
-	const @"".TEXTURE_GATHER_SHADOW = 0x82a3
-	const @"".TEXTURE_GREEN_SIZE = 0x805d
-	const @"".TEXTURE_GREEN_TYPE = 0x8c11
-	const @"".TEXTURE_HEIGHT = 0x1001
-	const @"".TEXTURE_IMAGE_FORMAT = 0x828f
-	const @"".TEXTURE_IMAGE_TYPE = 0x8290
-	const @"".TEXTURE_IMMUTABLE_FORMAT = 0x912f
-	const @"".TEXTURE_IMMUTABLE_LEVELS = 0x82df
-	const @"".TEXTURE_INTERNAL_FORMAT = 0x1003
-	const @"".TEXTURE_LOD_BIAS = 0x8501
-	const @"".TEXTURE_LOD_BIAS_EXT = 0x8501
-	const @"".TEXTURE_MAG_FILTER = 0x2800
-	const @"".TEXTURE_MAX_ANISOTROPY_EXT = 0x84fe
-	const @"".TEXTURE_MAX_LEVEL = 0x813d
-	const @"".TEXTURE_MAX_LOD = 0x813b
-	const @"".TEXTURE_MIN_FILTER = 0x2801
-	const @"".TEXTURE_MIN_LOD = 0x813a
-	const @"".TEXTURE_RECTANGLE = 0x84f5
-	const @"".TEXTURE_RED_SIZE = 0x805c
-	const @"".TEXTURE_RED_TYPE = 0x8c10
-	const @"".TEXTURE_SAMPLES = 0x9106
-	const @"".TEXTURE_SHADOW = 0x82a1
-	const @"".TEXTURE_SHARED_SIZE = 0x8c3f
-	const @"".TEXTURE_SPARSE_ARB = 0x91a6
-	const @"".TEXTURE_SRGB_DECODE_EXT = 0x8a48
-	const @"".TEXTURE_STENCIL_SIZE = 0x88f1
-	const @"".TEXTURE_SWIZZLE_A = 0x8e45
-	const @"".TEXTURE_SWIZZLE_B = 0x8e44
-	const @"".TEXTURE_SWIZZLE_G = 0x8e43
-	const @"".TEXTURE_SWIZZLE_R = 0x8e42
-	const @"".TEXTURE_SWIZZLE_RGBA = 0x8e46
-	const @"".TEXTURE_TARGET = 0x1006
-	const @"".TEXTURE_UPDATE_BARRIER_BIT = 0x100
-	const @"".TEXTURE_VIEW = 0x82b5
-	const @"".TEXTURE_VIEW_MIN_LAYER = 0x82dd
-	const @"".TEXTURE_VIEW_MIN_LEVEL = 0x82db
-	const @"".TEXTURE_VIEW_NUM_LAYERS = 0x82de
-	const @"".TEXTURE_VIEW_NUM_LEVELS = 0x82dc
-	const @"".TEXTURE_WIDTH = 0x1000
-	const @"".TEXTURE_WRAP_R = 0x8072
-	const @"".TEXTURE_WRAP_S = 0x2802
-	const @"".TEXTURE_WRAP_T = 0x2803
-	const @"".TIMEOUT_EXPIRED = 0x911b
-	const @"".TIMEOUT_IGNORED = 0xffffffffffffffff
-	const @"".TIMESTAMP = 0x8e28
-	const @"".TIME_ELAPSED = 0x88bf
-	const @"".TOP_LEVEL_ARRAY_SIZE = 0x930c
-	const @"".TOP_LEVEL_ARRAY_STRIDE = 0x930d
-	const @"".TRANSFORM_FEEDBACK = 0x8e22
-	const @"".TRANSFORM_FEEDBACK_ACTIVE = 0x8e24
-	const @"".TRANSFORM_FEEDBACK_BARRIER_BIT = 0x800
-	const @"".TRANSFORM_FEEDBACK_BINDING = 0x8e25
-	const @"".TRANSFORM_FEEDBACK_BUFFER = 0x8c8e
-	const @"".TRANSFORM_FEEDBACK_BUFFER_ACTIVE = 0x8e24
-	const @"".TRANSFORM_FEEDBACK_BUFFER_BINDING = 0x8c8f
-	const @"".TRANSFORM_FEEDBACK_BUFFER_INDEX = 0x934b
-	const @"".TRANSFORM_FEEDBACK_BUFFER_MODE = 0x8c7f
-	const @"".TRANSFORM_FEEDBACK_BUFFER_PAUSED = 0x8e23
-	const @"".TRANSFORM_FEEDBACK_BUFFER_SIZE = 0x8c85
-	const @"".TRANSFORM_FEEDBACK_BUFFER_START = 0x8c84
-	const @"".TRANSFORM_FEEDBACK_BUFFER_STRIDE = 0x934c
-	const @"".TRANSFORM_FEEDBACK_OVERFLOW_ARB = 0x82ec
-	const @"".TRANSFORM_FEEDBACK_PAUSED = 0x8e23
-	const @"".TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN = 0x8c88
-	const @"".TRANSFORM_FEEDBACK_STREAM_OVERFLOW_ARB = 0x82ed
-	const @"".TRANSFORM_FEEDBACK_VARYING = 0x92f4
-	const @"".TRANSFORM_FEEDBACK_VARYINGS = 0x8c83
-	const @"".TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH = 0x8c76
-	const @"".TRIANGLES = 0x4
-	const @"".TRIANGLES_ADJACENCY = 0xc
-	const @"".TRIANGLE_FAN = 0x6
-	const @"".TRIANGLE_STRIP = 0x5
-	const @"".TRIANGLE_STRIP_ADJACENCY = 0xd
-	const @"".TRUE = 0x1
-	const @"".TYPE = 0x92fa
-	const @"".UNCORRELATED_NV = 0x9282
-	const @"".UNDEFINED_VERTEX = 0x8260
-	const @"".UNIFORM = 0x92e1
-	const @"".UNIFORM_ARRAY_STRIDE = 0x8a3c
-	const @"".UNIFORM_ATOMIC_COUNTER_BUFFER_INDEX = 0x92da
-	const @"".UNIFORM_BARRIER_BIT = 0x4
-	const @"".UNIFORM_BLOCK = 0x92e2
-	const @"".UNIFORM_BLOCK_ACTIVE_UNIFORMS = 0x8a42
-	const @"".UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES = 0x8a43
-	const @"".UNIFORM_BLOCK_BINDING = 0x8a3f
-	const @"".UNIFORM_BLOCK_DATA_SIZE = 0x8a40
-	const @"".UNIFORM_BLOCK_INDEX = 0x8a3a
-	const @"".UNIFORM_BLOCK_NAME_LENGTH = 0x8a41
-	const @"".UNIFORM_BLOCK_REFERENCED_BY_COMPUTE_SHADER = 0x90ec
-	const @"".UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER = 0x8a46
-	const @"".UNIFORM_BLOCK_REFERENCED_BY_GEOMETRY_SHADER = 0x8a45
-	const @"".UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER = 0x84f0
-	const @"".UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER = 0x84f1
-	const @"".UNIFORM_BLOCK_REFERENCED_BY_VERTEX_SHADER = 0x8a44
-	const @"".UNIFORM_BUFFER = 0x8a11
-	const @"".UNIFORM_BUFFER_BINDING = 0x8a28
-	const @"".UNIFORM_BUFFER_OFFSET_ALIGNMENT = 0x8a34
-	const @"".UNIFORM_BUFFER_SIZE = 0x8a2a
-	const @"".UNIFORM_BUFFER_START = 0x8a29
-	const @"".UNIFORM_IS_ROW_MAJOR = 0x8a3e
-	const @"".UNIFORM_MATRIX_STRIDE = 0x8a3d
-	const @"".UNIFORM_NAME_LENGTH = 0x8a39
-	const @"".UNIFORM_OFFSET = 0x8a3b
-	const @"".UNIFORM_SIZE = 0x8a38
-	const @"".UNIFORM_TYPE = 0x8a37
-	const @"".UNKNOWN_CONTEXT_RESET = 0x8255
-	const @"".UNKNOWN_CONTEXT_RESET_ARB = 0x8255
-	const @"".UNKNOWN_CONTEXT_RESET_KHR = 0x8255
-	const @"".UNPACK_ALIGNMENT = 0xcf5
-	const @"".UNPACK_COMPRESSED_BLOCK_DEPTH = 0x9129
-	const @"".UNPACK_COMPRESSED_BLOCK_HEIGHT = 0x9128
-	const @"".UNPACK_COMPRESSED_BLOCK_SIZE = 0x912a
-	const @"".UNPACK_COMPRESSED_BLOCK_WIDTH = 0x9127
-	const @"".UNPACK_IMAGE_HEIGHT = 0x806e
-	const @"".UNPACK_LSB_FIRST = 0xcf1
-	const @"".UNPACK_ROW_LENGTH = 0xcf2
-	const @"".UNPACK_SKIP_IMAGES = 0x806d
-	const @"".UNPACK_SKIP_PIXELS = 0xcf4
-	const @"".UNPACK_SKIP_ROWS = 0xcf3
-	const @"".UNPACK_SWAP_BYTES = 0xcf0
-	const @"".UNSIGNALED = 0x9118
-	const @"".UNSIGNED_BYTE = 0x1401
-	const @"".UNSIGNED_BYTE_2_3_3_REV = 0x8362
-	const @"".UNSIGNED_BYTE_3_3_2 = 0x8032
-	const @"".UNSIGNED_INT = 0x1405
-	const @"".UNSIGNED_INT64_AMD = 0x8bc2
-	const @"".UNSIGNED_INT64_ARB = 0x140f
-	const @"".UNSIGNED_INT_10F_11F_11F_REV = 0x8c3b
-	const @"".UNSIGNED_INT_10_10_10_2 = 0x8036
-	const @"".UNSIGNED_INT_24_8 = 0x84fa
-	const @"".UNSIGNED_INT_2_10_10_10_REV = 0x8368
-	const @"".UNSIGNED_INT_5_9_9_9_REV = 0x8c3e
-	const @"".UNSIGNED_INT_8_8_8_8 = 0x8035
-	const @"".UNSIGNED_INT_8_8_8_8_REV = 0x8367
-	const @"".UNSIGNED_INT_ATOMIC_COUNTER = 0x92db
-	const @"".UNSIGNED_INT_IMAGE_1D = 0x9062
-	const @"".UNSIGNED_INT_IMAGE_1D_ARRAY = 0x9068
-	const @"".UNSIGNED_INT_IMAGE_2D = 0x9063
-	const @"".UNSIGNED_INT_IMAGE_2D_ARRAY = 0x9069
-	const @"".UNSIGNED_INT_IMAGE_2D_MULTISAMPLE = 0x906b
-	const @"".UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY = 0x906c
-	const @"".UNSIGNED_INT_IMAGE_2D_RECT = 0x9065
-	const @"".UNSIGNED_INT_IMAGE_3D = 0x9064
-	const @"".UNSIGNED_INT_IMAGE_BUFFER = 0x9067
-	const @"".UNSIGNED_INT_IMAGE_CUBE = 0x9066
-	const @"".UNSIGNED_INT_IMAGE_CUBE_MAP_ARRAY = 0x906a
-	const @"".UNSIGNED_INT_SAMPLER_1D = 0x8dd1
-	const @"".UNSIGNED_INT_SAMPLER_1D_ARRAY = 0x8dd6
-	const @"".UNSIGNED_INT_SAMPLER_2D = 0x8dd2
-	const @"".UNSIGNED_INT_SAMPLER_2D_ARRAY = 0x8dd7
-	const @"".UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE = 0x910a
-	const @"".UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910d
-	const @"".UNSIGNED_INT_SAMPLER_2D_RECT = 0x8dd5
-	const @"".UNSIGNED_INT_SAMPLER_3D = 0x8dd3
-	const @"".UNSIGNED_INT_SAMPLER_BUFFER = 0x8dd8
-	const @"".UNSIGNED_INT_SAMPLER_CUBE = 0x8dd4
-	const @"".UNSIGNED_INT_SAMPLER_CUBE_MAP_ARRAY_ARB = 0x900f
-	const @"".UNSIGNED_INT_VEC2 = 0x8dc6
-	const @"".UNSIGNED_INT_VEC3 = 0x8dc7
-	const @"".UNSIGNED_INT_VEC4 = 0x8dc8
-	const @"".UNSIGNED_NORMALIZED = 0x8c17
-	const @"".UNSIGNED_SHORT = 0x1403
-	const @"".UNSIGNED_SHORT_1_5_5_5_REV = 0x8366
-	const @"".UNSIGNED_SHORT_4_4_4_4 = 0x8033
-	const @"".UNSIGNED_SHORT_4_4_4_4_REV = 0x8365
-	const @"".UNSIGNED_SHORT_5_5_5_1 = 0x8034
-	const @"".UNSIGNED_SHORT_5_6_5 = 0x8363
-	const @"".UNSIGNED_SHORT_5_6_5_REV = 0x8364
-	const @"".UNSIGNED_SHORT_8_8_APPLE = 0x85ba
-	const @"".UNSIGNED_SHORT_8_8_REV_APPLE = 0x85bb
-	const @"".UPPER_LEFT = 0x8ca2
-	const @"".VALIDATE_STATUS = 0x8b83
-	const @"".VENDOR = 0x1f00
-	const @"".VERSION = 0x1f02
-	const @"".VERTEX_ARRAY = 0x8074
-	const @"".VERTEX_ARRAY_BINDING = 0x85b5
-	const @"".VERTEX_ARRAY_KHR = 0x8074
-	const @"".VERTEX_ARRAY_OBJECT_EXT = 0x9154
-	const @"".VERTEX_ATTRIB_ARRAY_BARRIER_BIT = 0x1
-	const @"".VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889f
-	const @"".VERTEX_ATTRIB_ARRAY_DIVISOR = 0x88fe
-	const @"".VERTEX_ATTRIB_ARRAY_ENABLED = 0x8622
-	const @"".VERTEX_ATTRIB_ARRAY_INTEGER = 0x88fd
-	const @"".VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886a
-	const @"".VERTEX_ATTRIB_ARRAY_POINTER = 0x8645
-	const @"".VERTEX_ATTRIB_ARRAY_SIZE = 0x8623
-	const @"".VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624
-	const @"".VERTEX_ATTRIB_ARRAY_TYPE = 0x8625
-	const @"".VERTEX_ATTRIB_BINDING = 0x82d4
-	const @"".VERTEX_ATTRIB_RELATIVE_OFFSET = 0x82d5
-	const @"".VERTEX_BINDING_DIVISOR = 0x82d6
-	const @"".VERTEX_BINDING_OFFSET = 0x82d7
-	const @"".VERTEX_BINDING_STRIDE = 0x82d8
-	const @"".VERTEX_PROGRAM_POINT_SIZE = 0x8642
-	const @"".VERTEX_SHADER = 0x8b31
-	const @"".VERTEX_SHADER_BIT = 0x1
-	const @"".VERTEX_SHADER_BIT_EXT = 0x1
-	const @"".VERTEX_SHADER_INVOCATIONS_ARB = 0x82f0
-	const @"".VERTEX_SUBROUTINE = 0x92e8
-	const @"".VERTEX_SUBROUTINE_UNIFORM = 0x92ee
-	const @"".VERTEX_TEXTURE = 0x829b
-	const @"".VERTICES_SUBMITTED_ARB = 0x82ee
-	const @"".VIEWPORT = 0xba2
-	const @"".VIEWPORT_BOUNDS_RANGE = 0x825d
-	const @"".VIEWPORT_INDEX_PROVOKING_VERTEX = 0x825f
-	const @"".VIEWPORT_SUBPIXEL_BITS = 0x825c
-	const @"".VIEW_CLASS_128_BITS = 0x82c4
-	const @"".VIEW_CLASS_16_BITS = 0x82ca
-	const @"".VIEW_CLASS_24_BITS = 0x82c9
-	const @"".VIEW_CLASS_32_BITS = 0x82c8
-	const @"".VIEW_CLASS_48_BITS = 0x82c7
-	const @"".VIEW_CLASS_64_BITS = 0x82c6
-	const @"".VIEW_CLASS_8_BITS = 0x82cb
-	const @"".VIEW_CLASS_96_BITS = 0x82c5
-	const @"".VIEW_CLASS_BPTC_FLOAT = 0x82d3
-	const @"".VIEW_CLASS_BPTC_UNORM = 0x82d2
-	const @"".VIEW_CLASS_RGTC1_RED = 0x82d0
-	const @"".VIEW_CLASS_RGTC2_RG = 0x82d1
-	const @"".VIEW_CLASS_S3TC_DXT1_RGB = 0x82cc
-	const @"".VIEW_CLASS_S3TC_DXT1_RGBA = 0x82cd
-	const @"".VIEW_CLASS_S3TC_DXT3_RGBA = 0x82ce
-	const @"".VIEW_CLASS_S3TC_DXT5_RGBA = 0x82cf
-	const @"".VIEW_COMPATIBILITY_CLASS = 0x82b6
-	const @"".VIRTUAL_PAGE_SIZE_INDEX_ARB = 0x91a7
-	const @"".VIRTUAL_PAGE_SIZE_X_ARB = 0x9195
-	const @"".VIRTUAL_PAGE_SIZE_Y_ARB = 0x9196
-	const @"".VIRTUAL_PAGE_SIZE_Z_ARB = 0x9197
-	const @"".VIVIDLIGHT_NV = 0x92a6
-	const @"".WAIT_FAILED = 0x911d
-	const @"".WRITE_ONLY = 0x88b9
-	const @"".XOR = 0x1506
-	const @"".XOR_NV = 0x1506
-	const @"".ZERO = 0x0
-	const @"".ZERO_TO_ONE = 0x935f
-
-$$
-_go_.o          0           0     0     644     132232    `
-go object linux amd64 go1.6.2 X:none
-
-!
-  go13ld ˛B"".GraphicsProvider.ActiveTexture ¿  ¿dHã%    H;av;HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hã[ ˇ”HÉƒ√Ë    ÎØÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      Ü       ñ  0runtime.morestack_noctxt   0   "".t  type."".Texture ""..this  0type."".GraphicsProvider  6 ` ` 
- C Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.AttachShader ¿  ¿dHã%    H;avCHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hã[(ˇ”HÉƒ√Ë    ÎßÃÃÃÃÃÃÃ
-      ñ       ¶  0runtime.morestack_noctxt   0   "".s (type."".Shader "".p  type."".Program ""..this  0type."".GraphicsProvider  > ` ` 
- K Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.BindBuffer ¿  ¿dHã%    H;avCHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hã[0ˇ”HÉƒ√Ë    ÎßÃÃÃÃÃÃÃ
-      ñ       ¶  0runtime.morestack_noctxt   0   "".b (type."".Buffer "".target  type."".Enum ""..this  0type."".GraphicsProvider  > ` ` 
- K Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛P"".GraphicsProvider.BindFragDataLocation ‡  ‡dHã%    H;avWHÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$Hã\$@Hâ\$Hã\$HHâ\$Hã\$0Hâ$Hã\$(Hã[8ˇ”HÉƒ √Ë    ÎìÃÃÃ
-      æ       Œ  0runtime.morestack_noctxt   P@  "".name 0type.string "".color (type.uint32 "".p  type."".Program ""..this  0type."".GraphicsProvider @R? p 
-p 
- _ Tgclocals¬∑b0ceb230510ee8cb80caa5a2e5dbb4bc Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛F"".GraphicsProvider.BindFramebuffer ¿  ¿dHã%    H;avCHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hã[@ˇ”HÉƒ√Ë    ÎßÃÃÃÃÃÃÃ
-      ñ       ¶  0runtime.morestack_noctxt   0   
-"".fb (type."".Buffer "".target  type."".Enum ""..this  0type."".GraphicsProvider  > ` ` 
- K Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛H"".GraphicsProvider.BindRenderbuffer ¿  ¿dHã%    H;avCHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hã[Hˇ”HÉƒ√Ë    ÎßÃÃÃÃÃÃÃ
-      ñ       ¶  0runtime.morestack_noctxt   0   "".renderbuffer (type."".Buffer "".target  type."".Enum ""..this  0type."".GraphicsProvider  > ` ` 
- K Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛>"".GraphicsProvider.BindTexture ¿  ¿dHã%    H;avCHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hã[Pˇ”HÉƒ√Ë    ÎßÃÃÃÃÃÃÃ
-      ñ       ¶  0runtime.morestack_noctxt   0   "".t (type."".Texture "".target  type."".Enum ""..this  0type."".GraphicsProvider  > ` ` 
- K Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛F"".GraphicsProvider.BindVertexArray ¿  ¿dHã%    H;av;HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hã[Xˇ”HÉƒ√Ë    ÎØÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      Ü       ñ  0runtime.morestack_noctxt   0   "".a  type.uint32 ""..this  0type."".GraphicsProvider  6 ` ` 
- C Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.BlendEquation ¿  ¿dHã%    H;av;HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hã[`ˇ”HÉƒ√Ë    ÎØÃÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      Ü       ñ  0runtime.morestack_noctxt   0   "".mode  type."".Enum ""..this  0type."".GraphicsProvider  6 ` ` 
- C Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.BlendFunc ¿  ¿dHã%    H;avCHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hã[hˇ”HÉƒ√Ë    ÎßÃÃÃÃÃÃÃ
-      ñ       ¶  0runtime.morestack_noctxt   0   "".dFactor (type."".Enum "".sFactor  type."".Enum ""..this  0type."".GraphicsProvider  > ` ` 
- K Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛F"".GraphicsProvider.BlitFramebuffer ¿  ¿dHã%    H;aÜÉ   HÉÏ0HãY HÖ€tHç|$8H9;uHâ#ã\$Hâ\$ã\$Lâ\$ã\$Pâ\$ã\$Tâ\$ã\$Xâ\$ã\$\â\$ã\$`â\$ ã\$dâ\$$ã\$hâ\$(ã\$lâ\$,Hã\$@Hâ$Hã\$8Hã[pˇ”HÉƒ0√Ë    È`ˇˇˇ
-      û       Æ  0runtime.morestack_noctxt   p`  "".filter htype."".Enum "".mask ` type."".Bitfield "".dstY1 Xtype.int32 "".dstX1 Ptype.int32 "".dstY0 Htype.int32 "".dstX0 @type.int32 "".srcY1 8type.int32 "".srcX1 0type.int32 "".srcY0 (type.int32 "".srcX0  type.int32 ""..this  0type."".GraphicsProvider `~_ † †  è Tgclocals¬∑b60dc0a6046c556b02baa766a3fd5a27 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.BufferData ‡  ‡dHã%    H;avWHÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$ã\$Xâ\$ Hã\$8Hâ$Hã\$0Hã[xˇ”HÉƒ(√Ë    ÎìÃÃÃ
-      æ       Œ  0runtime.morestack_noctxt   `P  
-"".usage Ptype."".Enum "".data @&type.unsafe.Pointer "".size 0type.int "".target  type."".Enum ""..this  0type."".GraphicsProvider PRO p p 
- _ Tgclocals¬∑a94f642f953d6923b0749f8cef177f27 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛T"".GraphicsProvider.CheckFramebufferStatus ¿  ¿dHã%    H;avFHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$Hã\$(Hâ$Hã\$ HãõÄ   ˇ”ã\$â\$8HÉƒ√Ë    Î§ÃÃÃÃ
-      å       ¨  0runtime.morestack_noctxt   @0  "".~r1 0type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider 0A/ ` ` 
- F Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛2"".GraphicsProvider.Clear ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõà   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".mask  type."".Enum ""..this  0type."".GraphicsProvider  9 ` ` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.ClearColor Ä  ÄdHã%    H;avfHÉÏHãY HÖ€tHç|$ H9;uHâ#ÛD$0ÛD$ÛD$4ÛD$ÛD$8ÛD$ÛD$<ÛD$Hã\$(Hâ$Hã\$ Hãõê   ˇ”HÉƒ√Ë    ÎÑÃÃÃÃ
-      ‹       Ï  0runtime.morestack_noctxt   @0  
-"".alpha 8type.float32 "".blue 0type.float32 "".green (type.float32 "".red  type.float32 ""..this  0type."".GraphicsProvider 0a/ Ä  Ä 
- n Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.CompileShader ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõò   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".s  type."".Shader ""..this  0type."".GraphicsProvider  9 ` "` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.CreateProgram ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$Hãõ†   ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type."".Program ""..this  0type."".GraphicsProvider  9 ` $` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.CreateShader ¿  ¿dHã%    H;avFHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$Hã\$(Hâ$Hã\$ Hãõ®   ˇ”ã\$â\$8HÉƒ√Ë    Î§ÃÃÃÃ
-      å       ¨  0runtime.morestack_noctxt   @0  "".~r1 0type."".Shader 
-"".ty  type."".Enum ""..this  0type."".GraphicsProvider 0A/ ` &` 
- F Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛8"".GraphicsProvider.CullFace ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ∞   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".mode  type."".Enum ""..this  0type."".GraphicsProvider  9 ` (` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.DeleteBuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ∏   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".b  type."".Buffer ""..this  0type."".GraphicsProvider  9 ` *` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛J"".GraphicsProvider.DeleteFramebuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ¿   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   
-"".fb  type."".Buffer ""..this  0type."".GraphicsProvider  9 ` ,` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.DeleteProgram ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ»   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".p  type."".Program ""..this  0type."".GraphicsProvider  9 ` .` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛L"".GraphicsProvider.DeleteRenderbuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ–   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   
-"".rb  type."".Buffer ""..this  0type."".GraphicsProvider  9 ` 0` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.DeleteShader ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõÿ   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".s  type."".Shader ""..this  0type."".GraphicsProvider  9 ` 2` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.DeleteTexture ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ‡   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".v  type."".Texture ""..this  0type."".GraphicsProvider  9 ` 4` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛J"".GraphicsProvider.DeleteVertexArray ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$HãõË   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".a  type.uint32 ""..this  0type."".GraphicsProvider  9 ` 6` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.DepthMask ¿  ¿dHã%    H;av?HÉÏHãY HÖ€tHç|$H9;uHâ#∂\$(à\$Hã\$ Hâ$Hã\$Hãõ   ˇ”HÉƒ√Ë    Î´ÃÃÃÃÃÃÃÃÃÃÃ
-      é       û  0runtime.morestack_noctxt   0   "".flag  type.bool ""..this  0type."".GraphicsProvider  : ` 8` 
- G Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛6"".GraphicsProvider.Disable ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ¯   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".e  type."".Enum ""..this  0type."".GraphicsProvider  9 ` :` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.DrawArrays ‡  ‡dHã%    H;avNHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ã\$8â\$Hã\$(Hâ$Hã\$ Hãõ   ˇ”HÉƒ√Ë    ÎúÃÃÃÃÃÃÃÃÃÃÃÃ
-      ¨       º  0runtime.morestack_noctxt   @0  "".count 0type.int32 "".first (type.int32 "".mode  type."".Enum ""..this  0type."".GraphicsProvider 0I/ p <p 
- V Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛>"".GraphicsProvider.DrawBuffers ‡  ‡dHã%    H;avTHÉÏ HãY HÖ€tHç|$(H9;uHâ#Hã\$8Hâ\$Hã\$@Hâ\$Hã\$HHâ\$Hã\$0Hâ$Hã\$(Hãõ  ˇ”HÉƒ √Ë    ÎñÃÃÃÃÃÃ
-      ∏       »  0runtime.morestack_noctxt   P@  "".buffers  type.[]uint32 ""..this  0type."".GraphicsProvider @O? p >p 
- \ Tgclocals¬∑13bdb4aeeaf63de3cc223d640262ea59 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.DrawElements ‡  ‡dHã%    H;avXHÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$ã\$@â\$Hã\$HHâ\$Hã\$0Hâ$Hã\$(Hãõ  ˇ”HÉƒ √Ë    ÎíÃÃ
-      ¿       –  0runtime.morestack_noctxt   P@  
-"".indices @&type.unsafe.Pointer "".xtype 0type."".Enum "".count (type.int32 "".mode  type."".Enum ""..this  0type."".GraphicsProvider @S?
- p @p 
- ` Tgclocals¬∑f5315976920103c988f17bf34b94e1d3 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛4"".GraphicsProvider.Enable ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ  ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".e  type."".Enum ""..this  0type."".GraphicsProvider  9 ` B` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛V"".GraphicsProvider.EnableVertexAttribArray ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ   ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".a  type.uint32 ""..this  0type."".GraphicsProvider  9 ` D` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛V"".GraphicsProvider.FramebufferRenderbuffer ‡  ‡dHã%    H;avVHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ã\$8â\$ã\$<â\$Hã\$(Hâ$Hã\$ Hãõ(  ˇ”HÉƒ√Ë    ÎîÃÃÃÃ
-      º       Ã  0runtime.morestack_noctxt   @0  
-"".renderbuffer 8type."".Buffer *"".renderbuffertarget 0type."".Enum "".attachment (type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider 0Q/ p Fp 
- ^ Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛P"".GraphicsProvider.FramebufferTexture2D Ä  ÄdHã%    H;av^HÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$ã\$@â\$ã\$Dâ\$ã\$Hâ\$Hã\$0Hâ$Hã\$(Hãõ0  ˇ”HÉƒ √Ë    ÎåÃÃÃÃÃÃÃÃÃÃÃÃ
-      Ã       ‹  0runtime.morestack_noctxt   P@  "".level @type.int32 "".texture 8type."".Texture "".textarget 0type."".Enum "".attachment (type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider @Y? Ä HÄ 
- f Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.GenBuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$Hãõ8  ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type."".Buffer ""..this  0type."".GraphicsProvider  9 ` J` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛D"".GraphicsProvider.GenFramebuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$Hãõ@  ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type."".Buffer ""..this  0type."".GraphicsProvider  9 ` L` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛F"".GraphicsProvider.GenRenderbuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$HãõH  ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type."".Buffer ""..this  0type."".GraphicsProvider  9 ` N` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.GenTexture ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$HãõP  ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type."".Texture ""..this  0type."".GraphicsProvider  9 ` P` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛D"".GraphicsProvider.GenVertexArray ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$HãõX  ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type.uint32 ""..this  0type."".GraphicsProvider  9 ` R` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛D"".GraphicsProvider.GenerateMipmap ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ`  ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".t  type."".Enum ""..this  0type."".GraphicsProvider  9 ` T` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛J"".GraphicsProvider.GetAttribLocation ‡  ‡dHã%    H;avZHÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$Hã\$8Hâ$Hã\$0Hãõh  ˇ”ã\$ â\$XHÉƒ(√Ë    Îê
-      ¥       ‘  0runtime.morestack_noctxt   `P  "".~r2 Ptype.int32 "".name 0type.string "".p  type."".Program ""..this  0type."".GraphicsProvider PUO p Vp 
- Z Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛8"".GraphicsProvider.GetError ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#Hã\$ Hâ$Hã\$Hãõp  ˇ”ã\$â\$(HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      |       ú  0runtime.morestack_noctxt   0   "".~r0  type.uint32 ""..this  0type."".GraphicsProvider  9 ` X` 
- >" Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛J"".GraphicsProvider.GetProgramInfoLog Ä  ÄdHã%    H;av^HÉÏ HãY HÖ€tHç|$(H9;uHâ#1€Hâ\$@Hâ\$Hã\$8â\$Hã\$0Hâ$Hã\$(Hãõx  ˇ”HãL$HãD$HâL$@HâD$HHÉƒ √Ë    ÎåÃÃÃÃÃÃÃÃÃÃÃÃ
-      §       ‹  0runtime.morestack_noctxt   P@  "".~r1 0type.string "".s  type."".Program ""..this  0type."".GraphicsProvider @Y? Ä ZÄ 
- R. Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.GetProgramiv ‡  ‡dHã%    H;avPHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$Hã\$8Hâ\$Hã\$(Hâ$Hã\$ HãõÄ  ˇ”HÉƒ√Ë    ÎöÃÃÃÃÃÃÃÃÃÃ
-      ∞       ¿  0runtime.morestack_noctxt   @0  "".params 0type.*int32 "".pname (type."".Enum "".p  type."".Program ""..this  0type."".GraphicsProvider 0K/ p \p 
- X Tgclocals¬∑d2df0383c41c6720b750183dba3bd7b9 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛H"".GraphicsProvider.GetShaderInfoLog Ä  ÄdHã%    H;av^HÉÏ HãY HÖ€tHç|$(H9;uHâ#1€Hâ\$@Hâ\$Hã\$8â\$Hã\$0Hâ$Hã\$(Hãõà  ˇ”HãL$HãD$HâL$@HâD$HHÉƒ √Ë    ÎåÃÃÃÃÃÃÃÃÃÃÃÃ
-      §       ‹  0runtime.morestack_noctxt   P@  "".~r1 0type.string "".s  type."".Shader ""..this  0type."".GraphicsProvider @Y? Ä ^Ä 
- R. Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛>"".GraphicsProvider.GetShaderiv ‡  ‡dHã%    H;avPHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$Hã\$8Hâ\$Hã\$(Hâ$Hã\$ Hãõê  ˇ”HÉƒ√Ë    ÎöÃÃÃÃÃÃÃÃÃÃ
-      ∞       ¿  0runtime.morestack_noctxt   @0  "".params 0type.*int32 "".pname (type."".Enum "".s  type."".Shader ""..this  0type."".GraphicsProvider 0K/ p `p 
- X Tgclocals¬∑d2df0383c41c6720b750183dba3bd7b9 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛L"".GraphicsProvider.GetUniformLocation ‡  ‡dHã%    H;avZHÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$Hã\$8Hâ$Hã\$0Hãõò  ˇ”ã\$ â\$XHÉƒ(√Ë    Îê
-      ¥       ‘  0runtime.morestack_noctxt   `P  "".~r2 Ptype.int32 "".name 0type.string "".p  type."".Program ""..this  0type."".GraphicsProvider PUO p bp 
- Z Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛>"".GraphicsProvider.LinkProgram ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ†  ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".p  type."".Program ""..this  0type."".GraphicsProvider  9 ` d` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛>"".GraphicsProvider.PolygonMode ¿  ¿dHã%    H;avFHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hãõ®  ˇ”HÉƒ√Ë    Î§ÃÃÃÃ
-      ú       ¨  0runtime.morestack_noctxt   0   "".mode (type."".Enum "".face  type."".Enum ""..this  0type."".GraphicsProvider  A ` f` 
- N Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.PolygonOffset ‡  ‡dHã%    H;avNHÉÏHãY HÖ€tHç|$H9;uHâ#ÛD$(ÛD$ÛD$,ÛD$Hã\$ Hâ$Hã\$Hãõ∞  ˇ”HÉƒ√Ë    ÎúÃÃÃÃÃÃÃÃÃÃÃÃ
-      ¨       º  0runtime.morestack_noctxt   0   "".units (type.float32 "".factor  type.float32 ""..this  0type."".GraphicsProvider  I p hp 
- V Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛."".GraphicsProvider.Ptr ‡  ‡dHã%    H;avTHÉÏ HãY HÖ€tHç|$(H9;uHâ#Hã\$8Hâ\$Hã\$@Hâ\$Hã\$0Hâ$Hã\$(Hãõ∏  ˇ”Hã\$Hâ\$HHÉƒ √Ë    ÎñÃÃÃÃÃÃ
-      §       »  0runtime.morestack_noctxt   P@  "".~r1 @&type.unsafe.Pointer "".data  "type.interface {} ""..this  0type."".GraphicsProvider @O? p jp 
- R Tgclocals¬∑d0110d631ecd4af0947009e36d46dc99 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.PtrOffset ¿  ¿dHã%    H;avJHÉÏHãY HÖ€tHç|$ H9;uHâ#Hã\$0Hâ\$Hã\$(Hâ$Hã\$ Hãõ¿  ˇ”Hã\$Hâ\$8HÉƒ√Ë    Î†
-      ê       ¥  0runtime.morestack_noctxt   @0  "".~r1 0&type.unsafe.Pointer "".offset  type.int ""..this  0type."".GraphicsProvider 0E/ ` l` 
- H Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.ReadBuffer ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõ»  ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".src  type."".Enum ""..this  0type."".GraphicsProvider  9 ` n` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛N"".GraphicsProvider.RenderbufferStorage ‡  ‡dHã%    H;avVHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ã\$8â\$ã\$<â\$Hã\$(Hâ$Hã\$ Hãõ–  ˇ”HÉƒ√Ë    ÎîÃÃÃÃ
-      º       Ã  0runtime.morestack_noctxt   @0  
-"".height 8type.int32 "".width 0type.int32 """.internalformat (type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider 0Q/ p pp 
- ^ Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛d"".GraphicsProvider.RenderbufferStorageMultisample Ä  ÄdHã%    H;av^HÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$ã\$@â\$ã\$Dâ\$ã\$Hâ\$Hã\$0Hâ$Hã\$(Hãõÿ  ˇ”HÉƒ √Ë    ÎåÃÃÃÃÃÃÃÃÃÃÃÃ
-      Ã       ‹  0runtime.morestack_noctxt   P@  "".height @type.int32 "".width 8type.int32 """.internalformat 0type."".Enum "".samples (type.int32 "".target  type."".Enum ""..this  0type."".GraphicsProvider @Y? Ä rÄ 
- f Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛6"".GraphicsProvider.Scissor ‡  ‡dHã%    H;avVHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ã\$8â\$ã\$<â\$Hã\$(Hâ$Hã\$ Hãõ‡  ˇ”HÉƒ√Ë    ÎîÃÃÃÃ
-      º       Ã  0runtime.morestack_noctxt   @0  
-"".h 8type.int32 "".w 0type.int32 "".y (type.int32 "".x  type.int32 ""..this  0type."".GraphicsProvider 0Q/ p tp 
- ^ Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.ShaderSource ‡  ‡dHã%    H;avRHÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$Hã\$@Hâ\$Hã\$HHâ\$Hã\$0Hâ$Hã\$(HãõË  ˇ”HÉƒ √Ë    ÎòÃÃÃÃÃÃÃÃ
-      ¥       ƒ  0runtime.morestack_noctxt   P@  "".source 0type.string "".s  type."".Shader ""..this  0type."".GraphicsProvider @M? p vp 
- Z Tgclocals¬∑b0ceb230510ee8cb80caa5a2e5dbb4bc Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.TexImage2D ‡  ‡dHã%    H;aÜä   HÉÏ8HãY HÖ€tHç|$@H9;uHâ#ã\$Pâ\$ã\$Tâ\$ã\$Xâ\$ã\$\â\$ã\$`â\$ã\$dâ\$ã\$hâ\$ ã\$lâ\$$Hã\$pHâ\$(Hã\$xHâ\$0Hã\$HHâ$Hã\$@Hãõ  ˇ”HÉƒ8√Ë    ÈYˇˇˇÃÃÃÃÃÃÃÃÃ
-      ¨       º  0runtime.morestack_noctxt   Äp  "".dataLength ptype.int "".ptr `&type.unsafe.Pointer 
-"".ty Xtype."".Enum "".format Ptype."".Enum "".border Htype.int32 "".height @type.int32 "".width 8type.int32 "".intfmt 0type.int32 "".level (type.int32 "".target  type."".Enum ""..this  0type."".GraphicsProvider pÖo ∞ x∞  ñ Tgclocals¬∑bb007c61a9867c666ffae73dc3c3eaa1 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛R"".GraphicsProvider.TexImage2DMultisample Ä  ÄdHã%    H;avgHÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$ã\$@â\$ã\$Dâ\$ã\$Hâ\$∂\$Là\$Hã\$0Hâ$Hã\$(Hãõ¯  ˇ”HÉƒ √Ë    ÎÉÃÃÃ
-      ﬁ       Ó  0runtime.morestack_noctxt   P@  ."".fixedsamplelocations Htype.bool "".height @type.int32 "".width 8type.int32 "".intfmt 0type."".Enum "".samples (type.int32 "".target  type."".Enum ""..this  0type."".GraphicsProvider @b? Ä zÄ 
- o Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.TexParameterf ‡  ‡dHã%    H;avRHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ÛD$8ÛD$Hã\$(Hâ$Hã\$ Hãõ   ˇ”HÉƒ√Ë    ÎòÃÃÃÃÃÃÃÃ
-      ¥       ƒ  0runtime.morestack_noctxt   @0  "".param 0type.float32 "".pname (type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider 0M/ p |p 
- Z Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛D"".GraphicsProvider.TexParameterfv ‡  ‡dHã%    H;avPHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$Hã\$8Hâ\$Hã\$(Hâ$Hã\$ Hãõ  ˇ”HÉƒ√Ë    ÎöÃÃÃÃÃÃÃÃÃÃ
-      ∞       ¿  0runtime.morestack_noctxt   @0  "".params 0type.*float32 "".pname (type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider 0K/ p ~p 
- X Tgclocals¬∑d2df0383c41c6720b750183dba3bd7b9 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.TexParameteri ‡  ‡dHã%    H;avNHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ã\$8â\$Hã\$(Hâ$Hã\$ Hãõ  ˇ”HÉƒ√Ë    ÎúÃÃÃÃÃÃÃÃÃÃÃÃ
-      ¨       º  0runtime.morestack_noctxt   @0  "".param 0type.int32 "".pname (type."".Enum "".target  type."".Enum ""..this  0type."".GraphicsProvider 0I/ p Äp 
- V Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛@"".GraphicsProvider.TexStorage3D Ä  ÄdHã%    H;avfHÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$ã\$@â\$ã\$Dâ\$ã\$Hâ\$ã\$Lâ\$Hã\$0Hâ$Hã\$(Hãõ  ˇ”HÉƒ √Ë    ÎÑÃÃÃÃ
-      ‹       Ï  0runtime.morestack_noctxt   P@  "".depth Htype.int32 "".height @type.int32 "".width 8type.int32 "".intfmt 0type.uint32 "".level (type.int32 "".target  type."".Enum ""..this  0type."".GraphicsProvider @a? Ä 
-ÇÄ 
- n Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛B"".GraphicsProvider.TexSubImage3D ‡  ‡dHã%    H;aÜê   HÉÏ8HãY HÖ€tHç|$@H9;uHâ#ã\$Pâ\$ã\$Tâ\$ã\$Xâ\$ã\$\â\$ã\$`â\$ã\$dâ\$ã\$hâ\$ ã\$lâ\$$ã\$pâ\$(ã\$tâ\$,Hã\$xHâ\$0Hã\$HHâ$Hã\$@Hãõ   ˇ”HÉƒ8√Ë    ÈSˇˇˇÃÃÃ
-      ∏       »  0runtime.morestack_noctxt   Äp  "".ptr p&type.unsafe.Pointer 
-"".ty htype."".Enum "".fmt `type."".Enum "".depth Xtype.int32 "".height Ptype.int32 "".width Htype.int32 "".zoff @type.int32 "".yoff 8type.int32 "".xoff 0type.int32 "".level (type.int32 "".target  type."".Enum ""..this  0type."".GraphicsProvider pão ∞ 
-Ñ∞  ú Tgclocals¬∑a1775912c2a1f7b6239d18ae19054ced Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.Uniform1f ¿  ¿dHã%    H;avJHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ÛD$,ÛD$Hã\$ Hâ$Hã\$Hãõ(  ˇ”HÉƒ√Ë    Î†
-      §       ¥  0runtime.morestack_noctxt   0   "".v (type.float32 "".location  type.int32 ""..this  0type."".GraphicsProvider  E ` Ü` 
- R Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.Uniform1fv Ä  ÄdHã%    H;av\HÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$Hã\$XHâ\$ Hã\$8Hâ$Hã\$0Hãõ0  ˇ”HÉƒ(√Ë    ÎéÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      »       ÿ  0runtime.morestack_noctxt   `P  "".values 0type.[]float32 "".location  type.int32 ""..this  0type."".GraphicsProvider PWO Ä 
-àÄ 
- d Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.Uniform1i ¿  ¿dHã%    H;avFHÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$ã\$,â\$Hã\$ Hâ$Hã\$Hãõ8  ˇ”HÉƒ√Ë    Î§ÃÃÃÃ
-      ú       ¨  0runtime.morestack_noctxt   0   "".v (type.int32 "".location  type.int32 ""..this  0type."".GraphicsProvider  A ` ä` 
- N Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.Uniform1iv Ä  ÄdHã%    H;av\HÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$Hã\$XHâ\$ Hã\$8Hâ$Hã\$0Hãõ@  ˇ”HÉƒ(√Ë    ÎéÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      »       ÿ  0runtime.morestack_noctxt   `P  "".values 0type.[]int32 "".location  type.int32 ""..this  0type."".GraphicsProvider PWO Ä 
-åÄ 
- d Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.Uniform3f Ä  ÄdHã%    H;avbHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ÛD$4ÛD$ÛD$8ÛD$ÛD$<ÛD$Hã\$(Hâ$Hã\$ HãõH  ˇ”HÉƒ√Ë    ÎàÃÃÃÃÃÃÃÃ
-      ‘       ‰  0runtime.morestack_noctxt   @0  
-
-"".v2 8type.float32 
-"".v1 0type.float32 
-"".v0 (type.float32 "".location  type.int32 ""..this  0type."".GraphicsProvider 0]/ Ä 
-éÄ 
- j Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.Uniform3fv Ä  ÄdHã%    H;av\HÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$Hã\$XHâ\$ Hã\$8Hâ$Hã\$0HãõP  ˇ”HÉƒ(√Ë    ÎéÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      »       ÿ  0runtime.morestack_noctxt   `P  "".value 0type.[]float32 "".location  type.int32 ""..this  0type."".GraphicsProvider PWO Ä 
-êÄ 
- d Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛:"".GraphicsProvider.Uniform4f †  †dHã%    H;avnHÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ÛD$<ÛD$ÛD$@ÛD$ÛD$DÛD$ÛD$HÛD$Hã\$0Hâ$Hã\$(HãõX  ˇ”HÉƒ √Ë    ÈyˇˇˇÃÃÃÃÃÃÃÃÃ
-      Ï       ¸  0runtime.morestack_noctxt   P@  
-"".v3 @type.float32 
-"".v2 8type.float32 
-"".v1 0type.float32 
-"".v0 (type.float32 "".location  type.int32 ""..this  0type."".GraphicsProvider @i? ê 
-íê 
- v Tgclocals¬∑1347047f6245a35b91e9a4f213167d52 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.Uniform4fv Ä  ÄdHã%    H;av\HÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$Hã\$HHâ\$Hã\$PHâ\$Hã\$XHâ\$ Hã\$8Hâ$Hã\$0Hãõ`  ˇ”HÉƒ(√Ë    ÎéÃÃÃÃÃÃÃÃÃÃÃÃÃÃ
-      »       ÿ  0runtime.morestack_noctxt   `P  "".value 0type.[]float32 "".location  type.int32 ""..this  0type."".GraphicsProvider PWO Ä 
-îÄ 
- d Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛H"".GraphicsProvider.UniformMatrix4fv Ä  ÄdHã%    H;avcHÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$ã\$Dâ\$∂\$Hà\$Hã\$PHâ\$Hã\$XHâ\$ Hã\$8Hâ$Hã\$0Hãõh  ˇ”HÉƒ(√Ë    ÎáÃÃÃÃÃÃÃ
-      ÷       Ê  0runtime.morestack_noctxt   `P  
-"".value @"type.interface {} "".transpose 0type.bool "".count (type.int32 "".location  type.int32 ""..this  0type."".GraphicsProvider P^O Ä 
-ñÄ 
- k Tgclocals¬∑57cb53c6e1baf060ff3024e169f48a16 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛<"".GraphicsProvider.UseProgram ¿  ¿dHã%    H;av>HÉÏHãY HÖ€tHç|$H9;uHâ#ã\$(â\$Hã\$ Hâ$Hã\$Hãõp  ˇ”HÉƒ√Ë    Î¨ÃÃÃÃÃÃÃÃÃÃÃÃ
-      å       ú  0runtime.morestack_noctxt   0   "".p  type."".Program ""..this  0type."".GraphicsProvider  9 ` ò` 
- F Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛P"".GraphicsProvider.VertexAttribIPointer Ä  ÄdHã%    H;av`HÉÏ HãY HÖ€tHç|$(H9;uHâ#ã\$8â\$ã\$<â\$ã\$@â\$ã\$Dâ\$Hã\$HHâ\$Hã\$0Hâ$Hã\$(Hãõx  ˇ”HÉƒ √Ë    ÎäÃÃÃÃÃÃÃÃÃÃ
-      –       ‡  0runtime.morestack_noctxt   P@  "".ptr @&type.unsafe.Pointer "".stride 8type.int32 
-"".ty 0type."".Enum "".size (type.int32 "".dst  type.uint32 ""..this  0type."".GraphicsProvider @[? Ä 
-öÄ 
- h Tgclocals¬∑f5315976920103c988f17bf34b94e1d3 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛N"".GraphicsProvider.VertexAttribPointer Ä  ÄdHã%    H;aviHÉÏ(HãY HÖ€tHç|$0H9;uHâ#ã\$@â\$ã\$Dâ\$ã\$Hâ\$∂\$Là\$ã\$Pâ\$Hã\$XHâ\$ Hã\$8Hâ$Hã\$0HãõÄ  ˇ”HÉƒ(√Ë    ÎÅÃ
-      ‚       Ú  0runtime.morestack_noctxt   `P  "".ptr P&type.unsafe.Pointer "".stride @type.int32 "".normalized 8type.bool 
-"".ty 0type."".Enum "".size (type.int32 "".dst  type.uint32 ""..this  0type."".GraphicsProvider PdO	 Ä 
-úÄ 
- q Tgclocals¬∑f5e47e18d420f5f25cc7e646769eb55f Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛8"".GraphicsProvider.Viewport ‡  ‡dHã%    H;avVHÉÏHãY HÖ€tHç|$ H9;uHâ#ã\$0â\$ã\$4â\$ã\$8â\$ã\$<â\$Hã\$(Hâ$Hã\$ Hãõà  ˇ”HÉƒ√Ë    ÎîÃÃÃÃ
-      º       Ã  0runtime.morestack_noctxt   @0  
-"".height 8type.int32 "".width 0type.int32 "".y (type.int32 "".x  type.int32 ""..this  0type."".GraphicsProvider 0Q/ p ûp 
- ^ Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578 Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb   <autogenerated>˛"runtime.gcbits.01    ˛Lgo.string.hdr."*graphicsprovider.Enum"                       Dgo.string."*graphicsprovider.Enum"   ˛Dgo.string."*graphicsprovider.Enum" 0  .*graphicsprovider.Enum  ˛type.*"".Enum  ê  ê              uc 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  Lgo.string.hdr."*graphicsprovider.Enum"   p  ,go.weak.type.**"".Enum   Ä  type."".Enum   ˛runtime.gcbits.      ˛Jgo.string.hdr."graphicsprovider.Enum"                       Bgo.string."graphicsprovider.Enum"   ˛Bgo.string."graphicsprovider.Enum" 0  ,graphicsprovider.Enum  ˛(go.string.hdr."Enum"                        go.string."Enum"   ˛ go.string."Enum"   
-Enum  ˛vgo.string.hdr."github.com/tbogdala/fizzle/graphicsprovider"             +          ngo.string."github.com/tbogdala/fizzle/graphicsprovider"   ˛ngo.string."github.com/tbogdala/fizzle/graphicsprovider" `  Xgithub.com/tbogdala/fizzle/graphicsprovider  ˛"go.importpath."".             +          ngo.string."github.com/tbogdala/fizzle/graphicsprovider"   ˛type."".Enum  –  –                ˝Ä ä                                                                                0Ä  runtime.algarray   @  runtime.gcbits.   P  Jgo.string.hdr."graphicsprovider.Enum"   p  type.*"".Enum   `Ä type."".Enum   Ä  (go.string.hdr."Enum"   ê  "go.importpath."".   †– type."".Enum   ˛Rgo.string.hdr."*graphicsprovider.Texture"                       Jgo.string."*graphicsprovider.Texture"   ˛Jgo.string."*graphicsprovider.Texture" @  4*graphicsprovider.Texture  ˛ type.*"".Texture  ê  ê              Ó[ß~ 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  Rgo.string.hdr."*graphicsprovider.Texture"   p  2go.weak.type.**"".Texture   Ä  type."".Texture   ˛Pgo.string.hdr."graphicsprovider.Texture"                       Hgo.string."graphicsprovider.Texture"   ˛Hgo.string."graphicsprovider.Texture" @  2graphicsprovider.Texture  ˛.go.string.hdr."Texture"                       &go.string."Texture"   ˛&go.string."Texture"   Texture  ˛type."".Texture  –  –               EœÁ ä                                                                                0Ä  runtime.algarray   @  runtime.gcbits.   P  Pgo.string.hdr."graphicsprovider.Texture"   p   type.*"".Texture   `Ä type."".Texture   Ä  .go.string.hdr."Texture"   ê  "go.importpath."".   †– type."".Texture   ˛Pgo.string.hdr."*graphicsprovider.Buffer"                       Hgo.string."*graphicsprovider.Buffer"   ˛Hgo.string."*graphicsprovider.Buffer" @  2*graphicsprovider.Buffer  ˛type.*"".Buffer  ê  ê              ÂÖ¡ 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  Pgo.string.hdr."*graphicsprovider.Buffer"   p  0go.weak.type.**"".Buffer   Ä  type."".Buffer   ˛Ngo.string.hdr."graphicsprovider.Buffer"                       Fgo.string."graphicsprovider.Buffer"   ˛Fgo.string."graphicsprovider.Buffer" 0  0graphicsprovider.Buffer  ˛,go.string.hdr."Buffer"                       $go.string."Buffer"   ˛$go.string."Buffer"   Buffer  ˛type."".Buffer  –  –               √Œ˙– ä                                                                                0Ä  runtime.algarray   @  runtime.gcbits.   P  Ngo.string.hdr."graphicsprovider.Buffer"   p  type.*"".Buffer   `Ä type."".Buffer   Ä  ,go.string.hdr."Buffer"   ê  "go.importpath."".   †– type."".Buffer   ˛Rgo.string.hdr."*graphicsprovider.Program"                       Jgo.string."*graphicsprovider.Program"   ˛Jgo.string."*graphicsprovider.Program" @  4*graphicsprovider.Program  ˛ type.*"".Program  ê  ê              $ÕU" 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  Rgo.string.hdr."*graphicsprovider.Program"   p  2go.weak.type.**"".Program   Ä  type."".Program   ˛Pgo.string.hdr."graphicsprovider.Program"                       Hgo.string."graphicsprovider.Program"   ˛Hgo.string."graphicsprovider.Program" @  2graphicsprovider.Program  ˛.go.string.hdr."Program"                       &go.string."Program"   ˛&go.string."Program"   Program  ˛type."".Program  –  –               °yK» ä                                                                                0Ä  runtime.algarray   @  runtime.gcbits.   P  Pgo.string.hdr."graphicsprovider.Program"   p   type.*"".Program   `Ä type."".Program   Ä  .go.string.hdr."Program"   ê  "go.importpath."".   †– type."".Program   ˛Pgo.string.hdr."*graphicsprovider.Shader"                       Hgo.string."*graphicsprovider.Shader"   ˛Hgo.string."*graphicsprovider.Shader" @  2*graphicsprovider.Shader  ˛type.*"".Shader  ê  ê              cﬂu 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  Pgo.string.hdr."*graphicsprovider.Shader"   p  0go.weak.type.**"".Shader   Ä  type."".Shader   ˛Ngo.string.hdr."graphicsprovider.Shader"                       Fgo.string."graphicsprovider.Shader"   ˛Fgo.string."graphicsprovider.Shader" 0  0graphicsprovider.Shader  ˛,go.string.hdr."Shader"                       $go.string."Shader"   ˛$go.string."Shader"   Shader  ˛type."".Shader  –  –               »é6_ ä                                                                                0Ä  runtime.algarray   @  runtime.gcbits.   P  Ngo.string.hdr."graphicsprovider.Shader"   p  type.*"".Shader   `Ä type."".Shader   Ä  ,go.string.hdr."Shader"   ê  "go.importpath."".   †– type."".Shader   ˛Tgo.string.hdr."*graphicsprovider.Bitfield"                       Lgo.string."*graphicsprovider.Bitfield"   ˛Lgo.string."*graphicsprovider.Bitfield" @  6*graphicsprovider.Bitfield  ˛"type.*"".Bitfield  ê  ê              õ»¶ 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  Tgo.string.hdr."*graphicsprovider.Bitfield"   p  4go.weak.type.**"".Bitfield   Ä   type."".Bitfield   ˛Rgo.string.hdr."graphicsprovider.Bitfield"                       Jgo.string."graphicsprovider.Bitfield"   ˛Jgo.string."graphicsprovider.Bitfield" @  4graphicsprovider.Bitfield  ˛0go.string.hdr."Bitfield"                       (go.string."Bitfield"   ˛(go.string."Bitfield"    Bitfield  ˛ type."".Bitfield  –  –               Ω‚bi ä                                                                                0Ä  runtime.algarray   @  runtime.gcbits.   P  Rgo.string.hdr."graphicsprovider.Bitfield"   p  "type.*"".Bitfield   `Ä  type."".Bitfield   Ä  0go.string.hdr."Bitfield"   ê  "go.importpath."".   †–  type."".Bitfield   ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑b0ceb230510ee8cb80caa5a2e5dbb4bc             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑b60dc0a6046c556b02baa766a3fd5a27             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑a94f642f953d6923b0749f8cef177f27             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑13bdb4aeeaf63de3cc223d640262ea59             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑f5315976920103c988f17bf34b94e1d3             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑d2df0383c41c6720b750183dba3bd7b9             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑d2df0383c41c6720b750183dba3bd7b9             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑d0110d631ecd4af0947009e36d46dc99             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑b0ceb230510ee8cb80caa5a2e5dbb4bc             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑bb007c61a9867c666ffae73dc3c3eaa1         C    ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑d2df0383c41c6720b750183dba3bd7b9             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑a1775912c2a1f7b6239d18ae19054ced         É    ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑1347047f6245a35b91e9a4f213167d52             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑c6134a2ac139b68c0737f8b03170e2ac             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑57cb53c6e1baf060ff3024e169f48a16         3    ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑3bb21ca8fe1d99a3e492463bd711418a             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑f5315976920103c988f17bf34b94e1d3             ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑f5e47e18d420f5f25cc7e646769eb55f         #    ˛Tgclocals¬∑33cdeccccebe80329f1fdbee7f5874cb           ˛Tgclocals¬∑0ebb2d1da58c1b4224bf5a7b370d7578             ˛\go.string.hdr."func(graphicsprovider.Texture)"                       Tgo.string."func(graphicsprovider.Texture)"   ˛Tgo.string."func(graphicsprovider.Texture)" @  >func(graphicsprovider.Texture)  ˛*type.func("".Texture) Ä  Ä              ÚπtU 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  \go.string.hdr."func(graphicsprovider.Texture)"   p  <go.weak.type.*func("".Texture)   ê *type.func("".Texture)   ¿Ä *type.func("".Texture)     type."".Texture   ˛vgo.typelink.func(graphicsprovider.Texture)	func("".Texture)              *type.func("".Texture)   ˛égo.string.hdr."func(graphicsprovider.Program, graphicsprovider.Shader)"             7          Ügo.string."func(graphicsprovider.Program, graphicsprovider.Shader)"   ˛Ügo.string."func(graphicsprovider.Program, graphicsprovider.Shader)" p  pfunc(graphicsprovider.Program, graphicsprovider.Shader)  ˛@type.func("".Program, "".Shader) ê  ê              Èˆ 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  égo.string.hdr."func(graphicsprovider.Program, graphicsprovider.Shader)"   p  Rgo.weak.type.*func("".Program, "".Shader)   ê @type.func("".Program, "".Shader)   ¿ê @type.func("".Program, "".Shader)     type."".Program   Ä  type."".Shader   ˛ægo.typelink.func(graphicsprovider.Program, graphicsprovider.Shader)	func("".Program, "".Shader)              @type.func("".Program, "".Shader)   ˛àgo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Buffer)"             4          Ägo.string."func(graphicsprovider.Enum, graphicsprovider.Buffer)"   ˛Ägo.string."func(graphicsprovider.Enum, graphicsprovider.Buffer)" p  jfunc(graphicsprovider.Enum, graphicsprovider.Buffer)  ˛:type.func("".Enum, "".Buffer) ê  ê              D˝Ø 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  àgo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Buffer)"   p  Lgo.weak.type.*func("".Enum, "".Buffer)   ê :type.func("".Enum, "".Buffer)   ¿ê :type.func("".Enum, "".Buffer)     type."".Enum   Ä  type."".Buffer   ˛≤go.typelink.func(graphicsprovider.Enum, graphicsprovider.Buffer)	func("".Enum, "".Buffer)              :type.func("".Enum, "".Buffer)   ˛|go.string.hdr."func(graphicsprovider.Program, uint32, string)"             .          tgo.string."func(graphicsprovider.Program, uint32, string)"   ˛tgo.string."func(graphicsprovider.Program, uint32, string)" `  ^func(graphicsprovider.Program, uint32, string)  ˛Jtype.func("".Program, uint32, string) †  †              ∂ì[à 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  |go.string.hdr."func(graphicsprovider.Program, uint32, string)"   p  \go.weak.type.*func("".Program, uint32, string)   ê Jtype.func("".Program, uint32, string)   ¿† Jtype.func("".Program, uint32, string)     type."".Program   Ä  type.uint32   ê  type.string   ˛∂go.typelink.func(graphicsprovider.Program, uint32, string)	func("".Program, uint32, string)              Jtype.func("".Program, uint32, string)   ˛ägo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Texture)"             5          Çgo.string."func(graphicsprovider.Enum, graphicsprovider.Texture)"   ˛Çgo.string."func(graphicsprovider.Enum, graphicsprovider.Texture)" p  lfunc(graphicsprovider.Enum, graphicsprovider.Texture)  ˛<type.func("".Enum, "".Texture) ê  ê              Å∏…$ 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ägo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Texture)"   p  Ngo.weak.type.*func("".Enum, "".Texture)   ê <type.func("".Enum, "".Texture)   ¿ê <type.func("".Enum, "".Texture)     type."".Enum   Ä  type."".Texture   ˛∂go.typelink.func(graphicsprovider.Enum, graphicsprovider.Texture)	func("".Enum, "".Texture)              <type.func("".Enum, "".Texture)   ˛8go.string.hdr."func(uint32)"                       0go.string."func(uint32)"   ˛0go.string."func(uint32)"    func(uint32)  ˛"type.func(uint32) Ä  Ä              ¬p0º 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  8go.string.hdr."func(uint32)"   p  4go.weak.type.*func(uint32)   ê "type.func(uint32)   ¿Ä "type.func(uint32)     type.uint32   ˛Jgo.typelink.func(uint32)	func(uint32)              "type.func(uint32)   ˛Vgo.string.hdr."func(graphicsprovider.Enum)"                       Ngo.string."func(graphicsprovider.Enum)"   ˛Ngo.string."func(graphicsprovider.Enum)" @  8func(graphicsprovider.Enum)  ˛$type.func("".Enum) Ä  Ä              "æ‘A 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Vgo.string.hdr."func(graphicsprovider.Enum)"   p  6go.weak.type.*func("".Enum)   ê $type.func("".Enum)   ¿Ä $type.func("".Enum)     type."".Enum   ˛jgo.typelink.func(graphicsprovider.Enum)	func("".Enum)              $type.func("".Enum)   ˛Ñgo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum)"             2          |go.string."func(graphicsprovider.Enum, graphicsprovider.Enum)"   ˛|go.string."func(graphicsprovider.Enum, graphicsprovider.Enum)" p  ffunc(graphicsprovider.Enum, graphicsprovider.Enum)  ˛6type.func("".Enum, "".Enum) ê  ê              t§∫4 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Ñgo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum)"   p  Hgo.weak.type.*func("".Enum, "".Enum)   ê 6type.func("".Enum, "".Enum)   ¿ê 6type.func("".Enum, "".Enum)     type."".Enum   Ä  type."".Enum   ˛™go.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum)	func("".Enum, "".Enum)              6type.func("".Enum, "".Enum)   ˛$"".hdr..gostring.1             n          ""..gostring.1   ˛""..gostring.1 ‡  ﬁfunc(int32, int32, int32, int32, int32, int32, int32, int32, graphicsprovider.Bitfield, graphicsprovider.Enum)  ˛Ætype.func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum) ê  ê              JÌ»p 3                                                        
-       
-                                                                                                                0Ä  runtime.algarray   @  "runtime.gcbits.01   P  $"".hdr..gostring.1   p  ¿go.weak.type.*func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum)   ê Ætype.func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum)   ¿ê Ætype.func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum)     type.int32   Ä  type.int32   ê  type.int32   †  type.int32   ∞  type.int32   ¿  type.int32   –  type.int32   ‡  type.int32      type."".Bitfield   Ä  type."".Enum   ˛ögo.typelink.func(int32, int32, int32, int32, int32, int32, int32, int32, graphicsprovider.Bitfield, graphicsprovider.Enum)	func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum)              Ætype.func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum)   ˛Ægo.string.hdr."func(graphicsprovider.Enum, int, unsafe.Pointer, graphicsprovider.Enum)"             G          ¶go.string."func(graphicsprovider.Enum, int, unsafe.Pointer, graphicsprovider.Enum)"   ˛¶go.string."func(graphicsprovider.Enum, int, unsafe.Pointer, graphicsprovider.Enum)" ê  êfunc(graphicsprovider.Enum, int, unsafe.Pointer, graphicsprovider.Enum)  ˛`type.func("".Enum, int, unsafe.Pointer, "".Enum) ∞  ∞              jéq‰ 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Ægo.string.hdr."func(graphicsprovider.Enum, int, unsafe.Pointer, graphicsprovider.Enum)"   p  rgo.weak.type.*func("".Enum, int, unsafe.Pointer, "".Enum)   ê `type.func("".Enum, int, unsafe.Pointer, "".Enum)   ¿∞ `type.func("".Enum, int, unsafe.Pointer, "".Enum)     type."".Enum   Ä  type.int   ê  &type.unsafe.Pointer   †  type."".Enum   ˛˛go.typelink.func(graphicsprovider.Enum, int, unsafe.Pointer, graphicsprovider.Enum)	func("".Enum, int, unsafe.Pointer, "".Enum)              `type.func("".Enum, int, unsafe.Pointer, "".Enum)   ˛Çgo.string.hdr."func(graphicsprovider.Enum) graphicsprovider.Enum"             1          zgo.string."func(graphicsprovider.Enum) graphicsprovider.Enum"   ˛zgo.string."func(graphicsprovider.Enum) graphicsprovider.Enum" p  dfunc(graphicsprovider.Enum) graphicsprovider.Enum  ˛4type.func("".Enum) "".Enum ê  ê              ≠Ç«õ 3                                                                                                            0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Çgo.string.hdr."func(graphicsprovider.Enum) graphicsprovider.Enum"   p  Fgo.weak.type.*func("".Enum) "".Enum   ê 4type.func("".Enum) "".Enum   ¿Ä 4type.func("".Enum) "".Enum     type."".Enum   Ä  type."".Enum   ˛¶go.typelink.func(graphicsprovider.Enum) graphicsprovider.Enum	func("".Enum) "".Enum              4type.func("".Enum) "".Enum   ˛pgo.string.hdr."func(float32, float32, float32, float32)"             (          hgo.string."func(float32, float32, float32, float32)"   ˛hgo.string."func(float32, float32, float32, float32)" `  Rfunc(float32, float32, float32, float32)  ˛Ztype.func(float32, float32, float32, float32) ∞  ∞              ü˜ø9 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  pgo.string.hdr."func(float32, float32, float32, float32)"   p  lgo.weak.type.*func(float32, float32, float32, float32)   ê Ztype.func(float32, float32, float32, float32)   ¿∞ Ztype.func(float32, float32, float32, float32)     type.float32   Ä  type.float32   ê  type.float32   †  type.float32   ˛∫go.typelink.func(float32, float32, float32, float32)	func(float32, float32, float32, float32)              Ztype.func(float32, float32, float32, float32)   ˛Zgo.string.hdr."func(graphicsprovider.Shader)"                       Rgo.string."func(graphicsprovider.Shader)"   ˛Rgo.string."func(graphicsprovider.Shader)" @  <func(graphicsprovider.Shader)  ˛(type.func("".Shader) Ä  Ä              =,∑Æ 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Zgo.string.hdr."func(graphicsprovider.Shader)"   p  :go.weak.type.*func("".Shader)   ê (type.func("".Shader)   ¿Ä (type.func("".Shader)     type."".Shader   ˛rgo.typelink.func(graphicsprovider.Shader)	func("".Shader)              (type.func("".Shader)   ˛^go.string.hdr."func() graphicsprovider.Program"                       Vgo.string."func() graphicsprovider.Program"   ˛Vgo.string."func() graphicsprovider.Program" @  @func() graphicsprovider.Program  ˛,type.func() "".Program Ä  Ä              ïîá 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ^go.string.hdr."func() graphicsprovider.Program"   p  >go.weak.type.*func() "".Program   ê ,type.func() "".Program   ¿ ,type.func() "".Program     type."".Program   ˛zgo.typelink.func() graphicsprovider.Program	func() "".Program              ,type.func() "".Program   ˛Ügo.string.hdr."func(graphicsprovider.Enum) graphicsprovider.Shader"             3          ~go.string."func(graphicsprovider.Enum) graphicsprovider.Shader"   ˛~go.string."func(graphicsprovider.Enum) graphicsprovider.Shader" p  hfunc(graphicsprovider.Enum) graphicsprovider.Shader  ˛8type.func("".Enum) "".Shader ê  ê              „Ñ˛p 3                                                                                                            0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Ügo.string.hdr."func(graphicsprovider.Enum) graphicsprovider.Shader"   p  Jgo.weak.type.*func("".Enum) "".Shader   ê 8type.func("".Enum) "".Shader   ¿Ä 8type.func("".Enum) "".Shader     type."".Enum   Ä  type."".Shader   ˛Ægo.typelink.func(graphicsprovider.Enum) graphicsprovider.Shader	func("".Enum) "".Shader              8type.func("".Enum) "".Shader   ˛Zgo.string.hdr."func(graphicsprovider.Buffer)"                       Rgo.string."func(graphicsprovider.Buffer)"   ˛Rgo.string."func(graphicsprovider.Buffer)" @  <func(graphicsprovider.Buffer)  ˛(type.func("".Buffer) Ä  Ä              JÃú 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Zgo.string.hdr."func(graphicsprovider.Buffer)"   p  :go.weak.type.*func("".Buffer)   ê (type.func("".Buffer)   ¿Ä (type.func("".Buffer)     type."".Buffer   ˛rgo.typelink.func(graphicsprovider.Buffer)	func("".Buffer)              (type.func("".Buffer)   ˛\go.string.hdr."func(graphicsprovider.Program)"                       Tgo.string."func(graphicsprovider.Program)"   ˛Tgo.string."func(graphicsprovider.Program)" @  >func(graphicsprovider.Program)  ˛*type.func("".Program) Ä  Ä              _ŒJK 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  \go.string.hdr."func(graphicsprovider.Program)"   p  <go.weak.type.*func("".Program)   ê *type.func("".Program)   ¿Ä *type.func("".Program)     type."".Program   ˛vgo.typelink.func(graphicsprovider.Program)	func("".Program)              *type.func("".Program)   ˛4go.string.hdr."func(bool)"             
-          ,go.string."func(bool)"   ˛,go.string."func(bool)"    func(bool)  ˛type.func(bool) Ä  Ä              7H˘◊ 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  4go.string.hdr."func(bool)"   p  0go.weak.type.*func(bool)   ê type.func(bool)   ¿Ä type.func(bool)     type.bool   ˛Bgo.typelink.func(bool)	func(bool)              type.func(bool)   ˛rgo.string.hdr."func(graphicsprovider.Enum, int32, int32)"             )          jgo.string."func(graphicsprovider.Enum, int32, int32)"   ˛jgo.string."func(graphicsprovider.Enum, int32, int32)" `  Tfunc(graphicsprovider.Enum, int32, int32)  ˛@type.func("".Enum, int32, int32) †  †              `óÕﬁ 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  rgo.string.hdr."func(graphicsprovider.Enum, int32, int32)"   p  Rgo.weak.type.*func("".Enum, int32, int32)   ê @type.func("".Enum, int32, int32)   ¿† @type.func("".Enum, int32, int32)     type."".Enum   Ä  type.int32   ê  type.int32   ˛¢go.typelink.func(graphicsprovider.Enum, int32, int32)	func("".Enum, int32, int32)              @type.func("".Enum, int32, int32)   ˛0go.string.hdr."[]uint32"                       (go.string."[]uint32"   ˛(go.string."[]uint32"    []uint32  ˛type.[]uint32 ê  ê              ‘ë                                                 
-0†  runtime.algarray   @  "runtime.gcbits.01   P  0go.string.hdr."[]uint32"   p  ,go.weak.type.*[]uint32   Ä  type.uint32   ˛:go.typelink.[]uint32	[]uint32              type.[]uint32   ˛<go.string.hdr."func([]uint32)"                       4go.string."func([]uint32)"   ˛4go.string."func([]uint32)"    func([]uint32)  ˛&type.func([]uint32) Ä  Ä              %g# 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  <go.string.hdr."func([]uint32)"   p  8go.weak.type.*func([]uint32)   ê &type.func([]uint32)   ¿Ä &type.func([]uint32)     type.[]uint32   ˛Rgo.typelink.func([]uint32)	func([]uint32)              &type.func([]uint32)   ˛≤go.string.hdr."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, unsafe.Pointer)"             I          ™go.string."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, unsafe.Pointer)"   ˛™go.string."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, unsafe.Pointer)" †  îfunc(graphicsprovider.Enum, int32, graphicsprovider.Enum, unsafe.Pointer)  ˛dtype.func("".Enum, int32, "".Enum, unsafe.Pointer) ∞  ∞              cœä- 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ≤go.string.hdr."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, unsafe.Pointer)"   p  vgo.weak.type.*func("".Enum, int32, "".Enum, unsafe.Pointer)   ê dtype.func("".Enum, int32, "".Enum, unsafe.Pointer)   ¿∞ dtype.func("".Enum, int32, "".Enum, unsafe.Pointer)     type."".Enum   Ä  type.int32   ê  type."".Enum   †  &type.unsafe.Pointer   ˛Ügo.typelink.func(graphicsprovider.Enum, int32, graphicsprovider.Enum, unsafe.Pointer)	func("".Enum, int32, "".Enum, unsafe.Pointer)              dtype.func("".Enum, int32, "".Enum, unsafe.Pointer)   ˛‰go.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Buffer)"             b          ‹go.string."func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Buffer)"   ˛‹go.string."func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Buffer)" –  ∆func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Buffer)  ˛^type.func("".Enum, "".Enum, "".Enum, "".Buffer) ∞  ∞              W√R 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ‰go.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Buffer)"   p  pgo.weak.type.*func("".Enum, "".Enum, "".Enum, "".Buffer)   ê ^type.func("".Enum, "".Enum, "".Enum, "".Buffer)   ¿∞ ^type.func("".Enum, "".Enum, "".Enum, "".Buffer)     type."".Enum   Ä  type."".Enum   ê  type."".Enum   †  type."".Buffer   ˛≤go.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Buffer)	func("".Enum, "".Enum, "".Enum, "".Buffer)              ^type.func("".Enum, "".Enum, "".Enum, "".Buffer)   ˛$"".hdr..gostring.2             j          ""..gostring.2   ˛""..gostring.2 ‡  ÷func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Texture, int32)  ˛ntype.func("".Enum, "".Enum, "".Enum, "".Texture, int32) ¿  ¿              7ÔB´ 3                                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  $"".hdr..gostring.2   p  Ägo.weak.type.*func("".Enum, "".Enum, "".Enum, "".Texture, int32)   ê ntype.func("".Enum, "".Enum, "".Enum, "".Texture, int32)   ¿¿ ntype.func("".Enum, "".Enum, "".Enum, "".Texture, int32)     type."".Enum   Ä  type."".Enum   ê  type."".Enum   †  type."".Texture   ∞  type.int32   ˛“go.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Enum, graphicsprovider.Texture, int32)	func("".Enum, "".Enum, "".Enum, "".Texture, int32)              ntype.func("".Enum, "".Enum, "".Enum, "".Texture, int32)   ˛\go.string.hdr."func() graphicsprovider.Buffer"                       Tgo.string."func() graphicsprovider.Buffer"   ˛Tgo.string."func() graphicsprovider.Buffer" @  >func() graphicsprovider.Buffer  ˛*type.func() "".Buffer Ä  Ä              ¥ôE 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  \go.string.hdr."func() graphicsprovider.Buffer"   p  <go.weak.type.*func() "".Buffer   ê *type.func() "".Buffer   ¿ *type.func() "".Buffer     type."".Buffer   ˛vgo.typelink.func() graphicsprovider.Buffer	func() "".Buffer              *type.func() "".Buffer   ˛^go.string.hdr."func() graphicsprovider.Texture"                       Vgo.string."func() graphicsprovider.Texture"   ˛Vgo.string."func() graphicsprovider.Texture" @  @func() graphicsprovider.Texture  ˛,type.func() "".Texture Ä  Ä              8∂{µ 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ^go.string.hdr."func() graphicsprovider.Texture"   p  >go.weak.type.*func() "".Texture   ê ,type.func() "".Texture   ¿ ,type.func() "".Texture     type."".Texture   ˛zgo.typelink.func() graphicsprovider.Texture	func() "".Texture              ,type.func() "".Texture   ˛:go.string.hdr."func() uint32"                       2go.string."func() uint32"   ˛2go.string."func() uint32"    func() uint32  ˛$type.func() uint32 Ä  Ä              ∫ÍL∆ 3                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  :go.string.hdr."func() uint32"   p  6go.weak.type.*func() uint32   ê $type.func() uint32   ¿ $type.func() uint32     type.uint32   ˛Ngo.typelink.func() uint32	func() uint32              $type.func() uint32   ˛xgo.string.hdr."func(graphicsprovider.Program, string) int32"             ,          pgo.string."func(graphicsprovider.Program, string) int32"   ˛pgo.string."func(graphicsprovider.Program, string) int32" `  Zfunc(graphicsprovider.Program, string) int32  ˛Ftype.func("".Program, string) int32 †  †              ≠ï˛º 3                                                                                                                    0Ä  runtime.algarray   @  "runtime.gcbits.01   P  xgo.string.hdr."func(graphicsprovider.Program, string) int32"   p  Xgo.weak.type.*func("".Program, string) int32   ê Ftype.func("".Program, string) int32   ¿ê Ftype.func("".Program, string) int32     type."".Program   Ä  type.string   ê  type.int32   ˛Ægo.typelink.func(graphicsprovider.Program, string) int32	func("".Program, string) int32              Ftype.func("".Program, string) int32   ˛jgo.string.hdr."func(graphicsprovider.Program) string"             %          bgo.string."func(graphicsprovider.Program) string"   ˛bgo.string."func(graphicsprovider.Program) string" P  Lfunc(graphicsprovider.Program) string  ˛8type.func("".Program) string ê  ê              %„ 3                                                                                                            0Ä  runtime.algarray   @  "runtime.gcbits.01   P  jgo.string.hdr."func(graphicsprovider.Program) string"   p  Jgo.weak.type.*func("".Program) string   ê 8type.func("".Program) string   ¿Ä 8type.func("".Program) string     type."".Program   Ä  type.string   ˛ígo.typelink.func(graphicsprovider.Program) string	func("".Program) string              8type.func("".Program) string   ˛ögo.string.hdr."func(graphicsprovider.Program, graphicsprovider.Enum, *int32)"             =          ígo.string."func(graphicsprovider.Program, graphicsprovider.Enum, *int32)"   ˛ígo.string."func(graphicsprovider.Program, graphicsprovider.Enum, *int32)" Ä  |func(graphicsprovider.Program, graphicsprovider.Enum, *int32)  ˛Ltype.func("".Program, "".Enum, *int32) †  †              ìTNò 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ögo.string.hdr."func(graphicsprovider.Program, graphicsprovider.Enum, *int32)"   p  ^go.weak.type.*func("".Program, "".Enum, *int32)   ê Ltype.func("".Program, "".Enum, *int32)   ¿† Ltype.func("".Program, "".Enum, *int32)     type."".Program   Ä  type."".Enum   ê  type.*int32   ˛÷go.typelink.func(graphicsprovider.Program, graphicsprovider.Enum, *int32)	func("".Program, "".Enum, *int32)              Ltype.func("".Program, "".Enum, *int32)   ˛hgo.string.hdr."func(graphicsprovider.Shader) string"             $          `go.string."func(graphicsprovider.Shader) string"   ˛`go.string."func(graphicsprovider.Shader) string" P  Jfunc(graphicsprovider.Shader) string  ˛6type.func("".Shader) string ê  ê              õ◊kF 3                                                                                                            0Ä  runtime.algarray   @  "runtime.gcbits.01   P  hgo.string.hdr."func(graphicsprovider.Shader) string"   p  Hgo.weak.type.*func("".Shader) string   ê 6type.func("".Shader) string   ¿Ä 6type.func("".Shader) string     type."".Shader   Ä  type.string   ˛égo.typelink.func(graphicsprovider.Shader) string	func("".Shader) string              6type.func("".Shader) string   ˛ògo.string.hdr."func(graphicsprovider.Shader, graphicsprovider.Enum, *int32)"             <          êgo.string."func(graphicsprovider.Shader, graphicsprovider.Enum, *int32)"   ˛êgo.string."func(graphicsprovider.Shader, graphicsprovider.Enum, *int32)" Ä  zfunc(graphicsprovider.Shader, graphicsprovider.Enum, *int32)  ˛Jtype.func("".Shader, "".Enum, *int32) †  †              ‡O'	 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ògo.string.hdr."func(graphicsprovider.Shader, graphicsprovider.Enum, *int32)"   p  \go.weak.type.*func("".Shader, "".Enum, *int32)   ê Jtype.func("".Shader, "".Enum, *int32)   ¿† Jtype.func("".Shader, "".Enum, *int32)     type."".Shader   Ä  type."".Enum   ê  type.*int32   ˛“go.typelink.func(graphicsprovider.Shader, graphicsprovider.Enum, *int32)	func("".Shader, "".Enum, *int32)              Jtype.func("".Shader, "".Enum, *int32)   ˛Lgo.string.hdr."func(float32, float32)"                       Dgo.string."func(float32, float32)"   ˛Dgo.string."func(float32, float32)" 0  .func(float32, float32)  ˛6type.func(float32, float32) ê  ê              ¨Q‚‰ 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Lgo.string.hdr."func(float32, float32)"   p  Hgo.weak.type.*func(float32, float32)   ê 6type.func(float32, float32)   ¿ê 6type.func(float32, float32)     type.float32   Ä  type.float32   ˛rgo.typelink.func(float32, float32)	func(float32, float32)              6type.func(float32, float32)   ˛"runtime.gcbits.03    ˛8go.string.hdr."interface {}"                       0go.string."interface {}"   ˛0go.string."interface {}"    interface {}  ˛"type.interface {} ∞  ∞              ÁW†                                                                 
-0Ä  runtime.algarray   @  "runtime.gcbits.03   P  8go.string.hdr."interface {}"   p  4go.weak.type.*interface {}   Ä∞ "type.interface {}   ˛bgo.string.hdr."func(interface {}) unsafe.Pointer"             !          Zgo.string."func(interface {}) unsafe.Pointer"   ˛Zgo.string."func(interface {}) unsafe.Pointer" P  Dfunc(interface {}) unsafe.Pointer  ˛Ltype.func(interface {}) unsafe.Pointer ê  ê              æ}Îe 3                                                                                                            0Ä  runtime.algarray   @  "runtime.gcbits.01   P  bgo.string.hdr."func(interface {}) unsafe.Pointer"   p  ^go.weak.type.*func(interface {}) unsafe.Pointer   ê Ltype.func(interface {}) unsafe.Pointer   ¿Ä Ltype.func(interface {}) unsafe.Pointer     "type.interface {}   Ä  &type.unsafe.Pointer   ˛ûgo.typelink.func(interface {}) unsafe.Pointer	func(interface {}) unsafe.Pointer              Ltype.func(interface {}) unsafe.Pointer   ˛Pgo.string.hdr."func(int) unsafe.Pointer"                       Hgo.string."func(int) unsafe.Pointer"   ˛Hgo.string."func(int) unsafe.Pointer" @  2func(int) unsafe.Pointer  ˛:type.func(int) unsafe.Pointer ê  ê              ';´ 3                                                                                                            0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Pgo.string.hdr."func(int) unsafe.Pointer"   p  Lgo.weak.type.*func(int) unsafe.Pointer   ê :type.func(int) unsafe.Pointer   ¿Ä :type.func(int) unsafe.Pointer     type.int   Ä  &type.unsafe.Pointer   ˛zgo.typelink.func(int) unsafe.Pointer	func(int) unsafe.Pointer              :type.func(int) unsafe.Pointer   ˛†go.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, int32, int32)"             @          ògo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, int32, int32)"   ˛ògo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, int32, int32)" ê  Çfunc(graphicsprovider.Enum, graphicsprovider.Enum, int32, int32)  ˛Rtype.func("".Enum, "".Enum, int32, int32) ∞  ∞              ]≠£ 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  †go.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, int32, int32)"   p  dgo.weak.type.*func("".Enum, "".Enum, int32, int32)   ê Rtype.func("".Enum, "".Enum, int32, int32)   ¿∞ Rtype.func("".Enum, "".Enum, int32, int32)     type."".Enum   Ä  type."".Enum   ê  type.int32   †  type.int32   ˛‚go.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum, int32, int32)	func("".Enum, "".Enum, int32, int32)              Rtype.func("".Enum, "".Enum, int32, int32)   ˛Ægo.string.hdr."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32)"             G          ¶go.string."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32)"   ˛¶go.string."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32)" ê  êfunc(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32)  ˛`type.func("".Enum, int32, "".Enum, int32, int32) ¿  ¿              Pk´ 3                                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Ægo.string.hdr."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32)"   p  rgo.weak.type.*func("".Enum, int32, "".Enum, int32, int32)   ê `type.func("".Enum, int32, "".Enum, int32, int32)   ¿¿ `type.func("".Enum, int32, "".Enum, int32, int32)     type."".Enum   Ä  type.int32   ê  type."".Enum   †  type.int32   ∞  type.int32   ˛˛go.typelink.func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32)	func("".Enum, int32, "".Enum, int32, int32)              `type.func("".Enum, int32, "".Enum, int32, int32)   ˛`go.string.hdr."func(int32, int32, int32, int32)"                        Xgo.string."func(int32, int32, int32, int32)"   ˛Xgo.string."func(int32, int32, int32, int32)" P  Bfunc(int32, int32, int32, int32)  ˛Jtype.func(int32, int32, int32, int32) ∞  ∞              ì>√c 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  `go.string.hdr."func(int32, int32, int32, int32)"   p  \go.weak.type.*func(int32, int32, int32, int32)   ê Jtype.func(int32, int32, int32, int32)   ¿∞ Jtype.func(int32, int32, int32, int32)     type.int32   Ä  type.int32   ê  type.int32   †  type.int32   ˛ögo.typelink.func(int32, int32, int32, int32)	func(int32, int32, int32, int32)              Jtype.func(int32, int32, int32, int32)   ˛jgo.string.hdr."func(graphicsprovider.Shader, string)"             %          bgo.string."func(graphicsprovider.Shader, string)"   ˛bgo.string."func(graphicsprovider.Shader, string)" P  Lfunc(graphicsprovider.Shader, string)  ˛8type.func("".Shader, string) ê  ê              ÆzCΩ 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  jgo.string.hdr."func(graphicsprovider.Shader, string)"   p  Jgo.weak.type.*func("".Shader, string)   ê 8type.func("".Shader, string)   ¿ê 8type.func("".Shader, string)     type."".Shader   Ä  type.string   ˛ígo.typelink.func(graphicsprovider.Shader, string)	func("".Shader, string)              8type.func("".Shader, string)   ˛$"".hdr..gostring.3             Å          ""..gostring.3   ˛""..gostring.3 ê  Ñfunc(graphicsprovider.Enum, int32, int32, int32, int32, int32, graphicsprovider.Enum, graphicsprovider.Enum, unsafe.Pointer, int)  ˛∏type.func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int) ê  ê              û∑hõ 3                                                        
-       
-                                                                                                                0Ä  runtime.algarray   @  "runtime.gcbits.01   P  $"".hdr..gostring.3   p   go.weak.type.*func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int)   ê ∏type.func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int)   ¿ê ∏type.func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int)     type."".Enum   Ä  type.int32   ê  type.int32   †  type.int32   ∞  type.int32   ¿  type.int32   –  type."".Enum   ‡  type."".Enum     &type.unsafe.Pointer   Ä  type.int   ˛ go.typelink.func(graphicsprovider.Enum, int32, int32, int32, int32, int32, graphicsprovider.Enum, graphicsprovider.Enum, unsafe.Pointer, int)	func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int)              ∏type.func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int)   ˛∫go.string.hdr."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32, bool)"             M          ≤go.string."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32, bool)"   ˛≤go.string."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32, bool)" †  úfunc(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32, bool)  ˛ltype.func("".Enum, int32, "".Enum, int32, int32, bool) –  –              -ˆi 3                                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ∫go.string.hdr."func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32, bool)"   p  ~go.weak.type.*func("".Enum, int32, "".Enum, int32, int32, bool)   ê ltype.func("".Enum, int32, "".Enum, int32, int32, bool)   ¿– ltype.func("".Enum, int32, "".Enum, int32, int32, bool)     type."".Enum   Ä  type.int32   ê  type."".Enum   †  type.int32   ∞  type.int32   ¿  type.bool   ˛ñgo.typelink.func(graphicsprovider.Enum, int32, graphicsprovider.Enum, int32, int32, bool)	func("".Enum, int32, "".Enum, int32, int32, bool)              ltype.func("".Enum, int32, "".Enum, int32, int32, bool)   ˛ñgo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, float32)"             ;          égo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, float32)"   ˛égo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, float32)" Ä  xfunc(graphicsprovider.Enum, graphicsprovider.Enum, float32)  ˛Htype.func("".Enum, "".Enum, float32) †  †              ´A† 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ñgo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, float32)"   p  Zgo.weak.type.*func("".Enum, "".Enum, float32)   ê Htype.func("".Enum, "".Enum, float32)   ¿† Htype.func("".Enum, "".Enum, float32)     type."".Enum   Ä  type."".Enum   ê  type.float32   ˛Œgo.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum, float32)	func("".Enum, "".Enum, float32)              Htype.func("".Enum, "".Enum, float32)   ˛ògo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, *float32)"             <          êgo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, *float32)"   ˛êgo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, *float32)" Ä  zfunc(graphicsprovider.Enum, graphicsprovider.Enum, *float32)  ˛Jtype.func("".Enum, "".Enum, *float32) †  †              TWú 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ògo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, *float32)"   p  \go.weak.type.*func("".Enum, "".Enum, *float32)   ê Jtype.func("".Enum, "".Enum, *float32)   ¿† Jtype.func("".Enum, "".Enum, *float32)     type."".Enum   Ä  type."".Enum   ê  type.*float32   ˛“go.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum, *float32)	func("".Enum, "".Enum, *float32)              Jtype.func("".Enum, "".Enum, *float32)   ˛ígo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, int32)"             9          ägo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, int32)"   ˛ägo.string."func(graphicsprovider.Enum, graphicsprovider.Enum, int32)" Ä  tfunc(graphicsprovider.Enum, graphicsprovider.Enum, int32)  ˛Dtype.func("".Enum, "".Enum, int32) †  †              œ∂îd 3                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ígo.string.hdr."func(graphicsprovider.Enum, graphicsprovider.Enum, int32)"   p  Vgo.weak.type.*func("".Enum, "".Enum, int32)   ê Dtype.func("".Enum, "".Enum, int32)   ¿† Dtype.func("".Enum, "".Enum, int32)     type."".Enum   Ä  type."".Enum   ê  type.int32   ˛∆go.typelink.func(graphicsprovider.Enum, graphicsprovider.Enum, int32)	func("".Enum, "".Enum, int32)              Dtype.func("".Enum, "".Enum, int32)   ˛ûgo.string.hdr."func(graphicsprovider.Enum, int32, uint32, int32, int32, int32)"             ?          ñgo.string."func(graphicsprovider.Enum, int32, uint32, int32, int32, int32)"   ˛ñgo.string."func(graphicsprovider.Enum, int32, uint32, int32, int32, int32)" Ä  Äfunc(graphicsprovider.Enum, int32, uint32, int32, int32, int32)  ˛ltype.func("".Enum, int32, uint32, int32, int32, int32) –  –              =%H 3                                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ûgo.string.hdr."func(graphicsprovider.Enum, int32, uint32, int32, int32, int32)"   p  ~go.weak.type.*func("".Enum, int32, uint32, int32, int32, int32)   ê ltype.func("".Enum, int32, uint32, int32, int32, int32)   ¿– ltype.func("".Enum, int32, uint32, int32, int32, int32)     type."".Enum   Ä  type.int32   ê  type.uint32   †  type.int32   ∞  type.int32   ¿  type.int32   ˛˙go.typelink.func(graphicsprovider.Enum, int32, uint32, int32, int32, int32)	func("".Enum, int32, uint32, int32, int32, int32)              ltype.func("".Enum, int32, uint32, int32, int32, int32)   ˛$"".hdr..gostring.4             ä          ""..gostring.4   ˛""..gostring.4 †  ñfunc(graphicsprovider.Enum, int32, int32, int32, int32, int32, int32, int32, graphicsprovider.Enum, graphicsprovider.Enum, unsafe.Pointer)  ˛ type.func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer) †  †              =†Üœ 3                                                                                                                                                                                      "0Ä  runtime.algarray   @  "runtime.gcbits.01   P  $"".hdr..gostring.4   p  ‹go.weak.type.*func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer)   ê  type.func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer)   ¿†  type.func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer)     type."".Enum   Ä  type.int32   ê  type.int32   †  type.int32   ∞  type.int32   ¿  type.int32   –  type.int32   ‡  type.int32     type."".Enum   Ä  type."".Enum   ê  &type.unsafe.Pointer   ˛Ógo.typelink.func(graphicsprovider.Enum, int32, int32, int32, int32, int32, int32, int32, graphicsprovider.Enum, graphicsprovider.Enum, unsafe.Pointer)	func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer)               type.func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer)   ˛Hgo.string.hdr."func(int32, float32)"                       @go.string."func(int32, float32)"   ˛@go.string."func(int32, float32)" 0  *func(int32, float32)  ˛2type.func(int32, float32) ê  ê              }'] 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Hgo.string.hdr."func(int32, float32)"   p  Dgo.weak.type.*func(int32, float32)   ê 2type.func(int32, float32)   ¿ê 2type.func(int32, float32)     type.int32   Ä  type.float32   ˛jgo.typelink.func(int32, float32)	func(int32, float32)              2type.func(int32, float32)   ˛2go.string.hdr."[]float32"             	          *go.string."[]float32"   ˛*go.string."[]float32"    []float32  ˛type.[]float32 ê  ê              ø”z                                                 
-0†  runtime.algarray   @  "runtime.gcbits.01   P  2go.string.hdr."[]float32"   p  .go.weak.type.*[]float32   Ä  type.float32   ˛>go.typelink.[]float32	[]float32              type.[]float32   ˛Lgo.string.hdr."func(int32, []float32)"                       Dgo.string."func(int32, []float32)"   ˛Dgo.string."func(int32, []float32)" 0  .func(int32, []float32)  ˛6type.func(int32, []float32) ê  ê              [„Øœ 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Lgo.string.hdr."func(int32, []float32)"   p  Hgo.weak.type.*func(int32, []float32)   ê 6type.func(int32, []float32)   ¿ê 6type.func(int32, []float32)     type.int32   Ä  type.[]float32   ˛rgo.typelink.func(int32, []float32)	func(int32, []float32)              6type.func(int32, []float32)   ˛Dgo.string.hdr."func(int32, int32)"                       <go.string."func(int32, int32)"   ˛<go.string."func(int32, int32)" 0  &func(int32, int32)  ˛.type.func(int32, int32) ê  ê              ≈,“U 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Dgo.string.hdr."func(int32, int32)"   p  @go.weak.type.*func(int32, int32)   ê .type.func(int32, int32)   ¿ê .type.func(int32, int32)     type.int32   Ä  type.int32   ˛bgo.typelink.func(int32, int32)	func(int32, int32)              .type.func(int32, int32)   ˛.go.string.hdr."[]int32"                       &go.string."[]int32"   ˛&go.string."[]int32"   []int32  ˛type.[]int32 ê  ê              *Ms                                                 
-0†  runtime.algarray   @  "runtime.gcbits.01   P  .go.string.hdr."[]int32"   p  *go.weak.type.*[]int32   Ä  type.int32   ˛6go.typelink.[]int32	[]int32              type.[]int32   ˛Hgo.string.hdr."func(int32, []int32)"                       @go.string."func(int32, []int32)"   ˛@go.string."func(int32, []int32)" 0  *func(int32, []int32)  ˛2type.func(int32, []int32) ê  ê              5ç•Ÿ 3                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Hgo.string.hdr."func(int32, []int32)"   p  Dgo.weak.type.*func(int32, []int32)   ê 2type.func(int32, []int32)   ¿ê 2type.func(int32, []int32)     type.int32   Ä  type.[]int32   ˛jgo.typelink.func(int32, []int32)	func(int32, []int32)              2type.func(int32, []int32)   ˛lgo.string.hdr."func(int32, float32, float32, float32)"             &          dgo.string."func(int32, float32, float32, float32)"   ˛dgo.string."func(int32, float32, float32, float32)" P  Nfunc(int32, float32, float32, float32)  ˛Vtype.func(int32, float32, float32, float32) ∞  ∞              ¢ë 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  lgo.string.hdr."func(int32, float32, float32, float32)"   p  hgo.weak.type.*func(int32, float32, float32, float32)   ê Vtype.func(int32, float32, float32, float32)   ¿∞ Vtype.func(int32, float32, float32, float32)     type.int32   Ä  type.float32   ê  type.float32   †  type.float32   ˛≤go.typelink.func(int32, float32, float32, float32)	func(int32, float32, float32, float32)              Vtype.func(int32, float32, float32, float32)   ˛~go.string.hdr."func(int32, float32, float32, float32, float32)"             /          vgo.string."func(int32, float32, float32, float32, float32)"   ˛vgo.string."func(int32, float32, float32, float32, float32)" `  `func(int32, float32, float32, float32, float32)  ˛htype.func(int32, float32, float32, float32, float32) ¿  ¿              â-—T 3                                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ~go.string.hdr."func(int32, float32, float32, float32, float32)"   p  zgo.weak.type.*func(int32, float32, float32, float32, float32)   ê htype.func(int32, float32, float32, float32, float32)   ¿¿ htype.func(int32, float32, float32, float32, float32)     type.int32   Ä  type.float32   ê  type.float32   †  type.float32   ∞  type.float32   ˛÷go.typelink.func(int32, float32, float32, float32, float32)	func(int32, float32, float32, float32, float32)              htype.func(int32, float32, float32, float32, float32)   ˛lgo.string.hdr."func(int32, int32, bool, interface {})"             &          dgo.string."func(int32, int32, bool, interface {})"   ˛dgo.string."func(int32, int32, bool, interface {})" P  Nfunc(int32, int32, bool, interface {})  ˛Vtype.func(int32, int32, bool, interface {}) ∞  ∞              |÷‘2 3                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  lgo.string.hdr."func(int32, int32, bool, interface {})"   p  hgo.weak.type.*func(int32, int32, bool, interface {})   ê Vtype.func(int32, int32, bool, interface {})   ¿∞ Vtype.func(int32, int32, bool, interface {})     type.int32   Ä  type.int32   ê  type.bool   †  "type.interface {}   ˛≤go.typelink.func(int32, int32, bool, interface {})	func(int32, int32, bool, interface {})              Vtype.func(int32, int32, bool, interface {})   ˛¢go.string.hdr."func(uint32, int32, graphicsprovider.Enum, int32, unsafe.Pointer)"             A          ögo.string."func(uint32, int32, graphicsprovider.Enum, int32, unsafe.Pointer)"   ˛ögo.string."func(uint32, int32, graphicsprovider.Enum, int32, unsafe.Pointer)" ê  Ñfunc(uint32, int32, graphicsprovider.Enum, int32, unsafe.Pointer)  ˛ptype.func(uint32, int32, "".Enum, int32, unsafe.Pointer) ¿  ¿              ¢íÒ 3                                                                                                                                      0Ä  runtime.algarray   @  "runtime.gcbits.01   P  ¢go.string.hdr."func(uint32, int32, graphicsprovider.Enum, int32, unsafe.Pointer)"   p  Çgo.weak.type.*func(uint32, int32, "".Enum, int32, unsafe.Pointer)   ê ptype.func(uint32, int32, "".Enum, int32, unsafe.Pointer)   ¿¿ ptype.func(uint32, int32, "".Enum, int32, unsafe.Pointer)     type.uint32   Ä  type.int32   ê  type."".Enum   †  type.int32   ∞  &type.unsafe.Pointer   ˛Çgo.typelink.func(uint32, int32, graphicsprovider.Enum, int32, unsafe.Pointer)	func(uint32, int32, "".Enum, int32, unsafe.Pointer)              ptype.func(uint32, int32, "".Enum, int32, unsafe.Pointer)   ˛Ægo.string.hdr."func(uint32, int32, graphicsprovider.Enum, bool, int32, unsafe.Pointer)"             G          ¶go.string."func(uint32, int32, graphicsprovider.Enum, bool, int32, unsafe.Pointer)"   ˛¶go.string."func(uint32, int32, graphicsprovider.Enum, bool, int32, unsafe.Pointer)" ê  êfunc(uint32, int32, graphicsprovider.Enum, bool, int32, unsafe.Pointer)  ˛|type.func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer) –  –              ‘˜BQ 3                                                                                                                                              0Ä  runtime.algarray   @  "runtime.gcbits.01   P  Ægo.string.hdr."func(uint32, int32, graphicsprovider.Enum, bool, int32, unsafe.Pointer)"   p  égo.weak.type.*func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer)   ê |type.func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer)   ¿– |type.func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer)     type.uint32   Ä  type.int32   ê  type."".Enum   †  type.bool   ∞  type.int32   ¿  &type.unsafe.Pointer   ˛ögo.typelink.func(uint32, int32, graphicsprovider.Enum, bool, int32, unsafe.Pointer)	func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer)              |type.func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer)   ˛dgo.string.hdr."*graphicsprovider.GraphicsProvider"             "          \go.string."*graphicsprovider.GraphicsProvider"   ˛\go.string."*graphicsprovider.GraphicsProvider" P  F*graphicsprovider.GraphicsProvider  ˛2type.*"".GraphicsProvider  ê  ê              Kﬂ∂ 6                                                
-0†  runtime.algarray   @  "runtime.gcbits.01   P  dgo.string.hdr."*graphicsprovider.GraphicsProvider"   p  Dgo.weak.type.**"".GraphicsProvider   Ä  0type."".GraphicsProvider   ˛bgo.string.hdr."graphicsprovider.GraphicsProvider"             !          Zgo.string."graphicsprovider.GraphicsProvider"   ˛Zgo.string."graphicsprovider.GraphicsProvider" P  Dgraphicsprovider.GraphicsProvider  ˛:go.string.hdr."ActiveTexture"                       2go.string."ActiveTexture"   ˛2go.string."ActiveTexture"    ActiveTexture  ˛8go.string.hdr."AttachShader"                       0go.string."AttachShader"   ˛0go.string."AttachShader"    AttachShader  ˛4go.string.hdr."BindBuffer"             
-          ,go.string."BindBuffer"   ˛,go.string."BindBuffer"    BindBuffer  ˛Hgo.string.hdr."BindFragDataLocation"                       @go.string."BindFragDataLocation"   ˛@go.string."BindFragDataLocation" 0  *BindFragDataLocation  ˛>go.string.hdr."BindFramebuffer"                       6go.string."BindFramebuffer"   ˛6go.string."BindFramebuffer"     BindFramebuffer  ˛@go.string.hdr."BindRenderbuffer"                       8go.string."BindRenderbuffer"   ˛8go.string."BindRenderbuffer" 0  "BindRenderbuffer  ˛6go.string.hdr."BindTexture"                       .go.string."BindTexture"   ˛.go.string."BindTexture"    BindTexture  ˛>go.string.hdr."BindVertexArray"                       6go.string."BindVertexArray"   ˛6go.string."BindVertexArray"     BindVertexArray  ˛:go.string.hdr."BlendEquation"                       2go.string."BlendEquation"   ˛2go.string."BlendEquation"    BlendEquation  ˛2go.string.hdr."BlendFunc"             	          *go.string."BlendFunc"   ˛*go.string."BlendFunc"    BlendFunc  ˛>go.string.hdr."BlitFramebuffer"                       6go.string."BlitFramebuffer"   ˛6go.string."BlitFramebuffer"     BlitFramebuffer  ˛4go.string.hdr."BufferData"             
-          ,go.string."BufferData"   ˛,go.string."BufferData"    BufferData  ˛Lgo.string.hdr."CheckFramebufferStatus"                       Dgo.string."CheckFramebufferStatus"   ˛Dgo.string."CheckFramebufferStatus" 0  .CheckFramebufferStatus  ˛*go.string.hdr."Clear"                       "go.string."Clear"   ˛"go.string."Clear"   Clear  ˛4go.string.hdr."ClearColor"             
-          ,go.string."ClearColor"   ˛,go.string."ClearColor"    ClearColor  ˛:go.string.hdr."CompileShader"                       2go.string."CompileShader"   ˛2go.string."CompileShader"    CompileShader  ˛:go.string.hdr."CreateProgram"                       2go.string."CreateProgram"   ˛2go.string."CreateProgram"    CreateProgram  ˛8go.string.hdr."CreateShader"                       0go.string."CreateShader"   ˛0go.string."CreateShader"    CreateShader  ˛0go.string.hdr."CullFace"                       (go.string."CullFace"   ˛(go.string."CullFace"    CullFace  ˛8go.string.hdr."DeleteBuffer"                       0go.string."DeleteBuffer"   ˛0go.string."DeleteBuffer"    DeleteBuffer  ˛Bgo.string.hdr."DeleteFramebuffer"                       :go.string."DeleteFramebuffer"   ˛:go.string."DeleteFramebuffer" 0  $DeleteFramebuffer  ˛:go.string.hdr."DeleteProgram"                       2go.string."DeleteProgram"   ˛2go.string."DeleteProgram"    DeleteProgram  ˛Dgo.string.hdr."DeleteRenderbuffer"                       <go.string."DeleteRenderbuffer"   ˛<go.string."DeleteRenderbuffer" 0  &DeleteRenderbuffer  ˛8go.string.hdr."DeleteShader"                       0go.string."DeleteShader"   ˛0go.string."DeleteShader"    DeleteShader  ˛:go.string.hdr."DeleteTexture"                       2go.string."DeleteTexture"   ˛2go.string."DeleteTexture"    DeleteTexture  ˛Bgo.string.hdr."DeleteVertexArray"                       :go.string."DeleteVertexArray"   ˛:go.string."DeleteVertexArray" 0  $DeleteVertexArray  ˛2go.string.hdr."DepthMask"             	          *go.string."DepthMask"   ˛*go.string."DepthMask"    DepthMask  ˛.go.string.hdr."Disable"                       &go.string."Disable"   ˛&go.string."Disable"   Disable  ˛4go.string.hdr."DrawArrays"             
-          ,go.string."DrawArrays"   ˛,go.string."DrawArrays"    DrawArrays  ˛6go.string.hdr."DrawBuffers"                       .go.string."DrawBuffers"   ˛.go.string."DrawBuffers"    DrawBuffers  ˛8go.string.hdr."DrawElements"                       0go.string."DrawElements"   ˛0go.string."DrawElements"    DrawElements  ˛,go.string.hdr."Enable"                       $go.string."Enable"   ˛$go.string."Enable"   Enable  ˛Ngo.string.hdr."EnableVertexAttribArray"                       Fgo.string."EnableVertexAttribArray"   ˛Fgo.string."EnableVertexAttribArray" 0  0EnableVertexAttribArray  ˛Ngo.string.hdr."FramebufferRenderbuffer"                       Fgo.string."FramebufferRenderbuffer"   ˛Fgo.string."FramebufferRenderbuffer" 0  0FramebufferRenderbuffer  ˛Hgo.string.hdr."FramebufferTexture2D"                       @go.string."FramebufferTexture2D"   ˛@go.string."FramebufferTexture2D" 0  *FramebufferTexture2D  ˛2go.string.hdr."GenBuffer"             	          *go.string."GenBuffer"   ˛*go.string."GenBuffer"    GenBuffer  ˛<go.string.hdr."GenFramebuffer"                       4go.string."GenFramebuffer"   ˛4go.string."GenFramebuffer"    GenFramebuffer  ˛>go.string.hdr."GenRenderbuffer"                       6go.string."GenRenderbuffer"   ˛6go.string."GenRenderbuffer"     GenRenderbuffer  ˛4go.string.hdr."GenTexture"             
-          ,go.string."GenTexture"   ˛,go.string."GenTexture"    GenTexture  ˛<go.string.hdr."GenVertexArray"                       4go.string."GenVertexArray"   ˛4go.string."GenVertexArray"    GenVertexArray  ˛<go.string.hdr."GenerateMipmap"                       4go.string."GenerateMipmap"   ˛4go.string."GenerateMipmap"    GenerateMipmap  ˛Bgo.string.hdr."GetAttribLocation"                       :go.string."GetAttribLocation"   ˛:go.string."GetAttribLocation" 0  $GetAttribLocation  ˛0go.string.hdr."GetError"                       (go.string."GetError"   ˛(go.string."GetError"    GetError  ˛Bgo.string.hdr."GetProgramInfoLog"                       :go.string."GetProgramInfoLog"   ˛:go.string."GetProgramInfoLog" 0  $GetProgramInfoLog  ˛8go.string.hdr."GetProgramiv"                       0go.string."GetProgramiv"   ˛0go.string."GetProgramiv"    GetProgramiv  ˛@go.string.hdr."GetShaderInfoLog"                       8go.string."GetShaderInfoLog"   ˛8go.string."GetShaderInfoLog" 0  "GetShaderInfoLog  ˛6go.string.hdr."GetShaderiv"                       .go.string."GetShaderiv"   ˛.go.string."GetShaderiv"    GetShaderiv  ˛Dgo.string.hdr."GetUniformLocation"                       <go.string."GetUniformLocation"   ˛<go.string."GetUniformLocation" 0  &GetUniformLocation  ˛6go.string.hdr."LinkProgram"                       .go.string."LinkProgram"   ˛.go.string."LinkProgram"    LinkProgram  ˛6go.string.hdr."PolygonMode"                       .go.string."PolygonMode"   ˛.go.string."PolygonMode"    PolygonMode  ˛:go.string.hdr."PolygonOffset"                       2go.string."PolygonOffset"   ˛2go.string."PolygonOffset"    PolygonOffset  ˛&go.string.hdr."Ptr"                       go.string."Ptr"   ˛go.string."Ptr"   Ptr  ˛2go.string.hdr."PtrOffset"             	          *go.string."PtrOffset"   ˛*go.string."PtrOffset"    PtrOffset  ˛4go.string.hdr."ReadBuffer"             
-          ,go.string."ReadBuffer"   ˛,go.string."ReadBuffer"    ReadBuffer  ˛Fgo.string.hdr."RenderbufferStorage"                       >go.string."RenderbufferStorage"   ˛>go.string."RenderbufferStorage" 0  (RenderbufferStorage  ˛\go.string.hdr."RenderbufferStorageMultisample"                       Tgo.string."RenderbufferStorageMultisample"   ˛Tgo.string."RenderbufferStorageMultisample" @  >RenderbufferStorageMultisample  ˛.go.string.hdr."Scissor"                       &go.string."Scissor"   ˛&go.string."Scissor"   Scissor  ˛8go.string.hdr."ShaderSource"                       0go.string."ShaderSource"   ˛0go.string."ShaderSource"    ShaderSource  ˛4go.string.hdr."TexImage2D"             
-          ,go.string."TexImage2D"   ˛,go.string."TexImage2D"    TexImage2D  ˛Jgo.string.hdr."TexImage2DMultisample"                       Bgo.string."TexImage2DMultisample"   ˛Bgo.string."TexImage2DMultisample" 0  ,TexImage2DMultisample  ˛:go.string.hdr."TexParameterf"                       2go.string."TexParameterf"   ˛2go.string."TexParameterf"    TexParameterf  ˛<go.string.hdr."TexParameterfv"                       4go.string."TexParameterfv"   ˛4go.string."TexParameterfv"    TexParameterfv  ˛:go.string.hdr."TexParameteri"                       2go.string."TexParameteri"   ˛2go.string."TexParameteri"    TexParameteri  ˛8go.string.hdr."TexStorage3D"                       0go.string."TexStorage3D"   ˛0go.string."TexStorage3D"    TexStorage3D  ˛:go.string.hdr."TexSubImage3D"                       2go.string."TexSubImage3D"   ˛2go.string."TexSubImage3D"    TexSubImage3D  ˛2go.string.hdr."Uniform1f"             	          *go.string."Uniform1f"   ˛*go.string."Uniform1f"    Uniform1f  ˛4go.string.hdr."Uniform1fv"             
-          ,go.string."Uniform1fv"   ˛,go.string."Uniform1fv"    Uniform1fv  ˛2go.string.hdr."Uniform1i"             	          *go.string."Uniform1i"   ˛*go.string."Uniform1i"    Uniform1i  ˛4go.string.hdr."Uniform1iv"             
-          ,go.string."Uniform1iv"   ˛,go.string."Uniform1iv"    Uniform1iv  ˛2go.string.hdr."Uniform3f"             	          *go.string."Uniform3f"   ˛*go.string."Uniform3f"    Uniform3f  ˛4go.string.hdr."Uniform3fv"             
-          ,go.string."Uniform3fv"   ˛,go.string."Uniform3fv"    Uniform3fv  ˛2go.string.hdr."Uniform4f"             	          *go.string."Uniform4f"   ˛*go.string."Uniform4f"    Uniform4f  ˛4go.string.hdr."Uniform4fv"             
-          ,go.string."Uniform4fv"   ˛,go.string."Uniform4fv"    Uniform4fv  ˛@go.string.hdr."UniformMatrix4fv"                       8go.string."UniformMatrix4fv"   ˛8go.string."UniformMatrix4fv" 0  "UniformMatrix4fv  ˛4go.string.hdr."UseProgram"             
-          ,go.string."UseProgram"   ˛,go.string."UseProgram"    UseProgram  ˛Hgo.string.hdr."VertexAttribIPointer"                       @go.string."VertexAttribIPointer"   ˛@go.string."VertexAttribIPointer" 0  *VertexAttribIPointer  ˛Fgo.string.hdr."VertexAttribPointer"                       >go.string."VertexAttribPointer"   ˛>go.string."VertexAttribPointer" 0  (VertexAttribPointer  ˛0go.string.hdr."Viewport"                       (go.string."Viewport"   ˛(go.string."Viewport"    Viewport  ˛@go.string.hdr."GraphicsProvider"                       8go.string."GraphicsProvider"   ˛8go.string."GraphicsProvider" 0  "GraphicsProvider  ˛0type."".GraphicsProvider  †  †              ÄC∏˚                                                 N       N                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                0‡  runtime.algarray   @  "runtime.gcbits.03   P  bgo.string.hdr."graphicsprovider.GraphicsProvider"   p  2type.*"".GraphicsProvider   Ä∞ 0type."".GraphicsProvider   ∞  :go.string.hdr."ActiveTexture"   –  *type.func("".Texture)   ‡  8go.string.hdr."AttachShader"   Ä  @type.func("".Program, "".Shader)   ê  4go.string.hdr."BindBuffer"   ∞  :type.func("".Enum, "".Buffer)   ¿  Hgo.string.hdr."BindFragDataLocation"   ‡  Jtype.func("".Program, uint32, string)     >go.string.hdr."BindFramebuffer"   ê  :type.func("".Enum, "".Buffer)   †  @go.string.hdr."BindRenderbuffer"   ¿  :type.func("".Enum, "".Buffer)   –  6go.string.hdr."BindTexture"     <type.func("".Enum, "".Texture)   Ä  >go.string.hdr."BindVertexArray"   †  "type.func(uint32)   ∞  :go.string.hdr."BlendEquation"   –  $type.func("".Enum)   ‡  2go.string.hdr."BlendFunc"   Ä  6type.func("".Enum, "".Enum)   ê  >go.string.hdr."BlitFramebuffer"   ∞  Ætype.func(int32, int32, int32, int32, int32, int32, int32, int32, "".Bitfield, "".Enum)   ¿  4go.string.hdr."BufferData"   ‡  `type.func("".Enum, int, unsafe.Pointer, "".Enum)     Lgo.string.hdr."CheckFramebufferStatus"   ê  4type.func("".Enum) "".Enum   †  *go.string.hdr."Clear"   ¿  $type.func("".Enum)   –  4go.string.hdr."ClearColor"     Ztype.func(float32, float32, float32, float32)   Ä  :go.string.hdr."CompileShader"   †  (type.func("".Shader)   ∞  :go.string.hdr."CreateProgram"   –  ,type.func() "".Program   ‡  8go.string.hdr."CreateShader"   Ä  8type.func("".Enum) "".Shader   ê  0go.string.hdr."CullFace"   ∞  $type.func("".Enum)   ¿  8go.string.hdr."DeleteBuffer"   ‡  (type.func("".Buffer)     Bgo.string.hdr."DeleteFramebuffer"   ê	  (type.func("".Buffer)   †	  :go.string.hdr."DeleteProgram"   ¿	  *type.func("".Program)   –	  Dgo.string.hdr."DeleteRenderbuffer"   	  (type.func("".Buffer)   Ä
-  8go.string.hdr."DeleteShader"   †
-  (type.func("".Shader)   ∞
-  :go.string.hdr."DeleteTexture"   –
-  *type.func("".Texture)   ‡
-  Bgo.string.hdr."DeleteVertexArray"   Ä  "type.func(uint32)   ê  2go.string.hdr."DepthMask"   ∞  type.func(bool)   ¿  .go.string.hdr."Disable"   ‡  $type.func("".Enum)     4go.string.hdr."DrawArrays"   ê  @type.func("".Enum, int32, int32)   †  6go.string.hdr."DrawBuffers"   ¿  &type.func([]uint32)   –  8go.string.hdr."DrawElements"     dtype.func("".Enum, int32, "".Enum, unsafe.Pointer)   Ä  ,go.string.hdr."Enable"   †  $type.func("".Enum)   ∞  Ngo.string.hdr."EnableVertexAttribArray"   –  "type.func(uint32)   ‡  Ngo.string.hdr."FramebufferRenderbuffer"   Ä  ^type.func("".Enum, "".Enum, "".Enum, "".Buffer)   ê  Hgo.string.hdr."FramebufferTexture2D"   ∞  ntype.func("".Enum, "".Enum, "".Enum, "".Texture, int32)   ¿  2go.string.hdr."GenBuffer"   ‡  *type.func() "".Buffer     <go.string.hdr."GenFramebuffer"   ê  *type.func() "".Buffer   †  >go.string.hdr."GenRenderbuffer"   ¿  *type.func() "".Buffer   –  4go.string.hdr."GenTexture"     ,type.func() "".Texture   Ä  <go.string.hdr."GenVertexArray"   †  $type.func() uint32   ∞  <go.string.hdr."GenerateMipmap"   –  $type.func("".Enum)   ‡  Bgo.string.hdr."GetAttribLocation"   Ä  Ftype.func("".Program, string) int32   ê  0go.string.hdr."GetError"   ∞  $type.func() uint32   ¿  Bgo.string.hdr."GetProgramInfoLog"   ‡  8type.func("".Program) string     8go.string.hdr."GetProgramiv"   ê  Ltype.func("".Program, "".Enum, *int32)   †  @go.string.hdr."GetShaderInfoLog"   ¿  6type.func("".Shader) string   –  6go.string.hdr."GetShaderiv"     Jtype.func("".Shader, "".Enum, *int32)   Ä  Dgo.string.hdr."GetUniformLocation"   †  Ftype.func("".Program, string) int32   ∞  6go.string.hdr."LinkProgram"   –  *type.func("".Program)   ‡  6go.string.hdr."PolygonMode"   Ä  6type.func("".Enum, "".Enum)   ê  :go.string.hdr."PolygonOffset"   ∞  6type.func(float32, float32)   ¿  &go.string.hdr."Ptr"   ‡  Ltype.func(interface {}) unsafe.Pointer     2go.string.hdr."PtrOffset"   ê  :type.func(int) unsafe.Pointer   †  4go.string.hdr."ReadBuffer"   ¿  $type.func("".Enum)   –  Fgo.string.hdr."RenderbufferStorage"     Rtype.func("".Enum, "".Enum, int32, int32)   Ä  \go.string.hdr."RenderbufferStorageMultisample"   †  `type.func("".Enum, int32, "".Enum, int32, int32)   ∞  .go.string.hdr."Scissor"   –  Jtype.func(int32, int32, int32, int32)   ‡  8go.string.hdr."ShaderSource"   Ä  8type.func("".Shader, string)   ê  4go.string.hdr."TexImage2D"   ∞  ∏type.func("".Enum, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer, int)   ¿  Jgo.string.hdr."TexImage2DMultisample"   ‡  ltype.func("".Enum, int32, "".Enum, int32, int32, bool)     :go.string.hdr."TexParameterf"   ê  Htype.func("".Enum, "".Enum, float32)   †  <go.string.hdr."TexParameterfv"   ¿  Jtype.func("".Enum, "".Enum, *float32)   –  :go.string.hdr."TexParameteri"     Dtype.func("".Enum, "".Enum, int32)   Ä  8go.string.hdr."TexStorage3D"   †  ltype.func("".Enum, int32, uint32, int32, int32, int32)   ∞  :go.string.hdr."TexSubImage3D"   –   type.func("".Enum, int32, int32, int32, int32, int32, int32, int32, "".Enum, "".Enum, unsafe.Pointer)   ‡  2go.string.hdr."Uniform1f"   Ä  2type.func(int32, float32)   ê  4go.string.hdr."Uniform1fv"   ∞  6type.func(int32, []float32)   ¿  2go.string.hdr."Uniform1i"   ‡  .type.func(int32, int32)     4go.string.hdr."Uniform1iv"   ê  2type.func(int32, []int32)   †  2go.string.hdr."Uniform3f"   ¿  Vtype.func(int32, float32, float32, float32)   –  4go.string.hdr."Uniform3fv"     6type.func(int32, []float32)   Ä  2go.string.hdr."Uniform4f"   †  htype.func(int32, float32, float32, float32, float32)   ∞  4go.string.hdr."Uniform4fv"   –  6type.func(int32, []float32)   ‡  @go.string.hdr."UniformMatrix4fv"   Ä  Vtype.func(int32, int32, bool, interface {})   ê  4go.string.hdr."UseProgram"   ∞  *type.func("".Program)   ¿  Hgo.string.hdr."VertexAttribIPointer"   ‡  ptype.func(uint32, int32, "".Enum, int32, unsafe.Pointer)     Fgo.string.hdr."VertexAttribPointer"   ê  |type.func(uint32, int32, "".Enum, bool, int32, unsafe.Pointer)   †  0go.string.hdr."Viewport"   ¿  Jtype.func(int32, int32, int32, int32)   `– 0type."".GraphicsProvider   –  @go.string.hdr."GraphicsProvider"   ‡  "go.importpath."".   † 0type."".GraphicsProvider   ˛H"".GraphicsProvider.ActiveTexture¬∑f              B"".GraphicsProvider.ActiveTexture   ˛F"".GraphicsProvider.AttachShader¬∑f              @"".GraphicsProvider.AttachShader   ˛B"".GraphicsProvider.BindBuffer¬∑f              <"".GraphicsProvider.BindBuffer   ˛V"".GraphicsProvider.BindFragDataLocation¬∑f              P"".GraphicsProvider.BindFragDataLocation   ˛L"".GraphicsProvider.BindFramebuffer¬∑f              F"".GraphicsProvider.BindFramebuffer   ˛N"".GraphicsProvider.BindRenderbuffer¬∑f              H"".GraphicsProvider.BindRenderbuffer   ˛D"".GraphicsProvider.BindTexture¬∑f              >"".GraphicsProvider.BindTexture   ˛L"".GraphicsProvider.BindVertexArray¬∑f              F"".GraphicsProvider.BindVertexArray   ˛H"".GraphicsProvider.BlendEquation¬∑f              B"".GraphicsProvider.BlendEquation   ˛@"".GraphicsProvider.BlendFunc¬∑f              :"".GraphicsProvider.BlendFunc   ˛L"".GraphicsProvider.BlitFramebuffer¬∑f              F"".GraphicsProvider.BlitFramebuffer   ˛B"".GraphicsProvider.BufferData¬∑f              <"".GraphicsProvider.BufferData   ˛Z"".GraphicsProvider.CheckFramebufferStatus¬∑f              T"".GraphicsProvider.CheckFramebufferStatus   ˛8"".GraphicsProvider.Clear¬∑f              2"".GraphicsProvider.Clear   ˛B"".GraphicsProvider.ClearColor¬∑f              <"".GraphicsProvider.ClearColor   ˛H"".GraphicsProvider.CompileShader¬∑f              B"".GraphicsProvider.CompileShader   ˛H"".GraphicsProvider.CreateProgram¬∑f              B"".GraphicsProvider.CreateProgram   ˛F"".GraphicsProvider.CreateShader¬∑f              @"".GraphicsProvider.CreateShader   ˛>"".GraphicsProvider.CullFace¬∑f              8"".GraphicsProvider.CullFace   ˛F"".GraphicsProvider.DeleteBuffer¬∑f              @"".GraphicsProvider.DeleteBuffer   ˛P"".GraphicsProvider.DeleteFramebuffer¬∑f              J"".GraphicsProvider.DeleteFramebuffer   ˛H"".GraphicsProvider.DeleteProgram¬∑f              B"".GraphicsProvider.DeleteProgram   ˛R"".GraphicsProvider.DeleteRenderbuffer¬∑f              L"".GraphicsProvider.DeleteRenderbuffer   ˛F"".GraphicsProvider.DeleteShader¬∑f              @"".GraphicsProvider.DeleteShader   ˛H"".GraphicsProvider.DeleteTexture¬∑f              B"".GraphicsProvider.DeleteTexture   ˛P"".GraphicsProvider.DeleteVertexArray¬∑f              J"".GraphicsProvider.DeleteVertexArray   ˛@"".GraphicsProvider.DepthMask¬∑f              :"".GraphicsProvider.DepthMask   ˛<"".GraphicsProvider.Disable¬∑f              6"".GraphicsProvider.Disable   ˛B"".GraphicsProvider.DrawArrays¬∑f              <"".GraphicsProvider.DrawArrays   ˛D"".GraphicsProvider.DrawBuffers¬∑f              >"".GraphicsProvider.DrawBuffers   ˛F"".GraphicsProvider.DrawElements¬∑f              @"".GraphicsProvider.DrawElements   ˛:"".GraphicsProvider.Enable¬∑f              4"".GraphicsProvider.Enable   ˛\"".GraphicsProvider.EnableVertexAttribArray¬∑f              V"".GraphicsProvider.EnableVertexAttribArray   ˛\"".GraphicsProvider.FramebufferRenderbuffer¬∑f              V"".GraphicsProvider.FramebufferRenderbuffer   ˛V"".GraphicsProvider.FramebufferTexture2D¬∑f              P"".GraphicsProvider.FramebufferTexture2D   ˛@"".GraphicsProvider.GenBuffer¬∑f              :"".GraphicsProvider.GenBuffer   ˛J"".GraphicsProvider.GenFramebuffer¬∑f              D"".GraphicsProvider.GenFramebuffer   ˛L"".GraphicsProvider.GenRenderbuffer¬∑f              F"".GraphicsProvider.GenRenderbuffer   ˛B"".GraphicsProvider.GenTexture¬∑f              <"".GraphicsProvider.GenTexture   ˛J"".GraphicsProvider.GenVertexArray¬∑f              D"".GraphicsProvider.GenVertexArray   ˛J"".GraphicsProvider.GenerateMipmap¬∑f              D"".GraphicsProvider.GenerateMipmap   ˛P"".GraphicsProvider.GetAttribLocation¬∑f              J"".GraphicsProvider.GetAttribLocation   ˛>"".GraphicsProvider.GetError¬∑f              8"".GraphicsProvider.GetError   ˛P"".GraphicsProvider.GetProgramInfoLog¬∑f              J"".GraphicsProvider.GetProgramInfoLog   ˛F"".GraphicsProvider.GetProgramiv¬∑f              @"".GraphicsProvider.GetProgramiv   ˛N"".GraphicsProvider.GetShaderInfoLog¬∑f              H"".GraphicsProvider.GetShaderInfoLog   ˛D"".GraphicsProvider.GetShaderiv¬∑f              >"".GraphicsProvider.GetShaderiv   ˛R"".GraphicsProvider.GetUniformLocation¬∑f              L"".GraphicsProvider.GetUniformLocation   ˛D"".GraphicsProvider.LinkProgram¬∑f              >"".GraphicsProvider.LinkProgram   ˛D"".GraphicsProvider.PolygonMode¬∑f              >"".GraphicsProvider.PolygonMode   ˛H"".GraphicsProvider.PolygonOffset¬∑f              B"".GraphicsProvider.PolygonOffset   ˛4"".GraphicsProvider.Ptr¬∑f              ."".GraphicsProvider.Ptr   ˛@"".GraphicsProvider.PtrOffset¬∑f              :"".GraphicsProvider.PtrOffset   ˛B"".GraphicsProvider.ReadBuffer¬∑f              <"".GraphicsProvider.ReadBuffer   ˛T"".GraphicsProvider.RenderbufferStorage¬∑f              N"".GraphicsProvider.RenderbufferStorage   ˛j"".GraphicsProvider.RenderbufferStorageMultisample¬∑f              d"".GraphicsProvider.RenderbufferStorageMultisample   ˛<"".GraphicsProvider.Scissor¬∑f              6"".GraphicsProvider.Scissor   ˛F"".GraphicsProvider.ShaderSource¬∑f              @"".GraphicsProvider.ShaderSource   ˛B"".GraphicsProvider.TexImage2D¬∑f              <"".GraphicsProvider.TexImage2D   ˛X"".GraphicsProvider.TexImage2DMultisample¬∑f              R"".GraphicsProvider.TexImage2DMultisample   ˛H"".GraphicsProvider.TexParameterf¬∑f              B"".GraphicsProvider.TexParameterf   ˛J"".GraphicsProvider.TexParameterfv¬∑f              D"".GraphicsProvider.TexParameterfv   ˛H"".GraphicsProvider.TexParameteri¬∑f              B"".GraphicsProvider.TexParameteri   ˛F"".GraphicsProvider.TexStorage3D¬∑f              @"".GraphicsProvider.TexStorage3D   ˛H"".GraphicsProvider.TexSubImage3D¬∑f              B"".GraphicsProvider.TexSubImage3D   ˛@"".GraphicsProvider.Uniform1f¬∑f              :"".GraphicsProvider.Uniform1f   ˛B"".GraphicsProvider.Uniform1fv¬∑f              <"".GraphicsProvider.Uniform1fv   ˛@"".GraphicsProvider.Uniform1i¬∑f              :"".GraphicsProvider.Uniform1i   ˛B"".GraphicsProvider.Uniform1iv¬∑f              <"".GraphicsProvider.Uniform1iv   ˛@"".GraphicsProvider.Uniform3f¬∑f              :"".GraphicsProvider.Uniform3f   ˛B"".GraphicsProvider.Uniform3fv¬∑f              <"".GraphicsProvider.Uniform3fv   ˛@"".GraphicsProvider.Uniform4f¬∑f              :"".GraphicsProvider.Uniform4f   ˛B"".GraphicsProvider.Uniform4fv¬∑f              <"".GraphicsProvider.Uniform4fv   ˛N"".GraphicsProvider.UniformMatrix4fv¬∑f              H"".GraphicsProvider.UniformMatrix4fv   ˛B"".GraphicsProvider.UseProgram¬∑f              <"".GraphicsProvider.UseProgram   ˛V"".GraphicsProvider.VertexAttribIPointer¬∑f              P"".GraphicsProvider.VertexAttribIPointer   ˛T"".GraphicsProvider.VertexAttribPointer¬∑f              N"".GraphicsProvider.VertexAttribPointer   ˛>"".GraphicsProvider.Viewport¬∑f              8"".GraphicsProvider.Viewport   ˇˇgo13ld
