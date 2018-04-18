@@ -1,13 +1,21 @@
 package Landscape
 
 import (
+  "github.com/go-gl/gl/v4.1-core/gl"
   "github.com/go-gl/mathgl/mgl32"
 )
+
+/*
+======================
+Node
+======================
+*/
 
 type Node struct {
   parent *Node
   children []*Node
   patch *Patch
+  is_leaf bool
 
   world_transform, local_transform *mgl32.Mat4
 }
@@ -31,11 +39,20 @@ func (node *Node) update(elapsed float32) {
 }
 
 func (node *Node) render() {
-  node.patch.render()
-  for _, child := range node.children {
-    child.render()
+  if node.is_leaf {
+    node.patch.render()
+  } else {
+    for _, child := range node.children {
+      child.render()
+    }
   }
 }
+
+/*
+======================
+Quadtree
+======================
+*/
 
 type Quadtree struct {
   nodes_amt int
@@ -55,4 +72,13 @@ func (quad *Quadtree) Init(shader uint32) *Quadtree {
   }
 
   return quad
+}
+
+func (quad *Quadtree) Update(elapsed float32) {
+  quad.root_node.update(elapsed)
+}
+
+func (quad *Quadtree) Render() {
+  gl.UseProgram(quad.shader)
+  quad.root_node.render()
 }
