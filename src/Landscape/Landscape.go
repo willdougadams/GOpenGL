@@ -1,7 +1,7 @@
 package Landscape
 
 import (
-	"Model"
+	//"Model"
 	"Gordon"
 
 	//"fmt"
@@ -27,9 +27,16 @@ type Landscape struct {
 	gord *Gordon.Gordon
 }
 
+func generate_color(x, y, z float32) (float32, float32, float32) {
+	red := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+	green := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
+	blue := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+	return red, green, blue
+}
+
 func (land *Landscape) Init(gord *Gordon.Gordon) *Landscape {
 	land.gord  = gord
-	land.width, land.distance = 100, 100
+	land.width, land.distance = 1000, 1000
 	vertex_data := []float32{}
 	color_data := []float32{}
 
@@ -42,60 +49,48 @@ func (land *Landscape) Init(gord *Gordon.Gordon) *Landscape {
 			z := r+1
 			y := land.GetHeight(x, z)
 			vertex_data = append(vertex_data, x, y, z)
-			red := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
-			g := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
-			b := (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			red, g, b := generate_color(x, y, z)
 			color_data = append(color_data, red, g, b)
 
 			x = c
 			z = r
 			y = land.GetHeight(x, z)
 			vertex_data = append(vertex_data, x, y, z)
-			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
-			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
-			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			red, g, b = generate_color(x, y, z)
 			color_data = append(color_data, red, g, b)
 
 			x = c+1
 			z = r
 			y = land.GetHeight(x, z)
 			vertex_data = append(vertex_data, x, y, z)
-			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
-			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
-			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			red, g, b = generate_color(x, y, z)
 			color_data = append(color_data, red, g, b)
 
 			x = c+1
 			z = r+1
 			y = land.GetHeight(x, z)
 			vertex_data = append(vertex_data, x, y, z)
-			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
-			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
-			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			red, g, b = generate_color(x, y, z)
 			color_data = append(color_data, red, g, b)
 
 			x = c
 			z = r+1
 			y = land.GetHeight(x, z)
 			vertex_data = append(vertex_data, x, y, z)
-			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
-			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
-			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			red, g, b = generate_color(x, y, z)
 			color_data = append(color_data, red, g, b)
 
 			x = c+1
 			z = r
 			y = land.GetHeight(c+1, r)
 			vertex_data = append(vertex_data, c+1.0, y, r)
-			red = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
-			g = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.5
-			b = (float32(simplexnoise.Noise2(float64(x), float64(z)))+1)*0.1
+			red, g, b = generate_color(x, y, z)
 			color_data = append(color_data, red, g, b)
 		}
 	}
 
 	var err error
-	land.shader, err = Model.NewProgram("src/shaders/terrain.vert", "src/shaders/terrain.frag")
+	land.shader, err = load_terrain_shader()
 	if err != nil {
 		panic(err)
 	}
